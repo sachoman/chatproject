@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Class" version="4">
+  <OBJECT>
+    <ID name="Class" mc="Standard.Package" uid="df9a09d3-81e5-483e-8d97-d3c86ffd9d39"/>
+    <PID name="Modelio" mc="Standard.Project" uid="6426837b-d160-4cfa-b64f-a76100f22b7f"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Class]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="User" mc="Standard.Class" uid="68824154-d9f6-4232-ae48-63025e3a05aa"/>
+        <COMPID name="Message" mc="Standard.Class" uid="9eafb2bc-46d7-4cd3-be39-ffa0b2bb38ed"/>
+        <COMPID name="UserTable" mc="Standard.Class" uid="04a5f6c7-cb5c-402f-b4f0-7fb689c5b116"/>
+        <COMPID name="Server" mc="Standard.Class" uid="1e5f9cf2-c72e-404d-ae9d-745585ead16d"/>
+        <COMPID name="Client" mc="Standard.Class" uid="6bd66f12-3102-4d2f-b7b3-42ec53ba7101"/>
+        <COMPID name="Chat" mc="Standard.Class" uid="ad99fbf0-1892-4bfc-8d68-296485f32585"/>
+        <COMPID name="ThreadMAnager" mc="Standard.Class" uid="1f7369a1-0cf2-4eaf-b88e-0326707f40c3"/>
+        <COMPID name="NetworkManager" mc="Standard.Class" uid="31743ead-13fa-4c65-b4d6-3a1b13ec2df9"/>
+        <COMPID name="NetworkListenThread" mc="Standard.Class" uid="1ca48dce-8917-40aa-a76a-933af9ef57a2"/>
+        <COMPID name="ListeningThread" mc="Standard.Class" uid="2f49de97-9c07-4447-8b30-1f14229dbe11"/>
+        <COMPID name="SendingThread" mc="Standard.Class" uid="7a44ce75-eb8b-4770-bf94-45099c736a1a"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Diagramme de classe Class" mc="Standard.ClassDiagram" uid="047076b8-7f6e-4a77-a5f2-55253f109fb7"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

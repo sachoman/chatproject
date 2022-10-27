@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Modelio" version="4">
+  <OBJECT>
+    <ID name="Modelio" mc="Infrastructure.DiagramSet" uid="da9824be-f5b4-4f9e-b5db-963b6bfc72c3"/>
+    <PID name="Modelio" mc="Standard.Project" uid="6426837b-d160-4cfa-b64f-a76100f22b7f"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[Modelio]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
