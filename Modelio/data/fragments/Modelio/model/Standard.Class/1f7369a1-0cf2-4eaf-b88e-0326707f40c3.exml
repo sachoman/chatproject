@@ -58,9 +58,9 @@
       </COMP>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="listeningThread" mc="Standard.AssociationEnd" uid="a5922841-161f-4360-8c5c-4bf2411b087c"/>
+          <ID name="listeningThread" mc="Standard.AssociationEnd" uid="7817f938-538c-4129-9fb7-d8bc6c5bdaa1"/>
           <ATTRIBUTES>
-            <ATT name="Aggregation">KindIsAggregation</ATT>
+            <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
             <ATT name="Changeable">AccesNone</ATT>
             <ATT name="IsDerived">false</ATT>
@@ -80,7 +80,7 @@
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="c5274f36-127a-422e-9a64-9b7d1500d684"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="266d351e-793a-4177-8a7f-7635f158a58d"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -88,7 +88,7 @@
                   <ATT name="IsDerived">false</ATT>
                   <ATT name="IsOrdered">false</ATT>
                   <ATT name="IsUnique">false</ATT>
-                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
                   <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
                   <ATT name="Visibility">Public</ATT>
                   <ATT name="IsClass">false</ATT>
@@ -98,11 +98,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="listeningThread" mc="Standard.AssociationEnd" uid="a5922841-161f-4360-8c5c-4bf2411b087c"/>
+                    <COMPID name="listeningThread" mc="Standard.AssociationEnd" uid="7817f938-538c-4129-9fb7-d8bc6c5bdaa1"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="a0d56124-601b-4709-a714-cc83b447bd3b"/>
+                      <ID name="" mc="Standard.Association" uid="4fbd1370-998e-47d9-bd44-f1fa6b24078a"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -114,14 +114,14 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="a0d56124-601b-4709-a714-cc83b447bd3b"/>
+              <COMPID name="" mc="Standard.Association" uid="4fbd1370-998e-47d9-bd44-f1fa6b24078a"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="sendingThread" mc="Standard.AssociationEnd" uid="d3d752a8-269f-4690-8b27-db747c30c8a1"/>
+          <ID name="sendingThread" mc="Standard.AssociationEnd" uid="389a842b-a6a0-4c3e-8b5f-a17b2f027883"/>
           <ATTRIBUTES>
-            <ATT name="Aggregation">KindIsAggregation</ATT>
+            <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
             <ATT name="Changeable">AccesNone</ATT>
             <ATT name="IsDerived">false</ATT>
@@ -141,7 +141,7 @@
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="7373e5ca-952e-4069-930c-bbc1e7638d37"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="f13adeeb-1a4d-4b14-a7b0-e810c0023b93"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -149,7 +149,7 @@
                   <ATT name="IsDerived">false</ATT>
                   <ATT name="IsOrdered">false</ATT>
                   <ATT name="IsUnique">false</ATT>
-                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
                   <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
                   <ATT name="Visibility">Public</ATT>
                   <ATT name="IsClass">false</ATT>
@@ -159,11 +159,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="sendingThread" mc="Standard.AssociationEnd" uid="d3d752a8-269f-4690-8b27-db747c30c8a1"/>
+                    <COMPID name="sendingThread" mc="Standard.AssociationEnd" uid="389a842b-a6a0-4c3e-8b5f-a17b2f027883"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="39745f00-d5d5-440a-9c7a-db46576d7aa9"/>
+                      <ID name="" mc="Standard.Association" uid="57862f46-9905-4d45-8ae4-284f3f32d1df"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -175,7 +175,7 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="39745f00-d5d5-440a-9c7a-db46576d7aa9"/>
+              <COMPID name="" mc="Standard.Association" uid="57862f46-9905-4d45-8ae4-284f3f32d1df"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>

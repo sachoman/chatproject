@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Diagramme séquence" version="4">
+  <OBJECT>
+    <ID name="Diagramme séquence" mc="Standard.Package" uid="42463bcf-76d5-4093-8b14-0404453b9e90"/>
+    <PID name="Modelio" mc="Standard.Project" uid="6426837b-d160-4cfa-b64f-a76100f22b7f"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Diagramme séquence]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedBehavior">
+        <COMPID name="Interaction" mc="Standard.Interaction" uid="93ef72a0-86ab-456e-b1fd-65530bd40e5d"/>
+        <COMPID name="Établir Connexion" mc="Standard.Interaction" uid="163a13a6-1c2e-4694-ae35-f0e466e72d1c"/>
+        <COMPID name="Recevoir Connexion" mc="Standard.Interaction" uid="3ff0df77-0e2f-4939-885a-3eb0bd172beb"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Recevoir Connexion" version="4">
+  <OBJECT>
+    <ID name="Recevoir Connexion" mc="Standard.Interaction" uid="3ff0df77-0e2f-4939-885a-3eb0bd172beb"/>
+    <PID name="Diagramme séquence" mc="Standard.Package" uid="42463bcf-76d5-4093-8b14-0404453b9e90"/>
+    <ATTRIBUTES>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[Recevoir Connexion]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Standard.Collaboration" uid="df9b2215-f8fb-432f-bd34-ae39ff54d698"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Diagramme de séquence Interaction1" mc="Standard.SequenceDiagram" uid="18c4ac94-8004-4240-b590-9edb4938bbfb"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
