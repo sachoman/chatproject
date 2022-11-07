@@ -40,7 +40,7 @@
             </COMP>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="User" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
+                <ID name="ChatManager" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -288,7 +288,7 @@
         <OBJECT>
           <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="bad2167a-ed1b-4418-a5a1-8489658f478c"/>
           <ATTRIBUTES>
-            <ATT name="LineNumber">331</ATT>
+            <ATT name="LineNumber">387</ATT>
             <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
@@ -300,7 +300,7 @@
                   <ATT name="Argument"></ATT>
                   <ATT name="KindOfMessage">CompleteKind</ATT>
                   <ATT name="SortOfMessage">CreateMessage</ATT>
-                  <ATT name="Sequence"><![CDATA[7]]></ATT>
+                  <ATT name="Sequence"><![CDATA[8]]></ATT>
                   <ATT name="Name"><![CDATA[create]]></ATT>
                   <ATT name="status">1970354901745664</ATT>
                 </ATTRIBUTES>
@@ -323,7 +323,7 @@
         <OBJECT>
           <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="b5351113-6d99-4527-958c-3ce51c6fe911"/>
           <ATTRIBUTES>
-            <ATT name="LineNumber">331</ATT>
+            <ATT name="LineNumber">387</ATT>
             <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
@@ -483,7 +483,7 @@
         <OBJECT>
           <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="36e8f5ab-5a9e-4b3c-a857-f1b333bd1fa2"/>
           <ATTRIBUTES>
-            <ATT name="LineNumber">337</ATT>
+            <ATT name="LineNumber">393</ATT>
             <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
@@ -515,13 +515,103 @@
             </LINK>
           </DEPENDENCIES>
         </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="45f63725-40a9-4b4d-8695-8e33520bec04"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">307</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="ok" mc="Standard.Message" uid="31895fa4-526d-4027-89bd-3ec172489447"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">ASyncCall</ATT>
+                  <ATT name="Sequence"><![CDATA[7]]></ATT>
+                  <ATT name="Name"><![CDATA[ok]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="897aebcb-f07b-477e-9ac3-e33ad5b89ba9"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="NetworkManager" mc="Standard.Lifeline" uid="56ccede2-035e-4efd-be30-94ade00da226"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="897aebcb-f07b-477e-9ac3-e33ad5b89ba9"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">307</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="Standard.ExecutionSpecification" uid="3888ddc6-e994-475a-959f-7bd690ed5899"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="ChatManager" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="50ff4542-c3dc-44ad-b354-3ad540c8c465"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">367</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="ChatManager" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionSpecification" uid="3888ddc6-e994-475a-959f-7bd690ed5899"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">307</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="50ff4542-c3dc-44ad-b354-3ad540c8c465"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="ChatManager" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
       </COMP>
       <COMP relation="OwnedLine">
         <OBJECT>
-          <ID name="User" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
+          <ID name="ChatManager" mc="Standard.Lifeline" uid="74720413-58ab-4129-b01f-54147f928a0f"/>
           <ATTRIBUTES>
             <ATT name="Selector"></ATT>
-            <ATT name="Name"><![CDATA[User]]></ATT>
+            <ATT name="Name"><![CDATA[ChatManager]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>

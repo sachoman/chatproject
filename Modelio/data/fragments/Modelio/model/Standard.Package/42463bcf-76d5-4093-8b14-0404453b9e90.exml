@@ -14,9 +14,12 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedBehavior">
-        <COMPID name="Interaction" mc="Standard.Interaction" uid="93ef72a0-86ab-456e-b1fd-65530bd40e5d"/>
+        <COMPID name="Welcome" mc="Standard.Interaction" uid="93ef72a0-86ab-456e-b1fd-65530bd40e5d"/>
         <COMPID name="Établir Connexion" mc="Standard.Interaction" uid="163a13a6-1c2e-4694-ae35-f0e466e72d1c"/>
         <COMPID name="Recevoir Connexion" mc="Standard.Interaction" uid="3ff0df77-0e2f-4939-885a-3eb0bd172beb"/>
+        <COMPID name="UpdatePseudo" mc="Standard.Interaction" uid="942a1428-2c08-4f9f-b104-20d0402ddf70"/>
+        <COMPID name="Receive Update Pseudo" mc="Standard.Interaction" uid="c55c5e28-b30e-4cf8-b8f5-2f865be88181"/>
+        <COMPID name="Envoi Message" mc="Standard.Interaction" uid="a14b4563-f9e8-45dd-be48-ccd319e2b8cf"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

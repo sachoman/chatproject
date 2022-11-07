@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Interaction" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Welcome" version="4">
   <OBJECT>
-    <ID name="Interaction" mc="Standard.Interaction" uid="93ef72a0-86ab-456e-b1fd-65530bd40e5d"/>
+    <ID name="Welcome" mc="Standard.Interaction" uid="93ef72a0-86ab-456e-b1fd-65530bd40e5d"/>
     <PID name="Diagramme séquence" mc="Standard.Package" uid="42463bcf-76d5-4093-8b14-0404453b9e90"/>
     <ATTRIBUTES>
       <ATT name="IsReentrant">false</ATT>
-      <ATT name="Name"><![CDATA[Interaction]]></ATT>
+      <ATT name="Name"><![CDATA[Welcome]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
@@ -20,13 +20,13 @@
           <DEPENDENCIES>
             <COMP relation="SentMessage">
               <OBJECT>
-                <ID name="ImConnected" mc="Standard.Message" uid="0d668d45-12da-47ae-8006-38be53eeddac"/>
+                <ID name="ImConnected (broadcast)" mc="Standard.Message" uid="0d668d45-12da-47ae-8006-38be53eeddac"/>
                 <ATTRIBUTES>
                   <ATT name="Argument"></ATT>
                   <ATT name="KindOfMessage">CompleteKind</ATT>
                   <ATT name="SortOfMessage">ASyncCall</ATT>
                   <ATT name="Sequence"><![CDATA[1]]></ATT>
-                  <ATT name="Name"><![CDATA[ImConnected]]></ATT>
+                  <ATT name="Name"><![CDATA[ImConnected (broadcast)]]></ATT>
                   <ATT name="status">1970354901745664</ATT>
                 </ATTRIBUTES>
                 <DEPENDENCIES>
@@ -60,7 +60,7 @@
             </LINK>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="Network" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
+                <ID name="NetworkManager" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -95,7 +95,7 @@
             </COMP>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="Network" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
+                <ID name="NetworkManager" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -115,7 +115,7 @@
             </LINK>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="Network" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
+                <ID name="NetworkManager" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -148,6 +148,26 @@
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="Update UserTable" mc="Standard.Message" uid="f96f09d6-adcd-458f-b4a7-fe99308342a4"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">ASyncCall</ATT>
+                  <ATT name="Sequence"><![CDATA[4]]></ATT>
+                  <ATT name="Name"><![CDATA[Update UserTable]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="3a67608b-2be5-4fc5-8925-aeae0f0ba10d"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
             <LINK relation="Covered">
               <REFOBJ>
                 <ID name="Réseau" mc="Standard.Lifeline" uid="3ab59089-34ac-4dd2-ab82-6e28783adfcd"/>
@@ -205,7 +225,7 @@
             </COMP>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="Network" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
+                <ID name="NetworkManager" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -225,7 +245,7 @@
             </LINK>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="UserTable" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
+                <ID name="DatabaseManager" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -240,7 +260,7 @@
           <DEPENDENCIES>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="UserTable" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
+                <ID name="DatabaseManager" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -260,7 +280,62 @@
             </LINK>
             <LINK relation="Covered">
               <REFOBJ>
-                <ID name="UserTable" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
+                <ID name="DatabaseManager" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="3a67608b-2be5-4fc5-8925-aeae0f0ba10d"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">298</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="Standard.ExecutionSpecification" uid="cd145078-1823-41be-be01-dc563c0d5f4e"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Réseau" mc="Standard.Lifeline" uid="3ab59089-34ac-4dd2-ab82-6e28783adfcd"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="164cfa19-83c7-44b6-abcb-048bcc3a4730"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">358</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Réseau" mc="Standard.Lifeline" uid="3ab59089-34ac-4dd2-ab82-6e28783adfcd"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.ExecutionSpecification" uid="cd145078-1823-41be-be01-dc563c0d5f4e"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">298</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="Standard.ExecutionOccurenceSpecification" uid="164cfa19-83c7-44b6-abcb-048bcc3a4730"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Réseau" mc="Standard.Lifeline" uid="3ab59089-34ac-4dd2-ab82-6e28783adfcd"/>
               </REFOBJ>
             </LINK>
           </DEPENDENCIES>
@@ -268,19 +343,19 @@
       </COMP>
       <COMP relation="OwnedLine">
         <OBJECT>
-          <ID name="Network" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
+          <ID name="NetworkManager" mc="Standard.Lifeline" uid="54665ba6-a7d2-4ee0-a9fb-ef53fe591289"/>
           <ATTRIBUTES>
             <ATT name="Selector"></ATT>
-            <ATT name="Name"><![CDATA[Network]]></ATT>
+            <ATT name="Name"><![CDATA[NetworkManager]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="UserTable" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
+          <ID name="DatabaseManager" mc="Standard.Lifeline" uid="563f34dc-9979-46bd-b452-a6c44b8ce8fd"/>
           <ATTRIBUTES>
             <ATT name="Selector"></ATT>
-            <ATT name="Name"><![CDATA[UserTable]]></ATT>
+            <ATT name="Name"><![CDATA[DatabaseManager]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
