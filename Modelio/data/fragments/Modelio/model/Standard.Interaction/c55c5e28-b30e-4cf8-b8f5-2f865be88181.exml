@@ -75,13 +75,13 @@
           <DEPENDENCIES>
             <COMP relation="SentMessage">
               <OBJECT>
-                <ID name="ChangeUser(oldpseudo, newpseudo)" mc="Standard.Message" uid="5e8ecc1f-38f2-4fff-837a-a3a29485d48b"/>
+                <ID name="ChangeUser(ip, newpseudo)" mc="Standard.Message" uid="5e8ecc1f-38f2-4fff-837a-a3a29485d48b"/>
                 <ATTRIBUTES>
                   <ATT name="Argument"></ATT>
                   <ATT name="KindOfMessage">CompleteKind</ATT>
                   <ATT name="SortOfMessage">ASyncCall</ATT>
                   <ATT name="Sequence"><![CDATA[2]]></ATT>
-                  <ATT name="Name"><![CDATA[ChangeUser(oldpseudo, newpseudo)]]></ATT>
+                  <ATT name="Name"><![CDATA[ChangeUser(ip, newpseudo)]]></ATT>
                   <ATT name="status">1970354901745664</ATT>
                 </ATTRIBUTES>
                 <DEPENDENCIES>

@@ -20,6 +20,11 @@
         <COMPID name="UpdatePseudo" mc="Standard.Interaction" uid="942a1428-2c08-4f9f-b104-20d0402ddf70"/>
         <COMPID name="Receive Update Pseudo" mc="Standard.Interaction" uid="c55c5e28-b30e-4cf8-b8f5-2f865be88181"/>
         <COMPID name="Envoi Message" mc="Standard.Interaction" uid="a14b4563-f9e8-45dd-be48-ccd319e2b8cf"/>
+        <COMPID name="Reception Message" mc="Standard.Interaction" uid="4204e42f-1037-4748-911c-94c026643828"/>
+        <COMPID name="Réception Déconnexion globale" mc="Standard.Interaction" uid="cd622801-e435-4ea6-a9a3-05358325dc54"/>
+        <COMPID name="Réception Déconnexion Conversatiion" mc="Standard.Interaction" uid="223cc814-7427-430d-9434-b68224201102"/>
+        <COMPID name="Envoi Déconnexion globale" mc="Standard.Interaction" uid="89b18567-6e80-4626-beab-2392d146f338"/>
+        <COMPID name="Envoi Déconnexion Conversation" mc="Standard.Interaction" uid="ffc101ac-838c-47cb-b02f-75697e98fd23"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

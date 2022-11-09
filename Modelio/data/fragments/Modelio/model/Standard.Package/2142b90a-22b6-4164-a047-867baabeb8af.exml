@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Package User" version="4">
+  <OBJECT>
+    <ID name="Package User" mc="Standard.Package" uid="2142b90a-22b6-4164-a047-867baabeb8af"/>
+    <PID name="Diagramme de structure composite" mc="Standard.Package" uid="5b5ee630-c7b7-4fc2-9dc8-a058826ac9a0"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Package User]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="User" mc="Standard.Class" uid="a636a943-01e3-4707-8dd3-7b9bde2d572d"/>
+        <COMPID name="Message" mc="Standard.Class" uid="d5e401df-335c-43e5-9675-787f798c9357"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

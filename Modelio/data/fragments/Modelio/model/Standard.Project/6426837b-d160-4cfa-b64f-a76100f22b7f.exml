@@ -13,6 +13,7 @@
         <COMPID name="Use Case" mc="Standard.Package" uid="246dadbb-0acd-4383-ba6a-50e6229921d0"/>
         <COMPID name="Class" mc="Standard.Package" uid="df9a09d3-81e5-483e-8d97-d3c86ffd9d39"/>
         <COMPID name="Diagramme séquence" mc="Standard.Package" uid="42463bcf-76d5-4093-8b14-0404453b9e90"/>
+        <COMPID name="Diagramme de structure composite" mc="Standard.Package" uid="5b5ee630-c7b7-4fc2-9dc8-a058826ac9a0"/>
       </COMP>
       <COMP relation="DiagramRoot">
         <COMPID name="Modelio" mc="Infrastructure.DiagramSet" uid="da9824be-f5b4-4f9e-b5db-963b6bfc72c3"/>

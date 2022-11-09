@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Package Threads" version="4">
+  <OBJECT>
+    <ID name="Package Threads" mc="Standard.Package" uid="e0749d10-f5e0-4701-a836-23e3ca108422"/>
+    <PID name="Diagramme de structure composite" mc="Standard.Package" uid="5b5ee630-c7b7-4fc2-9dc8-a058826ac9a0"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Package Threads]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="ThreadManager" mc="Standard.Class" uid="70eb66d1-c7d4-4b98-87dd-31ce7859084f"/>
+        <COMPID name="ListeningThread" mc="Standard.Class" uid="1c54bca6-bd4c-44b7-9d12-8318819ac83d"/>
+        <COMPID name="SendingThread" mc="Standard.Class" uid="0d3a8301-9dd6-4c1a-a362-e27bf4774c9b"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -185,13 +185,13 @@
           <DEPENDENCIES>
             <COMP relation="SentMessage">
               <OBJECT>
-                <ID name="ChaangeMyPseudo(pseudo)" mc="Standard.Message" uid="655c744c-04f0-4ccf-94b4-2d3ce5a758db"/>
+                <ID name="ChangeMyPseudo(pseudo)" mc="Standard.Message" uid="655c744c-04f0-4ccf-94b4-2d3ce5a758db"/>
                 <ATTRIBUTES>
                   <ATT name="Argument"></ATT>
                   <ATT name="KindOfMessage">CompleteKind</ATT>
                   <ATT name="SortOfMessage">ASyncCall</ATT>
                   <ATT name="Sequence"><![CDATA[1]]></ATT>
-                  <ATT name="Name"><![CDATA[ChaangeMyPseudo(pseudo)]]></ATT>
+                  <ATT name="Name"><![CDATA[ChangeMyPseudo(pseudo)]]></ATT>
                   <ATT name="status">1970354901745664</ATT>
                 </ATTRIBUTES>
                 <DEPENDENCIES>

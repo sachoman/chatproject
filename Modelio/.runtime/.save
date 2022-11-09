@@ -1,9 +1,13 @@
-#Mon Nov 07 16:43:37 CET 2022
-org.modelio.app.diagram.editor.OpenedDiagrams5='Diagramme de s\u00E9quence Interaction' {d43290a4-28e1-4c2d-95d7-aa4309fa0353} Standard.SequenceDiagram
-org.modelio.app.diagram.editor.OpenedDiagrams4='Diagramme de s\u00E9quence Interaction1' {18c4ac94-8004-4240-b590-9edb4938bbfb} Standard.SequenceDiagram
-org.modelio.app.diagram.editor.OpenedDiagrams3='Diagramme de s\u00E9quence Interaction1' {7f0995cf-6ed5-40e6-8d0d-46226bda9162} Standard.SequenceDiagram
+#Wed Nov 09 18:11:59 CET 2022
+org.modelio.app.diagram.editor.OpenedDiagrams4='Diagramme de s\u00E9quence Interaction' {55ea3922-31f4-48f5-9d5f-bed760a9f346} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams3='Diagramme de s\u00E9quence Interaction' {d43290a4-28e1-4c2d-95d7-aa4309fa0353} Standard.SequenceDiagram
 org.modelio.app.diagram.editor.OpenedDiagrams2='NouveelleCoG\u00E9n\u00E9rale' {30dfaa47-9ce2-4b7a-817a-3fcfc0bdbe14} Standard.SequenceDiagram
 org.modelio.app.diagram.editor.OpenedDiagrams1='Diagramme de classe Class' {047076b8-7f6e-4a77-a5f2-55253f109fb7} Standard.ClassDiagram
 org.modelio.app.diagram.editor.OpenedDiagrams0='Diagramme de cas d'utilisation modelio' {19cf09c1-5a09-49b0-b455-52e0c66f2a9e} Standard.UseCaseDiagram
-org.modelio.app.diagram.editor.OpenedDiagrams7='Diagramme de s\u00E9quence Interaction' {9f849273-3777-4af3-8f9c-4831a2268ad1} Standard.SequenceDiagram
-org.modelio.app.diagram.editor.OpenedDiagrams6='Diagramme de s\u00E9quence Interaction' {55ea3922-31f4-48f5-9d5f-bed760a9f346} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams11='Diagramme de structure composite (PackageContentStructureDiagramTemplate)' {17186cbd-4158-4dfd-b0fe-b30f2f8a232d} Standard.ClassDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams10='Diagramme de s\u00E9quence Interaction' {6c9cc519-2d7a-45c5-88e2-d58f229124f2} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams9='Diagramme de s\u00E9quence Interaction' {d5eebfe1-f567-4fd0-a5ec-40b388fc9052} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams8='Diagramme de s\u00E9quence Interaction' {29bf0f99-a6ec-4b04-8a7f-4f97beb80c77} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams7='Diagramme de s\u00E9quence Interaction' {30d99220-cc44-47a9-922b-dd2cad9c2fbd} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams6='Diagramme de s\u00E9quence Interaction' {c1816d3c-3654-4a12-80dc-e8aedcfde432} Standard.SequenceDiagram
+org.modelio.app.diagram.editor.OpenedDiagrams5='Diagramme de s\u00E9quence Interaction' {9f849273-3777-4af3-8f9c-4831a2268ad1} Standard.SequenceDiagram

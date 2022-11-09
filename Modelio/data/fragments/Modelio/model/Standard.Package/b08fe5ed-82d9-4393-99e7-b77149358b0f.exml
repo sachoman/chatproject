@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Package Network" version="4">
+  <OBJECT>
+    <ID name="Package Network" mc="Standard.Package" uid="b08fe5ed-82d9-4393-99e7-b77149358b0f"/>
+    <PID name="Diagramme de structure composite" mc="Standard.Package" uid="5b5ee630-c7b7-4fc2-9dc8-a058826ac9a0"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Package Network]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Network Manager" mc="Standard.Class" uid="b32eb1d4-0e7e-4c73-b5f6-4ba258838d88"/>
+        <COMPID name="NetworkListeningThread" mc="Standard.Class" uid="1e1d31c8-436f-47ce-b942-33797df06224"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
