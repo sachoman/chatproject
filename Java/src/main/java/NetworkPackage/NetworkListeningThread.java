@@ -10,11 +10,13 @@ import java.net.SocketException;
 
 public class NetworkListeningThread {
 	public NetworkListeningThread(int port) throws ClassNotFoundException, IOException {
+		
 		DatagramSocket dgramSocket = new DatagramSocket(port);
 		byte[] buffer = new byte[256];
 		while (true) {
 			DatagramPacket inPacket = new DatagramPacket(buffer, buffer.length);
 			dgramSocket.receive(inPacket);
+			System.out.println("message recu");
 			InetAddress clientAddress = inPacket.getAddress();
 			int clientPort = inPacket.getPort();
 			String message = new String(inPacket.getData(), 0, inPacket.getLength());

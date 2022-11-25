@@ -15,6 +15,7 @@ public class NetworkTraitementMessage extends Thread{
 		
 	}
 	public void run() {
+		System.out.println("debut traitement");
 		if (Netmessage == "co") {
 			DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
 		}

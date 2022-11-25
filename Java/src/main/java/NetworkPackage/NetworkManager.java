@@ -30,5 +30,6 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         NetworkManager nm = new NetworkManager();
+        dbmanager.addUser("192.168.65.21","Paulo l'artichaut");
     }
 }
