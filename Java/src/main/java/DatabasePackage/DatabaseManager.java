@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class DatabaseManager {
 	public static String url = "jdbc:sqlite:chatdb.db";
-    private Connection connect() {
+    private static Connection connect() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -50,7 +50,7 @@ public class DatabaseManager {
 	}
 	public void addUser(String ip, String pseudo) {
 		String sql = "INSERT INTO users(ip,pseudo,connected) VALUES(?,?,?)";
-		try (Connection conn = this.connect();
+		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, ip);
             pstmt.setString(2, pseudo);
@@ -60,9 +60,9 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
-	public void updateUser(String ip, String pseudo, boolean connected_status) {
+	public static void updateUser(String ip, String pseudo, boolean connected_status) {
 		String sql = "UPDATE users SET pseudo = ?, connected = ? WHERE ip= ?";
-		try (Connection conn = this.connect();
+		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, pseudo);
             pstmt.setBoolean(2, connected_status);
@@ -72,9 +72,20 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
+	public static void updateCoStatus(String ip, boolean connected_status) {
+		String sql = "UPDATE users SET connected = ? WHERE ip= ?";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1, connected_status);
+            pstmt.setString(2, ip);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
 	public String getPseudo(String ip) {
 		String sql = "SELECT pseudo FROM users WHERE ip=?";
-        try (Connection conn = this.connect();
+        try (Connection conn = connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
         	pstmt.setString(1, ip);
         	try (ResultSet rs = pstmt.executeQuery();){
@@ -125,6 +136,7 @@ public class DatabaseManager {
 	 * @return 
      * @throws ClassNotFoundException 
      */
+	/*
     public static void main(String[] args) throws ClassNotFoundException {
     	DatabaseManager dbmanager = new DatabaseManager();
         dbmanager.initTables();
@@ -132,8 +144,9 @@ public class DatabaseManager {
         System.out.println(dbmanager.getPseudo("192.168.65.21"));
         System.out.println(dbmanager.getIp("Paulo l'artichaut"));
         System.out.println(dbmanager.isConnected("192.168.65.21"));
-        dbmanager.updateUser("192.168.65.21","Paulo l'artichaut", false);
+        DatabaseManager.updateUser("192.168.65.21","Paulo l'artichaut", false);
         System.out.println(dbmanager.existsUser("192.168.65.21"));
         System.out.println(dbmanager.existsUser("193.168.65.21"));
     }
+    */
 }
