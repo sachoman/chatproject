@@ -37,11 +37,13 @@ public class NetworkTraitementMessage extends Thread{
 			}
 			else {
 				String[] message_spli = Netmessage.split(" ");
-				if (DatabaseManager.existsUser(NetclientAddress.toString())) {
-					DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
-				}
-				else {
-					DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
+				if (message_spli[0] == "pseudo") {
+					if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+						DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
+					}
+					else {
+						DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
+					}
 				}
 			}
 		}
