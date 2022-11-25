@@ -16,7 +16,7 @@ public class NetworkTraitementMessage extends Thread{
 	}
 	public void run() {
 		System.out.println("debut traitement");
-		if (Netmessage == "co") {
+		if (Netmessage.equals("co")) {
 			if (DatabaseManager.existsUser(NetclientAddress.toString())) {
 				DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
 			}
@@ -26,7 +26,7 @@ public class NetworkTraitementMessage extends Thread{
 		}
 		else {
 			
-			if (Netmessage == "deco") {
+			if (Netmessage.equals("deco")) {
 				if (DatabaseManager.existsUser(NetclientAddress.toString())) {
 					DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
 				}
@@ -37,13 +37,16 @@ public class NetworkTraitementMessage extends Thread{
 			}
 			else {
 				String[] message_spli = Netmessage.split(" ");
-				if (message_spli[0] == "pseudo") {
+				if (message_spli[0].equals("pseudo")) {
 					if (DatabaseManager.existsUser(NetclientAddress.toString())) {
 						DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
 					}
 					else {
 						DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
 					}
+				}
+				else {
+					System.out.println("pas pour nous");
 				}
 			}
 		}

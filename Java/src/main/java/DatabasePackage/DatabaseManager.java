@@ -28,7 +28,7 @@ public class DatabaseManager {
                 + " date text, \n"
                 + "	content text \n"
                 + ");";
-		try (Connection conn = this.connect();
+		try (Connection conn = DatabaseManager.connect();
                 Statement stmt = conn.createStatement()) {
             // create a new table
             stmt.execute(sql);
@@ -40,7 +40,7 @@ public class DatabaseManager {
 				+ "pseudo text, \n"
 				+ "connected bool \n"
 				+ ");";
-		try (Connection conn = this.connect();
+		try (Connection conn = DatabaseManager.connect();
 				Statement stmt = conn.createStatement()) {
             // create a new table
             stmt.execute(sql);
