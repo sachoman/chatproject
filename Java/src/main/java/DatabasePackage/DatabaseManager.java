@@ -48,7 +48,7 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
-	public void addUser(String ip, String pseudo) {
+	public static void addUser(String ip, String pseudo) {
 		String sql = "INSERT INTO users(ip,pseudo,connected) VALUES(?,?,?)";
 		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -83,7 +83,7 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
-	public String getPseudo(String ip) {
+	public static String getPseudo(String ip) {
 		String sql = "SELECT pseudo FROM users WHERE ip=?";
         try (Connection conn = connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -99,7 +99,7 @@ public class DatabaseManager {
 	}
 	public String getIp(String pseudo) {
 		String sql = "SELECT ip FROM users WHERE pseudo=?";
-        try (Connection conn = this.connect();
+        try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
         	pstmt.setString(1, pseudo);
         	try (ResultSet rs = pstmt.executeQuery()){
@@ -116,7 +116,7 @@ public class DatabaseManager {
 	}
 	public boolean isConnected(String ip) {
 		String sql = "SELECT connected FROM users WHERE ip=?";
-        try (Connection conn = this.connect();
+        try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
         	pstmt.setString(1, ip);
         	try (ResultSet rs = pstmt.executeQuery()){
@@ -128,7 +128,7 @@ public class DatabaseManager {
         }
 		return false;
 	}
-	public boolean existsUser(String ip) {
+	public static boolean existsUser(String ip) {
 		return (getPseudo(ip)!="");
 	}
 	/**

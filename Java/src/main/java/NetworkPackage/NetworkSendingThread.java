@@ -10,15 +10,14 @@ public class NetworkSendingThread extends Thread {
 	private String ip;
 	//0 -> "co" 1->"deco" 2->"pseudo x"
 	private String pseudo; 
-	public NetworkSendingThread(int protocole, String ip) {
+	public NetworkSendingThread(int protocole) {
 		this.protocole = protocole;
-		this.ip = ip;
 	}
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
 	public void run() {
-		System.out.println("envoi message");
+		System.out.println("debut traitement");
 		String message ="";
 		if (protocole ==0) {
 			message = "co";
@@ -32,7 +31,7 @@ public class NetworkSendingThread extends Thread {
 		DatagramSocket dgramSocket;
 		try {
 			dgramSocket = new DatagramSocket();
-			DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),InetAddress.getByName(ip), NetworkManager.getUdpAppPort());
+			DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),InetAddress.getByName(NetworkManager.getBroadcast()), NetworkManager.getUdpAppPort());
 			dgramSocket.send(outPacket);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

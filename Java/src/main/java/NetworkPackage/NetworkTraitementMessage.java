@@ -17,15 +17,32 @@ public class NetworkTraitementMessage extends Thread{
 	public void run() {
 		System.out.println("debut traitement");
 		if (Netmessage == "co") {
-			DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
+			if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+				DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
+			}
+			else {
+				DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
+			}
 		}
 		else {
+			
 			if (Netmessage == "deco") {
-				DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
+				if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+					DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
+				}
+				else {
+					DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
+					DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
+				}
 			}
 			else {
 				String[] message_spli = Netmessage.split(" ");
-				DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
+				if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+					DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
+				}
+				else {
+					DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
+				}
 			}
 		}
 	}
