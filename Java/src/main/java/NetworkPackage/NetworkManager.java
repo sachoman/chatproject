@@ -21,11 +21,15 @@ public class NetworkManager {
 	}
 	public NetworkManager() throws ClassNotFoundException, IOException {
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
+		th.run();
 	}
 	public void SendUpdatePseudo(String pseudo) {
+		System.out.println("init send update pseudo");
 		NetworkSendingThread th = new NetworkSendingThread(2);
 		th.setPseudo(pseudo);
+		System.out.println("thread send update pseudo créé");
 		th.run();
+		System.out.println("THread updtae pseudo lancé");
 	}
     public static void main(String[] args) throws ClassNotFoundException, IOException {
     	DatabaseManager dbmanager = new DatabaseManager();
@@ -40,6 +44,11 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         NetworkManager nm = new NetworkManager();
+        System.out.println("nm créé");
         nm.SendUpdatePseudo("sachoman");
+        System.out.println("send updtae pseudo appelée");
+        while (true) {
+        	
+        }
     }
 }
