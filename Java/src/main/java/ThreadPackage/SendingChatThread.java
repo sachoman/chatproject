@@ -5,9 +5,9 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class SendingMessagesThread extends Thread{
+public class SendingChatThread extends Thread{
 	public Socket th_sock;
-	public SendingMessagesThread(Socket sock) {
+	public SendingChatThread(Socket sock) {
 		th_sock = sock;
 	}
 	public void run() {

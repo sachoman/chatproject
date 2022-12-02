@@ -1,12 +1,13 @@
 package NetworkPackage;
 
 import java.io.BufferedReader;
+import ThreadPackage.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import ThreadPackage.AcceptChatThread;
+import ThreadPackage.ListeningChatThread;
 
 public class WaitingChatServer extends Thread{
 	  final static int port = 9632;
@@ -19,8 +20,7 @@ public class WaitingChatServer extends Thread{
 	             while (true) {
 	                 Socket socket = serverSocket.accept();
 	                 System.out.println("New client connected");
-	                 AcceptChatThread ath = new AcceptChatThread(socket);
-	                 ath.start();
+	                 ThreadManager.createThreadsForChat(socket);
 	            }
 	  
 	       } catch (IOException ex) {
