@@ -71,7 +71,7 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         
-        //NetworkManager nm = new NetworkManager();
+        NetworkManager nm = new NetworkManager();
         /*
        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         */
