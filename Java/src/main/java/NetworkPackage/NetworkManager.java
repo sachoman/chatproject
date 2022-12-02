@@ -3,9 +3,15 @@ package NetworkPackage;
 import ThreadPackage.*;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Hashtable;
+
 import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
+	private static Hashtable<Socket,InetAddress> TabIpSock = new Hashtable<Socket, InetAddress>();
 	private static String broadcast="10.1.255.255";
 	private static int TCP_app_port = 9400;
 	private static int UDP_app_port = 9500;
@@ -30,6 +36,19 @@ public class NetworkManager {
 		th.setPseudo(pseudo);
 		th.start();
 	}
+	public void ChatWithUser(InetAddress ip) {
+		try {
+			Socket socket = new Socket(ip,9632);
+			NetworkManager.TabIpSock.put(socket, ip);
+			ThreadManager.createThreadsForChat(socket);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     public static void main(String[] args) throws ClassNotFoundException, IOException {
     	DatabaseManager dbmanager = new DatabaseManager();
         dbmanager.initTables();
@@ -51,7 +70,7 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("192.168.65.21"));
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
-        //NetworkManager nm = new NetworkManager();
+        NetworkManager nm = new NetworkManager();
         /*
         ConnectChatThread cth = new ConnectChatThread(InetAddress.getByName("10.1.5.232"),9632);
         cth.start();

@@ -22,7 +22,7 @@ public class ConnectChatThread extends Thread{
 		try {
 			socket = new Socket(ip_distante,port_distant);
 			System.out.println("Connect Chat thread launched on ip : "+ip_distante+" and port : "+port_distant);
-			SendingMessagesThread sth = new SendingMessagesThread(socket);
+			SendingChatThread sth = new SendingChatThread(socket);
 			sth.start();
 			ObjectInputStream in;
 			in = new ObjectInputStream(socket.getInputStream());

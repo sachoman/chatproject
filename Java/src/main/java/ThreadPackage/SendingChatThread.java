@@ -5,9 +5,9 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class SendingMessagesThread extends Thread{
+public class SendingChatThread extends Thread{
 	public Socket th_sock;
-	public SendingMessagesThread(Socket sock) {
+	public SendingChatThread(Socket sock) {
 		th_sock = sock;
 	}
 	public void run() {
@@ -17,7 +17,7 @@ public class SendingMessagesThread extends Thread{
 			out = new ObjectOutputStream(th_sock.getOutputStream());
 			while(true) {
 					Thread.sleep(2000);
-					out.writeObject("xyz \n");
+					out.writeObject("sacha \n");
 					System.out.println("Message envoyé");
 			}
 		} catch (IOException | InterruptedException e1) {
