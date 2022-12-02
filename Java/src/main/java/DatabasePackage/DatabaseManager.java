@@ -199,6 +199,56 @@ public class DatabaseManager {
         }
 		return null;
 	}
+	public static void clearDB(){
+		String sql = "DELETE FROM history";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
+	public static String[][] getConnectedUsers() {
+		// First, we need to get the id on the last line
+		int nb_rows = 0;
+		String sql = "SELECT COUNT(*) FROM users WHERE connected = ?";
+        try (Connection conn = DatabaseManager.connect();
+        		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	pstmt.setBoolean(1, true);
+        	pstmt.executeUpdate();
+        	try (ResultSet rs = pstmt.executeQuery()){
+        		nb_rows = rs.getInt(1);
+            }
+        	catch (SQLException e) {
+                throw e;
+            }
+        	sql = "SELECT ip, pseudo FROM users WHERE connected = ?";
+            try (Connection conn2 = DatabaseManager.connect();
+            		PreparedStatement pstmt2 = conn.prepareStatement(sql)){
+            	pstmt.setBoolean(1, true);
+            	pstmt.executeUpdate();
+            	try (ResultSet rs = pstmt2.executeQuery()){
+            		String[][] tab = new String[nb_rows][2];
+            		int i = 0;
+            		while (rs.next()) {
+            			tab[i][0] = rs.getString(1);
+            			tab[i][1] = rs.getString(2);
+            			i++;
+            		}
+            		return tab;
+                }
+            	catch (SQLException e) {
+                    throw e;
+                }
+                // loop through the result set
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return null;
+	}
 	/**
      * @param args the command line arguments
 	 * @return 

@@ -70,7 +70,8 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("192.168.65.21"));
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
-        NetworkManager nm = new NetworkManager();
+        
+        //NetworkManager nm = new NetworkManager();
         /*
         ConnectChatThread cth = new ConnectChatThread(InetAddress.getByName("10.1.5.232"),9632);
         cth.start();
