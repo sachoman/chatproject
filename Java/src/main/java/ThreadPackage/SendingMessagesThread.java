@@ -17,7 +17,7 @@ public class SendingMessagesThread extends Thread{
 			out = new ObjectOutputStream(th_sock.getOutputStream());
 			while(true) {
 					Thread.sleep(2000);
-					out.writeObject("xyz \n");
+					out.writeObject("sacha \n");
 					System.out.println("Message envoyé");
 			}
 		} catch (IOException | InterruptedException e1) {
