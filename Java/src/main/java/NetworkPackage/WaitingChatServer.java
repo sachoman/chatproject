@@ -14,7 +14,7 @@ public class WaitingChatServer extends Thread{
 	  public void run() {
 	      try (ServerSocket serverSocket = new ServerSocket(port)) {
 	    		 
-	             System.out.println("Server is listening on port " + port);
+	             System.out.println("Wait Server Launched, listening on port " + port);
 	  
 	             while (true) {
 	                 Socket socket = serverSocket.accept();

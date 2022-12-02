@@ -15,17 +15,16 @@ public class NetworkListeningThread extends Thread {
 	}
 		
 	public void run(){
-		System.out.println("init listening thread");
+		System.out.println("Network listening thread launched");
 		DatagramSocket dgramSocket;
 		try {
 			dgramSocket = new DatagramSocket(port);
 			byte[] buffer = new byte[256];
-			System.out.println("listening dgram socket init");
 			while (true) {
 				try {
 					DatagramPacket inPacket = new DatagramPacket(buffer, buffer.length);
 					dgramSocket.receive(inPacket);
-					System.out.println("message recu");
+					System.out.println("Message UDP recu");
 					InetAddress clientAddress = inPacket.getAddress();
 					int clientPort = inPacket.getPort();
 					String message = new String(inPacket.getData(), 0, inPacket.getLength());

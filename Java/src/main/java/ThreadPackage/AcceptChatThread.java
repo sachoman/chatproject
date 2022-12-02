@@ -19,12 +19,15 @@ public class AcceptChatThread extends Thread{
 	public void run() {
 		ObjectInputStream in;
 		ObjectOutputStream out;
+		System.out.println("Accept chat thread launched");
 		try {
 			in = new ObjectInputStream(th_socket.getInputStream());
 			out = new ObjectOutputStream(th_socket.getOutputStream());
+			SendingMessagesThread sth = new SendingMessagesThread(out);
+			sth.start();
 			while(true) {
 				Object msg = in.readObject();
-				System.out.println(msg);
+				System.out.println("Message chat reçu : " + msg);
 				
 			}
 		} catch (IOException | ClassNotFoundException e1) {

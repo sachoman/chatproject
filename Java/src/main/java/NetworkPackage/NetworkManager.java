@@ -22,6 +22,8 @@ public class NetworkManager {
 	public NetworkManager() throws ClassNotFoundException, IOException {
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
 		th.start();
+        WaitingChatServer waitserv = new WaitingChatServer();
+        waitserv.start();
 	}
 	public void SendUpdatePseudo(String pseudo) {
 		NetworkSendingThread th = new NetworkSendingThread(2);
@@ -41,9 +43,6 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         NetworkManager nm = new NetworkManager();
-        WaitingChatServer waitserv = new WaitingChatServer();
-        waitserv.start();
-        nm.SendUpdatePseudo("sachoman");
         while (true) {
         	
         }

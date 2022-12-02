@@ -21,6 +21,7 @@ public class ConnectChatThread extends Thread{
 		Socket socket;
 		try {
 			socket = new Socket(ip_distante,port_distant);
+			System.out.println("Connect Chat thread launched on ip : "+ip_distante+" and port : "+port_distant);
 			ObjectInputStream in;
 			ObjectOutputStream out;
 			in = new ObjectInputStream(socket.getInputStream());
@@ -32,7 +33,7 @@ public class ConnectChatThread extends Thread{
 			
 			while(true) {
 				Object msg = in.readObject();
-				System.out.println(msg);
+				System.out.println("Message chat reçu : "+msg);
 				
 			}
 		} catch (IOException | ClassNotFoundException e1) {
