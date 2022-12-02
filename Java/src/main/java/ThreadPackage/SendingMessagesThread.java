@@ -3,28 +3,26 @@ package ThreadPackage;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
+import java.net.Socket;
 
 public class SendingMessagesThread extends Thread{
-	public ObjectOutputStream out_sock;
-	public SendingMessagesThread(ObjectOutputStream out) {
-		out_sock = out;
+	public Socket th_sock;
+	public SendingMessagesThread(Socket sock) {
+		th_sock = sock;
 	}
 	public void run() {
 		System.out.println("Sending messages thread launch");
-		while(true) {
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		ObjectOutputStream out;
+		try {
+			out = new ObjectOutputStream(th_sock.getOutputStream());
+			while(true) {
+					Thread.sleep(2000);
+					out.writeObject("xyz \n");
+					System.out.println("Message envoyé");
 			}
-			try {
-				out_sock.writeObject("xyz \n");
-				System.out.println("Message envoyé");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (IOException | InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 }

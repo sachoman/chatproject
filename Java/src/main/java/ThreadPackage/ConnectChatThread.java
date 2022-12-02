@@ -22,18 +22,18 @@ public class ConnectChatThread extends Thread{
 		try {
 			socket = new Socket(ip_distante,port_distant);
 			System.out.println("Connect Chat thread launched on ip : "+ip_distante+" and port : "+port_distant);
+			SendingMessagesThread sth = new SendingMessagesThread(socket);
+			sth.start();
 			ObjectInputStream in;
-			ObjectOutputStream out;
 			in = new ObjectInputStream(socket.getInputStream());
-			out = new ObjectOutputStream(socket.getOutputStream());
+			
 			
 			//crée thread d'envoi
-			SendingMessagesThread sth = new SendingMessagesThread(out);
-			sth.start();
 			
 			while(true) {
 				Object msg = in.readObject();
 				System.out.println("Message chat reçu : "+msg);
+				
 				
 			}
 		} catch (IOException | ClassNotFoundException e1) {

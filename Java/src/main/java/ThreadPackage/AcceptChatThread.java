@@ -21,10 +21,9 @@ public class AcceptChatThread extends Thread{
 		ObjectOutputStream out;
 		System.out.println("Accept chat thread launched");
 		try {
-			in = new ObjectInputStream(th_socket.getInputStream());
-			out = new ObjectOutputStream(th_socket.getOutputStream());
-			SendingMessagesThread sth = new SendingMessagesThread(out);
+			SendingMessagesThread sth = new SendingMessagesThread(th_socket);
 			sth.start();
+			in = new ObjectInputStream(th_socket.getInputStream());
 			while(true) {
 				Object msg = in.readObject();
 				System.out.println("Message chat reçu : " + msg);

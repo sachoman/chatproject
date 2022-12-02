@@ -1,5 +1,7 @@
 package NetworkPackage;
 
+import ThreadPackage.*;
+
 import java.io.IOException;
 import java.net.InetAddress;
 
@@ -43,6 +45,8 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         NetworkManager nm = new NetworkManager();
+        ConnectChatThread cth = new ConnectChatThread(InetAddress.getByName("10.1.5.232"),9632);
+        cth.start();
         while (true) {
         	
         }
