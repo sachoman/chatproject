@@ -36,7 +36,7 @@ public class NetworkManager {
 		th.setPseudo(pseudo);
 		th.start();
 	}
-	public void ChatWithUser(InetAddress ip) {
+	public static void ChatWithUser(InetAddress ip) {
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(socket, ip);
@@ -73,8 +73,7 @@ public class NetworkManager {
         
         //NetworkManager nm = new NetworkManager();
         /*
-        ConnectChatThread cth = new ConnectChatThread(InetAddress.getByName("10.1.5.232"),9632);
-        cth.start();
+       NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         */
         while (true) {
         	

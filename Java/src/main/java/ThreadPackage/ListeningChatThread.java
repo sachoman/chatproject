@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import ThreadPackage.*;
 
 public class ListeningChatThread extends Thread{
@@ -25,6 +28,9 @@ public class ListeningChatThread extends Thread{
 			in = new ObjectInputStream(th_socket.getInputStream());
 			while(true) {
 				Object msg = in.readObject();
+				SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+	    		Date date = new Date(System.currentTimeMillis());
+				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),InetAddress.getLocalHost().toString(), msg.toString(), formatter.format(date));
 				System.out.println("Message chat reçu : " + msg);
 			}
 		} catch (IOException | ClassNotFoundException e1) {
