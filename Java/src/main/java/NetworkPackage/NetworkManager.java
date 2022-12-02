@@ -41,6 +41,8 @@ public class NetworkManager {
         System.out.println(dbmanager.existsUser("193.168.65.21"));
         */
         NetworkManager nm = new NetworkManager();
+        WaitingChatServer waitserv = new WaitingChatServer();
+        waitserv.start();
         nm.SendUpdatePseudo("sachoman");
         while (true) {
         	
