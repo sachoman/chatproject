@@ -1,12 +1,12 @@
 package DatabasePackage;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DatabaseManager {
 	public static String url = "jdbc:sqlite:chatdb.db";
@@ -130,6 +130,74 @@ public class DatabaseManager {
 	}
 	public static boolean existsUser(String ip) {
 		return (getPseudo(ip)!="");
+	}
+	public static void storeMessage(String ip_from, String ip_to, String date, String message) {
+		// First, we need to get the id on the last line
+		int id = 0;
+		String sql = "SELECT MAX(id) FROM history";
+        try (Connection conn = DatabaseManager.connect();
+        		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	try (ResultSet rs = pstmt.executeQuery()){
+        		id = rs.getInt(1);
+            }
+        	catch (SQLException e) {
+                throw e;
+            }
+        	sql = "INSERT INTO history(id,from_ip,to_ip,date,content) VALUES(?,?,?,?,?)";
+    		try (Connection conn2 = connect();
+                    PreparedStatement pstmt2 = conn.prepareStatement(sql)) {
+                pstmt2.setInt(1, id + 1);
+                pstmt2.setString(2, ip_from);
+                pstmt2.setString(3, ip_to);
+                pstmt2.setString(4, date);
+                pstmt2.setString(5, message);
+                pstmt2.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
+	public static String[][] getMessages(String ip) {
+		// First, we need to get the id on the last line
+		int nb_rows = 0;
+		String sql = "SELECT COUNT(*) FROM history";
+        try (Connection conn = DatabaseManager.connect();
+        		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	try (ResultSet rs = pstmt.executeQuery()){
+        		nb_rows = rs.getInt(1);
+            }
+        	catch (SQLException e) {
+                throw e;
+            }
+        	sql = "SELECT from_ip, date, content FROM history WHERE from_ip=? OR to_ip=? ORDER BY date";
+            try (Connection conn2 = DatabaseManager.connect();
+            		PreparedStatement pstmt2 = conn.prepareStatement(sql)){
+            	pstmt2.setString(1, ip);
+            	pstmt2.setString(2, ip);
+            	try (ResultSet rs = pstmt2.executeQuery()){
+            		String[][] tab = new String[nb_rows][3];
+            		int i = 0;
+            		while (rs.next()) {
+            			tab[i][0] = rs.getString(1);
+            			tab[i][1] = rs.getString(2);
+            			tab[i][2] = rs.getString(3);
+            			i++;
+            		}
+            		return tab;
+                }
+            	catch (SQLException e) {
+                    throw e;
+                }
+                // loop through the result set
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return null;
 	}
 	/**
      * @param args the command line arguments
