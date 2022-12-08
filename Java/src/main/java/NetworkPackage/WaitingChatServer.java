@@ -20,7 +20,7 @@ public class WaitingChatServer extends Thread{
 	             while (true) {
 	                 Socket socket = serverSocket.accept();
 	                 System.out.println("New client connected");
-	                 ThreadManager.createThreadsForChat(socket);
+	                 ThreadManager.createThreadForChat(socket);
 	            }
 	  
 	       } catch (IOException ex) {

@@ -11,7 +11,7 @@ import java.util.Hashtable;
 import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
-	private static Hashtable<Socket,InetAddress> TabIpSock = new Hashtable<Socket, InetAddress>();
+	private static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
 	private static String broadcast="10.1.255.255";
 	private static int TCP_app_port = 9400;
 	private static int UDP_app_port = 9500;
@@ -39,8 +39,8 @@ public class NetworkManager {
 	public static void ChatWithUser(InetAddress ip) {
 		try {
 			Socket socket = new Socket(ip,9632);
-			NetworkManager.TabIpSock.put(socket, ip);
-			ThreadManager.createThreadsForChat(socket);
+			NetworkManager.TabIpSock.put(ip, socket);
+			ThreadManager.createThreadForChat(socket);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +48,12 @@ public class NetworkManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void sendMessage(String msg, InetAddress ip) {
+		SendingChatThread th = new SendingChatThread();
+		th.setMessage(msg);
+		th.setSocket(TabIpSock.get(ip));
+		th.start();
 	}
     public static void main(String[] args) throws Exception {
         DatabaseManager.initTables();
@@ -76,6 +82,8 @@ public class NetworkManager {
         NetworkManager.StartNetworkManager();
         
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
+        
+        Thread.sleep(500);
         while (true) {
         }
     }

@@ -14,33 +14,22 @@ import DatabasePackage.DatabaseManager;
 public class SendingChatThread extends Thread{
 	public Socket th_sock;
 	public String message;
-	public void updateMessage(String msg) {
+	public void setMessage(String msg) {
 		message = msg;
 	}
-	public SendingChatThread(Socket sock) {
+	public void setSocket(Socket sock) {
 		th_sock = sock;
 	}
-	public synchronized void attenteMessage() {
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	public void run() {
-		System.out.println("Sending messages thread launch");
+		System.out.println("Sending message thread launch");
 		ObjectOutputStream out;
 		try {
 			out = new ObjectOutputStream(th_sock.getOutputStream());
-			while(true) {
-					attenteMessage();
-					out.writeObject(message);
-					SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		    		Date date = new Date(System.currentTimeMillis());
-					DatabaseManager.storeMessage(InetAddress.getLocalHost().toString(),th_sock.getInetAddress().toString(), message, formatter.format(date));
-					System.out.println("Message envoyé");
-			}
+			out.writeObject(message);
+			SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		    Date date = new Date(System.currentTimeMillis());
+			DatabaseManager.storeMessage(InetAddress.getLocalHost().toString(),th_sock.getInetAddress().toString(), message, formatter.format(date));
+			System.out.println("Message envoyé");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
