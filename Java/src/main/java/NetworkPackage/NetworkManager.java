@@ -3,6 +3,7 @@ package NetworkPackage;
 import ThreadPackage.*;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -12,6 +13,7 @@ import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
 	private static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
+	private static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
 	private static String broadcast="10.1.255.255";
 	private static int TCP_app_port = 9400;
 	private static int UDP_app_port = 9500;
@@ -40,6 +42,9 @@ public class NetworkManager {
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(ip, socket);
+			ObjectOutputStream out;
+			out = new ObjectOutputStream(socket.getOutputStream());
+			NetworkManager.TabSockOut.put(socket, out);
 			ThreadManager.createThreadForChat(socket);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -49,10 +54,11 @@ public class NetworkManager {
 			e.printStackTrace();
 		}
 	}
-	public void sendMessage(String msg, InetAddress ip) {
+	public static void sendMessage(String msg, InetAddress ip) {
 		SendingChatThread th = new SendingChatThread();
 		th.setMessage(msg);
 		th.setSocket(TabIpSock.get(ip));
+		th.setOut(TabSockOut.get(TabIpSock.get(ip)));
 		th.start();
 	}
     public static void main(String[] args) throws Exception {
@@ -84,7 +90,10 @@ public class NetworkManager {
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         
         Thread.sleep(500);
+        NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.5.232"));
         while (true) {
+        	Thread.sleep(2000);
+            NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
         }
     }
 }
