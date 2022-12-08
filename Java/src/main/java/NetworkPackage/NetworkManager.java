@@ -5,8 +5,11 @@ import ThreadPackage.*;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import DatabasePackage.DatabaseManager;
@@ -26,6 +29,19 @@ public class NetworkManager {
 	}
 	public static String getBroadcast() {
 		return broadcast;
+	}
+	public static void listOurAddresses() throws SocketException {
+		Enumeration e = NetworkInterface.getNetworkInterfaces();
+		while(e.hasMoreElements())
+		{
+		    NetworkInterface n = (NetworkInterface) e.nextElement();
+		    Enumeration ee = n.getInetAddresses();
+		    while (ee.hasMoreElements())
+		    {
+		        InetAddress i = (InetAddress) ee.nextElement();
+		        System.out.println(i.getHostAddress());
+		    }
+		}
 	}
 	public static void StartNetworkManager() throws ClassNotFoundException, IOException {
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
@@ -98,7 +114,6 @@ public class NetworkManager {
         System.out.println(DatabaseManager.checkAvailability("Paulo"));
         System.out.println(DatabaseManager.checkAvailability("totoo"));
         */
-        
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
         /*
