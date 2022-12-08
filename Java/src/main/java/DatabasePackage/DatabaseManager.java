@@ -199,8 +199,17 @@ public class DatabaseManager {
         }
 		return null;
 	}
-	public static void clearDB(){
+	public static void clearDBHistory(){
 		String sql = "DELETE FROM history";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
+	public static void clearDBUsers(){
+		String sql = "DELETE FROM users";
 		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
