@@ -32,7 +32,7 @@ public class ThreadManager {
 		sth.start();
 		TableSendingIdThIpDistante.put(sth.getId(),socket.getInetAddress());
 	}
-	public Thread getSendingThreadRef(InetAddress ip) throws Exception {
+	public static Thread getSendingThreadRef(InetAddress ip) throws Exception {
 		Long id = (long) 0;
 		 for(Entry<Long, InetAddress> entry: TableListeningIdThIpDistante.entrySet()){
 	            if(ip.equals(entry.getValue())){
@@ -102,7 +102,7 @@ public class ThreadManager {
 			    }
 		}
 	}
-	public void sendMessage(String msg, InetAddress Ip) throws Exception {
+	public static void sendMessage(String msg, InetAddress Ip) throws Exception {
 		Thread th = getSendingThreadRef(Ip);
 		((SendingChatThread) th).updateMessage(msg);
 		th.notify();

@@ -49,7 +49,7 @@ public class NetworkManager {
 			e.printStackTrace();
 		}
 	}
-    public static void main(String[] args) throws ClassNotFoundException, IOException {
+    public static void main(String[] args) throws Exception {
         DatabaseManager.initTables();
         /*
         String[][] temp;
@@ -74,11 +74,9 @@ public class NetworkManager {
         */
         
         NetworkManager.StartNetworkManager();
-        /*
-       NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
-        */
+        
+        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         while (true) {
-        	
         }
     }
 }
