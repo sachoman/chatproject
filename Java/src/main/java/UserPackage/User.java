@@ -1,8 +1,8 @@
 package UserPackage;
 
 public class User {
-	private String pseudo;
-	public String getPseudo() {
+	private static String pseudo;
+	public static String getPseudo() {
 		return pseudo;
 	}
 	public void setPseudo(String ps) {

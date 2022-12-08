@@ -1,6 +1,7 @@
 package NetworkPackage;
 
 import DatabasePackage.DatabaseManager;
+import UserPackage.User;
 
 import java.net.InetAddress;
 
