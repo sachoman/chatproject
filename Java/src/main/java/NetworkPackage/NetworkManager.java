@@ -25,7 +25,7 @@ public class NetworkManager {
 	public static String getBroadcast() {
 		return broadcast;
 	}
-	public NetworkManager() throws ClassNotFoundException, IOException {
+	public static void StartNetworkManager() throws ClassNotFoundException, IOException {
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
 		th.start();
         WaitingChatServer waitserv = new WaitingChatServer();
@@ -50,8 +50,7 @@ public class NetworkManager {
 		}
 	}
     public static void main(String[] args) throws ClassNotFoundException, IOException {
-    	DatabaseManager dbmanager = new DatabaseManager();
-        dbmanager.initTables();
+        DatabaseManager.initTables();
         /*
         String[][] temp;
         temp = DatabaseManager.getMessages("1.1.1.1");
@@ -74,7 +73,7 @@ public class NetworkManager {
         System.out.println(DatabaseManager.checkAvailability("totoo"));
         */
         
-        NetworkManager nm = new NetworkManager();
+        NetworkManager.StartNetworkManager();
         /*
        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         */

@@ -19,7 +19,7 @@ public class DatabaseManager {
         }
         return conn;
     }
-	public void initTables () throws ClassNotFoundException {
+	public static void initTables () throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
 		String sql = "CREATE TABLE IF NOT EXISTS history (\n"
 				+ " id int PRIMARY KEY, \n"
