@@ -101,13 +101,17 @@ public class NetworkManager {
         
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
+        /*
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         
         Thread.sleep(500);
         NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.5.232"));
+        */
         while (true) {
+        	/*
         	Thread.sleep(2000);
             NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
+            */
         }
     }
 }

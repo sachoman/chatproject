@@ -26,10 +26,12 @@ public class NetworkListeningThread extends Thread {
 					dgramSocket.receive(inPacket);
 					System.out.println("Message UDP recu");
 					InetAddress clientAddress = inPacket.getAddress();
-					int clientPort = inPacket.getPort();
-					String message = new String(inPacket.getData(), 0, inPacket.getLength());
-					NetworkTraitementMessage th = new NetworkTraitementMessage(clientAddress, clientPort, message);
-					th.run();
+					if (clientAddress != InetAddress.getLocalHost()) {
+						int clientPort = inPacket.getPort();
+						String message = new String(inPacket.getData(), 0, inPacket.getLength());
+						NetworkTraitementMessage th = new NetworkTraitementMessage(clientAddress, clientPort, message);
+						th.run();
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
