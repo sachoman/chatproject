@@ -23,8 +23,7 @@ public class NetworkTraitementMessage extends Thread{
 			else {
 				DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 			}
-			NetworkSendingThread nths = new NetworkSendingThread(3);
-			nths.start();
+			NetworkManager.sendRepCo();
 		}
 		else {
 			

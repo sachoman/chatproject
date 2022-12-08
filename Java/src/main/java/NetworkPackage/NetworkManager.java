@@ -33,6 +33,18 @@ public class NetworkManager {
         WaitingChatServer waitserv = new WaitingChatServer();
         waitserv.start();
 	}
+	public static void notifyCo() {
+		NetworkSendingThread nths = new NetworkSendingThread(0);
+		nths.start();
+	}
+	public static void notifyDeCo() {
+		NetworkSendingThread nths = new NetworkSendingThread(1);
+		nths.start();
+	}
+	public static void sendRepCo() {
+		NetworkSendingThread nths = new NetworkSendingThread(3);
+		nths.start();
+	}
 	public void SendUpdatePseudo(String pseudo) {
 		NetworkSendingThread th = new NetworkSendingThread(2);
 		th.setPseudo(pseudo);
@@ -63,6 +75,8 @@ public class NetworkManager {
 	}
     public static void main(String[] args) throws Exception {
         DatabaseManager.initTables();
+        DatabaseManager.clearDBHistory();
+        DatabaseManager.clearDBUsers();
         /*
         String[][] temp;
         temp = DatabaseManager.getMessages("1.1.1.1");
@@ -86,7 +100,7 @@ public class NetworkManager {
         */
         
         NetworkManager.StartNetworkManager();
-        
+        NetworkManager.notifyCo();
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         
         Thread.sleep(500);

@@ -7,7 +7,6 @@ import java.net.DatagramSocket;
 
 public class NetworkSendingThread extends Thread {
 	private int protocole;
-	private String ip;
 	//0 -> "co" 1->"deco" 2->"pseudo x" 3-> réponse de connexion
 	private String pseudo; 
 	public NetworkSendingThread(int protocole) {
