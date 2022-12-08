@@ -8,7 +8,7 @@ import java.net.DatagramSocket;
 public class NetworkSendingThread extends Thread {
 	private int protocole;
 	private String ip;
-	//0 -> "co" 1->"deco" 2->"pseudo x"
+	//0 -> "co" 1->"deco" 2->"pseudo x" 3-> réponse de connexion
 	private String pseudo; 
 	public NetworkSendingThread(int protocole) {
 		this.protocole = protocole;
@@ -27,6 +27,10 @@ public class NetworkSendingThread extends Thread {
 		}
 		if (protocole == 2) {
 			message = "pseudo " + pseudo;
+		}
+		if (protocole == 3) {
+			/* réponse à un message de connexion, pour indiquer que nous le sommes aussi*/
+			message = "repco";
 		}
 		DatagramSocket dgramSocket;
 		try {

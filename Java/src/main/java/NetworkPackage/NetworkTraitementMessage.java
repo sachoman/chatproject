@@ -23,6 +23,8 @@ public class NetworkTraitementMessage extends Thread{
 			else {
 				DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 			}
+			NetworkSendingThread nths = new NetworkSendingThread(3);
+			nths.start();
 		}
 		else {
 			
@@ -36,17 +38,27 @@ public class NetworkTraitementMessage extends Thread{
 				}
 			}
 			else {
-				String[] message_spli = Netmessage.split(" ");
-				if (message_spli[0].equals("pseudo")) {
+				if (Netmessage.equals("repco")){
 					if (DatabaseManager.existsUser(NetclientAddress.toString())) {
-						DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
+						DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
 					}
 					else {
-						DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
+						DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 					}
 				}
 				else {
-					System.out.println("pas pour nous");
+					String[] message_spli = Netmessage.split(" ");
+					if (message_spli[0].equals("pseudo")) {
+						if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+							DatabaseManager.updateUser(NetclientAddress.toString(),message_spli[1], true);
+						}
+						else {
+							DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
+						}
+					}
+					else {
+						System.out.println("pas pour nous");
+					}
 				}
 			}
 		}
