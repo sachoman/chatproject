@@ -13,6 +13,10 @@ import DatabasePackage.DatabaseManager;
 
 public class SendingChatThread extends Thread{
 	public Socket th_sock;
+	public String message;
+	public void updateMessage(String msg) {
+		message = msg;
+	}
 	public SendingChatThread(Socket sock) {
 		th_sock = sock;
 	}
@@ -22,12 +26,11 @@ public class SendingChatThread extends Thread{
 		try {
 			out = new ObjectOutputStream(th_sock.getOutputStream());
 			while(true) {
-					Thread.sleep(2000);
-					String msg = "sacha \n";
-					out.writeObject(msg);
+					wait();
+					out.writeObject(message);
 					SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		    		Date date = new Date(System.currentTimeMillis());
-					DatabaseManager.storeMessage(InetAddress.getLocalHost().toString(),th_sock.getInetAddress().toString(), msg, formatter.format(date));
+					DatabaseManager.storeMessage(InetAddress.getLocalHost().toString(),th_sock.getInetAddress().toString(), message, formatter.format(date));
 					System.out.println("Message envoyé");
 			}
 		} catch (IOException | InterruptedException e1) {
