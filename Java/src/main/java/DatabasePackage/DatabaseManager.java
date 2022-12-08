@@ -249,6 +249,26 @@ public class DatabaseManager {
         }
 		return null;
 	}
+	public static boolean checkAvailability(String pseudo) {
+		String sql = "SELECT COUNT(*) FROM users WHERE pseudo=?";
+		int nb;
+        try (Connection conn = DatabaseManager.connect();
+        		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	pstmt.setString(1, pseudo);
+        	try (ResultSet rs = pstmt.executeQuery()){
+        		nb = rs.getInt(1);
+        		if (nb == 0) {
+        			return true;
+        		} else {
+        			return false;
+        		}
+            }
+            // loop through the result set
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return false;
+	}
 	/**
      * @param args the command line arguments
 	 * @return 
