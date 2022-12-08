@@ -69,6 +69,9 @@ public class NetworkManager {
         DatabaseManager.updateUser("192.168.65.21","Paulo l'artichaut", false);
         System.out.println(dbmanager.existsUser("192.168.65.21"));
         System.out.println(dbmanager.existsUser("193.168.65.21"));
+        DatabaseManager.addUser("1.1.1.1", "Paulo");
+        System.out.println(DatabaseManager.checkAvailability("Paulo"));
+        System.out.println(DatabaseManager.checkAvailability("totoo"));
         */
         
         NetworkManager nm = new NetworkManager();
