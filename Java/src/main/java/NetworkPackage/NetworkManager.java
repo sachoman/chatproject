@@ -61,10 +61,20 @@ public class NetworkManager {
 		NetworkSendingThread nths = new NetworkSendingThread(3);
 		nths.start();
 	}
-	public void SendUpdatePseudo(String pseudo) {
-		NetworkSendingThread th = new NetworkSendingThread(2);
-		th.setPseudo(pseudo);
-		th.start();
+	public static void sendPseudo(String pseudo) {
+		NetworkSendingThread nths = new NetworkSendingThread(2);
+		nths.setPseudo(pseudo);
+		nths.start();
+	}
+	public boolean SendUpdatePseudo(String pseudo) {
+		if (DatabaseManager.checkAvailability(pseudo)) {
+			NetworkSendingThread th = new NetworkSendingThread(2);
+			th.setPseudo(pseudo);
+			th.start();
+			return true;
+		} else {
+			return false;
+		}
 	}
 	public static void ChatWithUser(InetAddress ip) {
 		try {

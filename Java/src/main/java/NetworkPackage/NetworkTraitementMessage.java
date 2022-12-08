@@ -24,6 +24,7 @@ public class NetworkTraitementMessage extends Thread{
 				DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 			}
 			NetworkManager.sendRepCo();
+			NetworkManager.sendPseudo(User.getPseudo());
 		}
 		else {
 			

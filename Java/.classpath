@@ -52,6 +52,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/darthenu/Documents/4A/chatproject/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="/home/starck/Bureau/Projet Java/chatproject/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
