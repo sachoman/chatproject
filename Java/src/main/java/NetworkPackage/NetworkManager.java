@@ -1,6 +1,7 @@
 package NetworkPackage;
 
 import ThreadPackage.*;
+import UserPackage.User;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -126,6 +127,7 @@ public class NetworkManager {
         */
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
+        User.setPseudo("paulo");
         /*
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         

@@ -5,7 +5,7 @@ public class User {
 	public static String getPseudo() {
 		return pseudo;
 	}
-	public void setPseudo(String ps) {
+	public static void setPseudo(String ps) {
 		pseudo = ps;
 	}
 }
