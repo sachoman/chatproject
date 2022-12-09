@@ -16,7 +16,7 @@ import java.util.Hashtable;
 import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
-	private static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
+	public static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
 	private static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
 	private static String broadcast="10.1.255.255";
 	private static int TCP_app_port = 9400;
@@ -43,6 +43,15 @@ public class NetworkManager {
 		        System.out.println(i.getHostAddress());
 		    }
 		}
+	}
+	public static void removeOutFromSock(Socket sock) {
+		ObjectOutputStream out = TabSockOut.get(sock);
+		try {
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		TabSockOut.remove(sock);
 	}
 	public static void StartNetworkManager() throws ClassNotFoundException, IOException {
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
@@ -127,7 +136,7 @@ public class NetworkManager {
         */
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
-        User.setPseudo("paulo");
+        User.setPseudo("sacho");
         /*
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         
@@ -135,10 +144,12 @@ public class NetworkManager {
         NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.5.232"));
         */
         while (true) {
-        	/*
-        	Thread.sleep(2000);
-            NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
-            */
+        	Thread.sleep(500);
+        	System.out.println(TabIpSock);
+        	System.out.println(TabSockOut);
+        	System.out.println(ThreadManager.TableIdThIpDistante);
+            //NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
+            
         }
     }
 }
