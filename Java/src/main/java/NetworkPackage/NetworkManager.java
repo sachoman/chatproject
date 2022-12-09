@@ -133,6 +133,7 @@ public class NetworkManager {
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
         User.setPseudo("sacho");
+        NetworkManager.sendPseudo("sacho");
         
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.1.54"));
         
