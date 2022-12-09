@@ -141,13 +141,9 @@ public class NetworkManager {
         NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.1.54"));
         
         while (true) {
-        	Thread.sleep(500);
-        	System.out.println("Tab ip sock : " + TabIpSock);
-        	System.out.println("Tab Sock Out : " +TabSockOut);
-        	System.out.println("Tab THId Ipdistante : " + ThreadManager.TableIdThIpDistante);
-        	System.out.println("\n");
-            //NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
-            
+        	Thread.sleep(1000);
+            NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.1.54"));
+            DatabaseManager.getMessages(InetAddress.getByName("10.1.1.54").toString());
         }
     }
 }

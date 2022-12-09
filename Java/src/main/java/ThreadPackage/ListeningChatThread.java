@@ -25,7 +25,7 @@ public class ListeningChatThread extends Thread{
 				Object msg = in.readObject();
 				SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 	    		Date date = new Date(System.currentTimeMillis());
-				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),InetAddress.getLocalHost().getHostAddress().toString(),  formatter.format(date), msg.toString());
+				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),"/"+InetAddress.getLocalHost().getHostAddress().toString(),  formatter.format(date), msg.toString());
 				System.out.println("Message chat reçu : " + msg);
 			}
 		} catch (IOException | ClassNotFoundException e1) {
