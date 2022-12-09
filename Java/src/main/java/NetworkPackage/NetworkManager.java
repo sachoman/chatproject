@@ -133,17 +133,17 @@ public class NetworkManager {
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
         User.setPseudo("paulo");
-        /*
-        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
+        
+        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.1.54"));
         
         Thread.sleep(500);
-        NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.5.232"));
-        */
+        NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.1.54"));
+        
         while (true) {
         	Thread.sleep(500);
-        	System.out.println(TabIpSock);
-        	System.out.println(TabSockOut);
-        	System.out.println(ThreadManager.TableIdThIpDistante);
+        	System.out.println("Tab ip sock : " + TabIpSock);
+        	System.out.println("Tab Sock Out : " +TabSockOut);
+        	System.out.println("Tab THId Ipdistante : " + ThreadManager.TableIdThIpDistante);
             //NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
             
         }
