@@ -32,11 +32,11 @@ public class NetworkManager {
 		return broadcast;
 	}
 	public static void listOurAddresses() throws SocketException {
-		Enumeration e = NetworkInterface.getNetworkInterfaces();
+		Enumeration<?> e = NetworkInterface.getNetworkInterfaces();
 		while(e.hasMoreElements())
 		{
 		    NetworkInterface n = (NetworkInterface) e.nextElement();
-		    Enumeration ee = n.getInetAddresses();
+		    Enumeration<?> ee = n.getInetAddresses();
 		    while (ee.hasMoreElements())
 		    {
 		        InetAddress i = (InetAddress) ee.nextElement();
@@ -132,7 +132,7 @@ public class NetworkManager {
         */
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
-        User.setPseudo("paulo");
+        User.setPseudo("sacho");
         
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.1.54"));
         
@@ -144,6 +144,7 @@ public class NetworkManager {
         	System.out.println("Tab ip sock : " + TabIpSock);
         	System.out.println("Tab Sock Out : " +TabSockOut);
         	System.out.println("Tab THId Ipdistante : " + ThreadManager.TableIdThIpDistante);
+        	System.out.println("\n");
             //NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.5.232"));
             
         }

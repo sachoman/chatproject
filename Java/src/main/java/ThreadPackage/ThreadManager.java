@@ -17,9 +17,13 @@ public class ThreadManager {
 		TableIdThIpDistante.put(id_th,ip);
 	}
 	public static void removeThreadInTab(Long id_th) {
-		TableIdThIpDistante.remove(id_th);
+		System.out.println("id thread : " + id_th);
 		InetAddress ip = TableIdThIpDistante.get(id_th);
-		Socket sock = NetworkManager.TabIpSock.get(id_th);
+		TableIdThIpDistante.remove(id_th);
+		System.out.println("ip distante : " + ip);
+		Socket sock = NetworkManager.TabIpSock.get(ip);
+		NetworkManager.TabIpSock.remove(ip);
+		System.out.println("socket : " + sock);
 		NetworkManager.removeOutFromSock(sock);
 		try {
 			sock.close();
@@ -46,7 +50,6 @@ public class ThreadManager {
 	}
 	/**/
 	public static void killThread(Long id_th) {
-		ThreadManager.removeThreadInTab(id_th);
 		Set<Thread> setOfThread = Thread.getAllStackTraces().keySet();
 		for(Thread thread : setOfThread){
 		    if(thread.getId()==id_th){
