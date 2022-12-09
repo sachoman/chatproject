@@ -17,7 +17,7 @@ import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
 	public static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
-	private static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
+	public static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
 	private static String broadcast="10.1.255.255";
 	private static int TCP_app_port = 9400;
 	private static int UDP_app_port = 9500;
@@ -49,7 +49,6 @@ public class NetworkManager {
 		try {
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 		}
 		TabSockOut.remove(sock);
 	}
@@ -90,9 +89,6 @@ public class NetworkManager {
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(ip, socket);
-			ObjectOutputStream out;
-			out = new ObjectOutputStream(socket.getOutputStream());
-			NetworkManager.TabSockOut.put(socket, out);
 			ThreadManager.createThreadForChat(socket);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -136,7 +132,7 @@ public class NetworkManager {
         */
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
-        User.setPseudo("sacho");
+        User.setPseudo("paulo");
         /*
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.232"));
         

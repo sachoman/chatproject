@@ -1,6 +1,7 @@
 package ThreadPackage;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Hashtable;
@@ -27,9 +28,12 @@ public class ThreadManager {
 		killThread(id_th);
 	}
 	/* crée les threads de réception des messages quand qqn commence une discussion avec nous */
-	public static void createThreadForChat(Socket socket) {
+	public static void createThreadForChat(Socket socket) throws IOException {
         ListeningChatThread lth = new ListeningChatThread(socket);
         lth.start();
+        ObjectOutputStream out;
+		out = new ObjectOutputStream(socket.getOutputStream());
+		NetworkManager.TabSockOut.put(socket, out);
         TableIdThIpDistante.put(lth.getId(),socket.getInetAddress());
 	}
 	public static void endChat(InetAddress ip) {
