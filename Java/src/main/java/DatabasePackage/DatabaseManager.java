@@ -47,7 +47,21 @@ public class DatabaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+		sql = "CREATE TABLE IF NOT EXISTS pwd (\n"
+				+ "id int PRIMARY KEY, \n"
+				+ "password text \n"
+				+ ");";
+		try (Connection conn = DatabaseManager.connect();
+				Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 	}
+	
+	
+// Users
 	public static void addUser(String ip, String pseudo) {
 		String sql = "INSERT INTO users(ip,pseudo,connected) VALUES(?,?,?)";
 		try (Connection conn = connect();
@@ -131,6 +145,9 @@ public class DatabaseManager {
 	public static boolean existsUser(String ip) {
 		return (getPseudo(ip)!="");
 	}
+	
+	
+// History
 	public static void storeMessage(String ip_from, String ip_to, String date, String message) {
 		// First, we need to get the id on the last line
 		int id = 0;
@@ -145,7 +162,7 @@ public class DatabaseManager {
             }
         	sql = "INSERT INTO history(id,from_ip,to_ip,date,content) VALUES(?,?,?,?,?)";
     		try (Connection conn2 = connect();
-                    PreparedStatement pstmt2 = conn.prepareStatement(sql)) {
+                    PreparedStatement pstmt2 = conn2.prepareStatement(sql)) {
                 pstmt2.setInt(1, id + 1);
                 pstmt2.setString(2, ip_from);
                 pstmt2.setString(3, ip_to);
@@ -173,7 +190,7 @@ public class DatabaseManager {
             }
         	sql = "SELECT from_ip, date, content FROM history WHERE from_ip=? OR to_ip=? ORDER BY date";
             try (Connection conn2 = DatabaseManager.connect();
-            		PreparedStatement pstmt2 = conn.prepareStatement(sql)){
+            		PreparedStatement pstmt2 = conn2.prepareStatement(sql)){
             	pstmt2.setString(1, ip);
             	pstmt2.setString(2, ip);
             	try (ResultSet rs = pstmt2.executeQuery()){
@@ -233,9 +250,9 @@ public class DatabaseManager {
             }
         	sql = "SELECT ip, pseudo FROM users WHERE connected = ?";
             try (Connection conn2 = DatabaseManager.connect();
-            		PreparedStatement pstmt2 = conn.prepareStatement(sql)){
-            	pstmt.setBoolean(1, true);
-            	pstmt.executeUpdate();
+            		PreparedStatement pstmt2 = conn2.prepareStatement(sql)){
+            	pstmt2.setBoolean(1, true);
+            	pstmt2.executeUpdate();
             	try (ResultSet rs = pstmt2.executeQuery()){
             		String[][] tab = new String[nb_rows][2];
             		int i = 0;
@@ -259,7 +276,7 @@ public class DatabaseManager {
 		return null;
 	}
 	public static boolean checkAvailability(String pseudo) {
-		String sql = "SELECT COUNT(*) FROM users WHERE pseudo=?";
+		String sql = "SELECT COUNT(*) FROM users WHERE pseudo=? AND connected=true";
 		int nb;
         try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -273,6 +290,64 @@ public class DatabaseManager {
         		}
             }
             // loop through the result set
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return false;
+	}
+	
+	
+// Pwd
+	public static boolean pwdExists() {
+		String sql = "SELECT COUNT(*) FROM pwd";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery();){
+        		int nb;
+        		nb = rs.getInt(1);
+        		if (nb == 0) {
+        			return false;
+        		} else {
+        			return true;
+        		}
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return false;
+	}
+	public static void setPwd(String pwd) {
+		String sql = "INSERT INTO pwd(id,password) VALUES(?,?)";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, pwd);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
+	public static boolean updatePwd(String old_pwd, String new_pwd) {
+		String sql = "SELECT password FROM pwd WHERE id=1";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery();){
+        		String existing_pwd;
+        		existing_pwd = rs.getString("password");
+        		if (existing_pwd.equals(old_pwd)) {
+        			sql = "UPDATE pwd SET password = ? WHERE id=1";
+        			try (Connection conn2 = connect();
+        	                PreparedStatement pstmt2 = conn2.prepareStatement(sql)) {
+        	            pstmt2.setString(1, new_pwd);
+        	            pstmt2.executeUpdate();
+        	        } catch (SQLException e) {
+        	            System.out.println(e.getMessage());
+        	        }
+        			return true;
+        		} else {
+        			return false;
+        		}
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
