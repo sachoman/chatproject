@@ -52,7 +52,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/darthenu/Documents/4A/chatproject/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/miglayout-swing.jar" sourcepath="lib/miglayout-swing-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/ChatProject/lib/miglayout-swing-javadoc.jar!/"/>
@@ -63,5 +62,8 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/ChatProject/lib/miglayout-core-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/darthenu/Documents/4A/chatproject/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="/home/darthenu/Documents/4A/chatproject/swt-win64-3.6.2.jar"/>
+	<classpathentry kind="var" path="SWT_LIB"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import ThreadPackage.*;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,6 +20,8 @@ public class WaitingChatServer extends Thread{
 	  
 	             while (true) {
 	                 Socket socket = serverSocket.accept();
+	                 InetAddress ip = socket.getInetAddress();
+	                 NetworkManager.TabIpSock.put(ip, socket);
 	                 System.out.println("New client connected");
 	                 ThreadManager.createThreadForChat(socket);
 	            }
