@@ -353,6 +353,24 @@ public class DatabaseManager {
         }
 		return false;
 	}
+	public static boolean testPwd(String pwd) {
+		String sql = "SELECT password FROM pwd WHERE id=1";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery();){
+        		String password;
+        		password = rs.getString("password");
+        		if (password.equals(pwd)) {
+        			return true;
+        		} else {
+        			return false;
+        		}
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return false;
+	}
 	/**
      * @param args the command line arguments
 	 * @return 
