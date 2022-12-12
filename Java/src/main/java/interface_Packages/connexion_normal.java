@@ -1,4 +1,4 @@
-package ViewPackage;
+package interface_Packages;
 
 import ThreadPackage.*;
 
@@ -15,10 +15,6 @@ import ThreadPackage.*;
 public class connexion_normal extends javax.swing.JFrame {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
      * Creates new form connexion_normal
      */
     public connexion_normal() {
@@ -113,4 +109,3 @@ public class connexion_normal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
-
