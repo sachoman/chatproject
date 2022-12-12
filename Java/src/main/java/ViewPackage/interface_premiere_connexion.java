@@ -1,4 +1,4 @@
-package interface_Packages;
+package ViewPackage;
 
 import ThreadPackage.*;
 import java.awt.event.ActionEvent;
@@ -19,14 +19,14 @@ import java.util.logging.Logger;
  */
 
 
-public class interface_première_connexion extends javax.swing.JFrame {
+public class interface_premiere_connexion extends javax.swing.JFrame {
     private static int index = 0;
     public String entre_utilisateur;
 
     /**
      * Creates new form NewJFrame
      */
-    public interface_première_connexion() {
+    public interface_premiere_connexion() {
         initComponents();
     }
 
@@ -206,13 +206,13 @@ public class interface_première_connexion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(interface_première_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interface_premiere_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(interface_première_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interface_premiere_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(interface_première_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interface_premiere_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(interface_première_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interface_premiere_connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -236,4 +236,3 @@ public class interface_première_connexion extends javax.swing.JFrame {
 
 
 }
-

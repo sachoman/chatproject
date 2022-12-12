@@ -1,4 +1,4 @@
-package interface_Packages;
+package ViewPackage;
 
 import ThreadPackage.*;
 

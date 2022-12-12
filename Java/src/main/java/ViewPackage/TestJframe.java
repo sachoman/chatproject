@@ -1,4 +1,4 @@
-package interface_Packages;
+package ViewPackage;
 
 import ThreadPackage.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ public class TestJframe {
                                 C_interface.setVisible(true);
                             }
                             else{
-                                interface_première_connexion N_interface = new interface_première_connexion();
+                                interface_premiere_connexion N_interface = new interface_premiere_connexion();
                                 N_interface.setVisible(true);
                             }
                 }       
