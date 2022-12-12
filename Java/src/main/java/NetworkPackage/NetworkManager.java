@@ -109,27 +109,6 @@ public class NetworkManager {
         DatabaseManager.initTables();
         DatabaseManager.clearDBHistory();
         DatabaseManager.clearDBUsers();
-        /*
-        String[][] temp;
-        temp = DatabaseManager.getMessages("1.1.1.1");
-        for (int i = 0; i < temp.length; i++) { //this equals to the row in our matrix.
-            for (int j = 0; j < temp[i].length; j++) { //this equals to the column in each row.
-               System.out.print(temp[i][j] + " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-         }
-        /*
-        //dbmanager.addUser("192.168.65.21","Paulo l'artichaut");
-        System.out.println(dbmanager.getPseudo("192.168.65.21"));
-        System.out.println(dbmanager.getIp("Paulo l'artichaut"));
-        System.out.println(dbmanager.isConnected("192.168.65.21"));
-        DatabaseManager.updateUser("192.168.65.21","Paulo l'artichaut", false);
-        System.out.println(dbmanager.existsUser("192.168.65.21"));
-        System.out.println(dbmanager.existsUser("193.168.65.21"));
-        DatabaseManager.addUser("1.1.1.1", "Paulo");
-        System.out.println(DatabaseManager.checkAvailability("Paulo"));
-        System.out.println(DatabaseManager.checkAvailability("totoo"));
-        */
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
         User.setPseudo("sacho");
