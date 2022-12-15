@@ -179,9 +179,11 @@ public class DatabaseManager {
 	public static String[][] getMessages(String ip) {
 		// First, we need to get the id on the last line
 		int nb_rows = 0;
-		String sql = "SELECT COUNT(*) FROM history";
+		String sql = "SELECT COUNT(*) FROM history WHERE from_ip=? OR to_ip=?";
         try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	pstmt.setString(1, ip);
+        	pstmt.setString(2, ip);
         	try (ResultSet rs = pstmt.executeQuery()){
         		nb_rows = rs.getInt(1);
             }
@@ -215,6 +217,18 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 		return null;
+	}
+	public static void clearConversation(String ip) {
+		// First, we need to get the id on the last line
+		String sql = "DELETE FROM history WHERE from_ip=? OR to_ip=?";
+        try (Connection conn = DatabaseManager.connect();
+        		PreparedStatement pstmt = conn.prepareStatement(sql)){
+        	pstmt.setString(1, ip);
+        	pstmt.setString(2, ip);
+        	pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 	}
 	public static void clearDBHistory(){
 		String sql = "DELETE FROM history";
