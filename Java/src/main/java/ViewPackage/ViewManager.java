@@ -18,10 +18,12 @@ public class ViewManager {
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
 		cth.addMessage(pseudo, date, mess);
 	}
+	/*
 	public static void main(String args[]) throws UnknownHostException, InterruptedException {
 		newChatThreadView(InetAddress.getByName("10.1.1.54"));
 		
 	}
+	*/
 	public static void endChat(InetAddress ip) {
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
 		TabIpChatThreadView.remove(ip);

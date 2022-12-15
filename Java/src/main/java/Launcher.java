@@ -14,7 +14,7 @@ import NetworkPackage.*;
 import ThreadPackage.*;
 
 public class Launcher {
-	public static void endChat(InetAddress ip) throws UnknownHostException, InterruptedException {
+	public static void main(String[] args) throws Exception  {
 		try {
 			DatabaseManager.initTables();
 		} catch (ClassNotFoundException e) {
