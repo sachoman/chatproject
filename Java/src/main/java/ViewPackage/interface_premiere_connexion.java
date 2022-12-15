@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import DatabasePackage.DatabaseManager;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -173,6 +175,7 @@ public class interface_premiere_connexion extends javax.swing.JFrame {
                 entre_utilisateur = new String(jPasswordField1.getPassword());
                 jLabel4.setText(entre_utilisateur);
                 TestJframe.first = true;
+                DatabaseManager.setPwd(entre_utilisateur);
             }
             
         }); {
