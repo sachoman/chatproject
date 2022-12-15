@@ -31,6 +31,9 @@ public class NetworkManager {
 	public static String getBroadcast() {
 		return broadcast;
 	}
+	public static InetAddress stringToInet(String ip) throws UnknownHostException {
+		return InetAddress.getByName(ip.substring(1));
+	}
 	public static void listOurAddresses() throws SocketException {
 		Enumeration<?> e = NetworkInterface.getNetworkInterfaces();
 		while(e.hasMoreElements())

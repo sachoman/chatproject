@@ -22,9 +22,9 @@ public class ConversationThreadView extends Thread{
 		public JTable tableau;
 		DefaultTableModel model;
 		 public ConversationThreadView(String ip) {
-			 ipDistante= ip;
+			 ipDistante = ip;
 			 try {
-				inetIp = InetAddress.getByName(ip);
+				inetIp = NetworkManager.stringToInet(ip);
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
