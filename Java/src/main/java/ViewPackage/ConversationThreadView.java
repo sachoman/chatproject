@@ -2,44 +2,21 @@ package ViewPackage;
 import java.awt.BorderLayout;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import DatabasePackage.DatabaseManager;
+import UserPackage.User;
 
 public class ConversationThreadView extends Thread{
 		public static String ipDistante;
 		public JTable tableau;
+		DefaultTableModel model;
 		 public ConversationThreadView(String ip) {
 			 ipDistante= ip;
 		 }   
-		 public void addMessage(String[] mes) {
-			 String pseudo = DatabaseManager.getPseudo(ipDistante);
-		        try {
-					Object[][] data = DatabaseManager.getMessages(ipDistante);
-					for ( int i=0; i<data.length; i++ ) {
-					    if (data[i][0].equals(ipDistante)) {
-					    	data[i][0] = pseudo;
-					    }
-					    else {
-					    	data[i][0] = "refresh";
-					    }
-					}
-					String  title[] = {"Pseudo", "Date", "Message"};
-					tableau = new JTable(data, title);
-					System.out.println("refresh du");
-					
-					
-					// continuer ici
-					// burger
-					
-					
-					
-					
-		        }
-		        catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		 public void addMessage(String pseudo, String date, String mess) {
+			 model.addRow(new Object[]{pseudo,date,mess});
 		 }
 		 public void run(){
 			 try {
@@ -77,6 +54,13 @@ public class ConversationThreadView extends Thread{
 		        // Text Area at the Center
 		        //String[][] history = DatabaseManager.getMessages(ipDistante);
 		        String pseudo = DatabaseManager.getPseudo(ipDistante);
+				model = new DefaultTableModel(); 
+				tableau = new JTable(model); 
+
+				// Create a couple of columns 
+				model.addColumn("De"); 
+				model.addColumn("Date"); 
+				model.addColumn("Message");
 		        try {
 					 Object[][] data = DatabaseManager.getMessages(ipDistante);
 					for ( int i=0; i<data.length; i++ ) {
@@ -84,18 +68,19 @@ public class ConversationThreadView extends Thread{
 					    	data[i][0] = pseudo;
 					    }
 					    else {
-					    	data[i][0] = "moi";
+					    	data[i][0] = User.defaultViewPseudo;
 					    }
+						model.addRow(new Object[]{data[i][0], data[i][1], data[i][2]});
 					}
 
-						    //Les titres des colonnes
-				String  title[] = {"Pseudo", "Date", "Message"};
-				tableau = new JTable(data, title);
+				// Append a row 
+
 				tableau.setRowHeight(30);
 				TableColumnModel columnModel = tableau.getColumnModel();
 				columnModel.getColumn(0).setPreferredWidth(100);
 				columnModel.getColumn(1).setPreferredWidth(200);
 				columnModel.getColumn(2).setPreferredWidth(800);
+				
 					frame.getContentPane().add(BorderLayout.SOUTH, panel);
 			        frame.getContentPane().add(BorderLayout.NORTH, mb);
 			        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(tableau));
@@ -104,7 +89,6 @@ public class ConversationThreadView extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		        JTextArea ta = new JTextArea();
 
 	    }
 }

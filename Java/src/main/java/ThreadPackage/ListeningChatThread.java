@@ -1,6 +1,8 @@
 package ThreadPackage;
 
 import DatabasePackage.*;
+import ViewPackage.ViewManager;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.InetAddress;
@@ -27,6 +29,8 @@ public class ListeningChatThread extends Thread{
 	    		Date date = new Date(System.currentTimeMillis());
 				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),"/"+InetAddress.getLocalHost().getHostAddress().toString(),  formatter.format(date), msg.toString());
 				System.out.println("Message chat reçu : " + msg);
+				String pseudo = DatabaseManager.getPseudo(th_socket.getInetAddress().toString());
+				ViewManager.addMessageView(th_socket.getInetAddress(), pseudo,formatter.format(date), msg.toString());
 			}
 		} catch (IOException | ClassNotFoundException e1) {
 			System.out.println("Connexion sur socket : "+th_socket+" terminée");

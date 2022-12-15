@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import DatabasePackage.DatabaseManager;
+import UserPackage.User;
+import ViewPackage.ViewManager;
 
 public class SendingChatThread extends Thread{
 	private ObjectOutputStream out;
@@ -33,6 +35,7 @@ public class SendingChatThread extends Thread{
 		    Date date = new Date(System.currentTimeMillis());
 			DatabaseManager.storeMessage("/"+InetAddress.getLocalHost().getHostAddress().toString(),th_sock.getInetAddress().toString(), formatter.format(date), message);
 			System.out.println("Message envoyé");
+			ViewManager.addMessageView(th_sock.getInetAddress(), User.defaultViewPseudo, formatter.format(date), message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
