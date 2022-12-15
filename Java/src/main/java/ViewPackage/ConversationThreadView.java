@@ -59,7 +59,7 @@ public class ConversationThreadView extends Thread{
 		        //Creating the panel at bottom and adding components
 		        JPanel panel = new JPanel(); // the panel is not visible in output
 		        JLabel label = new JLabel("Entrez du texte");
-		        JTextArea tf = new JTextArea(3, 50); // accepts upto 10 characters
+		        final JTextArea tf = new JTextArea(3, 50); // accepts upto 10 characters
 		        JButton send = new JButton("Envoyer");
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
