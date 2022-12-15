@@ -35,6 +35,7 @@ public class ListeningChatThread extends Thread{
 		} catch (IOException | ClassNotFoundException e1) {
 			System.out.println("Connexion sur socket : "+th_socket+" terminée");
 			ThreadManager.removeThreadInTab(currentThread().getId());
+			
 			//TODO notify the chat view !!!
 			
 		}

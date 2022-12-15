@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import NetworkPackage.NetworkManager;
+import ViewPackage.ViewManager;
 
 public class ThreadManager {
 	public static Hashtable<Long, InetAddress> TableIdThIpDistante = new Hashtable<Long, InetAddress>();
@@ -38,6 +39,8 @@ public class ThreadManager {
 		out = new ObjectOutputStream(socket.getOutputStream());
 		NetworkManager.TabSockOut.put(socket, out);
         TableIdThIpDistante.put(lth.getId(),socket.getInetAddress());
+        //lance interface graphique 
+        ViewManager.newChatThreadView(socket.getInetAddress());
 	}
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
