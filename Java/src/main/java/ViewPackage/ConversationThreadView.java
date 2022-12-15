@@ -40,9 +40,8 @@ public class ConversationThreadView extends Thread{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			 ipDistante = "/10.1.1.54";
 			//Creating the Frame
-		        JFrame frame = new JFrame("Chat Frame");
+		        JFrame frame = new JFrame("Conversation avec "+ DatabaseManager.getPseudo(ipDistante).toString());
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setSize(1100, 800);
 
@@ -87,11 +86,16 @@ public class ConversationThreadView extends Thread{
 				tableau = new JTable(model); 
 
 				// Create a couple of columns 
-				model.addColumn("De"); 
 				model.addColumn("Date"); 
+				model.addColumn("De"); 
 				model.addColumn("Message");
+				System.out.println("avant try");
 		        try {
+		        	System.out.println("init try");
+		        	System.out.println(ipDistante);
 					 Object[][] data = DatabaseManager.getMessages(ipDistante);
+					 System.out.println("historique chargé");
+					 System.out.println("longueur" + data.length);
 					for ( int i=0; i<data.length; i++ ) {
 					    if (data[i][0].equals(ipDistante)) {
 					    	data[i][0] = pseudo;
@@ -99,7 +103,8 @@ public class ConversationThreadView extends Thread{
 					    else {
 					    	data[i][0] = User.defaultViewPseudo;
 					    }
-						model.addRow(new Object[]{data[i][0], data[i][1], data[i][2]});
+						model.addRow(new Object[]{data[i][1], data[i][0], data[i][2]});
+						System.out.println("addRow : "+i);
 					}
 					
 				// Append a row 
@@ -112,6 +117,7 @@ public class ConversationThreadView extends Thread{
 				 frame.addWindowListener(new WindowAdapter() {
 			            @Override
 			            public void windowClosing(WindowEvent e) {
+			            	System.out.println("window closed");
 			            	ViewManager.TabIpChatThreadView.remove(inetIp);
 			                ThreadManager.endChat(inetIp);
 			                System.exit(0);

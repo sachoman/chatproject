@@ -33,9 +33,9 @@ public class Launcher {
 		NetworkManager.notifyCo();
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");
-        /*
-        Thread.sleep(5000);
+        
+        Thread.sleep(1000);
         NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.42"));
-        */
+        
 	}
 }
