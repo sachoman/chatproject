@@ -107,8 +107,6 @@ public class NetworkManager {
 	}
     public static void main(String[] args) throws Exception {
         DatabaseManager.initTables();
-        DatabaseManager.clearDBHistory();
-        DatabaseManager.clearDBUsers();
         NetworkManager.StartNetworkManager();
         NetworkManager.notifyCo();
         User.setPseudo("sacho");
