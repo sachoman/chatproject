@@ -22,4 +22,9 @@ public class ViewManager {
 		newChatThreadView(InetAddress.getByName("10.1.1.54"));
 		
 	}
+	public static void endChat(InetAddress ip) {
+		ConversationThreadView cth = TabIpChatThreadView.get(ip);
+		TabIpChatThreadView.remove(ip);
+		cth.interrupt();
+	}
 }

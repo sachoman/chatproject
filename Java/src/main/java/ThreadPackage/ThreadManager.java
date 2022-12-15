@@ -23,7 +23,6 @@ public class ThreadManager {
 		System.out.println("ip distante : " + ip);
 		Socket sock = NetworkManager.TabIpSock.get(ip);
 		NetworkManager.TabIpSock.remove(ip);
-		System.out.println("socket : " + sock);
 		NetworkManager.removeOutFromSock(sock);
 		try {
 			sock.close();
@@ -43,10 +42,15 @@ public class ThreadManager {
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
 	            if(ip.equals(entry.getValue())){
-	                ThreadManager.killThread(entry.getKey()); 
+	            	Long id_th = entry.getKey();
+	                TableIdThIpDistante.remove(id_th);
+	                Socket sock = NetworkManager.TabIpSock.get(ip);
+	        		NetworkManager.TabIpSock.remove(ip);
+	        		NetworkManager.removeOutFromSock(sock);
+	        		killThread(id_th); 
 	            }
 	        }
-
+		 
 	}
 	/**/
 	public static void killThread(Long id_th) {
