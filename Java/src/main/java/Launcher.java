@@ -1,4 +1,5 @@
 
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -9,7 +10,9 @@ import javax.swing.table.TableColumnModel;
 
 import DatabasePackage.DatabaseManager;
 import UserPackage.User;
+import ViewPackage.Accueil;
 import ViewPackage.ConversationThreadView;
+import ViewPackage.ViewManager;
 import NetworkPackage.*;
 import ThreadPackage.*;
 
@@ -33,9 +36,12 @@ public class Launcher {
 		NetworkManager.notifyCo();
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");
-        /*
-        Thread.sleep(5000);
-        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.42"));
-        */
+        
+        Thread.sleep(1000);
+        Accueil thaccueil = new Accueil();
+        ViewManager.AccueilThRef = thaccueil;
+        thaccueil.start();
+        /*NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.11"));*/
+        
 	}
 }

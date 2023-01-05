@@ -1,5 +1,7 @@
 package ViewPackage;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -8,7 +10,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import DatabasePackage.DatabaseManager;
@@ -21,6 +25,32 @@ public class ConversationThreadView extends Thread{
 		public static InetAddress inetIp;
 		public JTable tableau;
 		DefaultTableModel model;
+		JFrame frame;
+		public class TextAreaRenderer extends DefaultTableCellRenderer {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		        // création et configuration d'un JTextArea
+		        JTextArea textArea = new JTextArea();
+		        textArea.setLineWrap(true);
+		        textArea.setWrapStyleWord(true);
+		        textArea.setText(value.toString());
+		        textArea.setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredHeight(textArea));
+		        return textArea;
+		    }
+
+			private int getPreferredHeight(JTextArea textArea) {
+			    FontMetrics metrics = textArea.getFontMetrics(textArea.getFont());
+			    int lineHeight = metrics.getHeight();
+			    String[] lines = textArea.getText().split("\n");
+			    int preferredHeight = lines.length * lineHeight;
+			    return preferredHeight;
+			}
+		}
+
 		 public ConversationThreadView(String ip) {
 			 ipDistante = ip;
 			 try {
@@ -40,16 +70,24 @@ public class ConversationThreadView extends Thread{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			 ipDistante = "/10.1.1.54";
 			//Creating the Frame
-		        JFrame frame = new JFrame("Chat Frame");
+		        frame = new JFrame("Conversation avec "+ DatabaseManager.getPseudo(ipDistante).toString());
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setSize(1100, 800);
 
 		        //Creating the MenuBar and adding components
 		        JMenuBar mb = new JMenuBar();
-		        JMenu m1 = new JMenu("Déconnexion de la conversation");
+		        JMenuItem m1 = new JMenuItem("Effacer l'historique");
 		        mb.add(m1);
+		        m1.addActionListener(new ActionListener() { 
+		        	  public void actionPerformed(ActionEvent e) { 
+		        		  DatabaseManager.clearConversation(ipDistante);
+		        		  int n = model.getRowCount();
+		        		  for (int i=n-1;i>=0; i--) {
+		        			  model.removeRow(i);
+		        		  }
+		        	  } 
+		        	} );
 		        /*
 		        JMenuItem m11 = new JMenuItem("Close");
 		        JMenuItem m22 = new JMenuItem("Open New");
@@ -60,7 +98,7 @@ public class ConversationThreadView extends Thread{
 		        //Creating the panel at bottom and adding components
 		        JPanel panel = new JPanel(); // the panel is not visible in output
 		        JLabel label = new JLabel("Entrez du texte");
-		        JTextArea tf = new JTextArea(3, 50); // accepts upto 10 characters
+		        final JTextArea tf = new JTextArea(3, 50); // accepts upto 10 characters
 		        JButton send = new JButton("Envoyer");
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
@@ -87,11 +125,16 @@ public class ConversationThreadView extends Thread{
 				tableau = new JTable(model); 
 
 				// Create a couple of columns 
-				model.addColumn("De"); 
 				model.addColumn("Date"); 
+				model.addColumn("De"); 
 				model.addColumn("Message");
+				System.out.println("avant try");
 		        try {
+		        	System.out.println("init try");
+		        	System.out.println(ipDistante);
 					 Object[][] data = DatabaseManager.getMessages(ipDistante);
+					 System.out.println("historique chargé");
+					 System.out.println("longueur" + data.length);
 					for ( int i=0; i<data.length; i++ ) {
 					    if (data[i][0].equals(ipDistante)) {
 					    	data[i][0] = pseudo;
@@ -99,19 +142,26 @@ public class ConversationThreadView extends Thread{
 					    else {
 					    	data[i][0] = User.defaultViewPseudo;
 					    }
-						model.addRow(new Object[]{data[i][0], data[i][1], data[i][2]});
+						model.addRow(new Object[]{data[i][1], data[i][0], data[i][2]});
+						System.out.println("addRow : "+i);
 					}
 					
-				// Append a row 
 
-				tableau.setRowHeight(30);
+				//tableau.setRowHeight(TextAreaRenderer.getPreferredHeight(TextAreaRenderer.getTableCellRendererComponent));
 				TableColumnModel columnModel = tableau.getColumnModel();
+				// Pour avoir texte en plusieurs lignes
+				
+				TableColumn column = tableau.getColumnModel().getColumn(2); // première colonne
+				column.setCellRenderer(new TextAreaRenderer());
+				tableau.setRowHeight(60);
+				//set les largeur
 				columnModel.getColumn(0).setPreferredWidth(100);
 				columnModel.getColumn(1).setPreferredWidth(200);
 				columnModel.getColumn(2).setPreferredWidth(800);
 				 frame.addWindowListener(new WindowAdapter() {
 			            @Override
 			            public void windowClosing(WindowEvent e) {
+			            	System.out.println("window closed");
 			            	ViewManager.TabIpChatThreadView.remove(inetIp);
 			                ThreadManager.endChat(inetIp);
 			                System.exit(0);

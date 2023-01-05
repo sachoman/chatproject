@@ -28,8 +28,7 @@ public class ThreadManager {
 		try {
 			sock.close();
 		} catch (IOException e) {
-		}
-		killThread(id_th);
+		};
 	}
 	/* crée les threads de réception des messages quand qqn commence une discussion avec nous */
 	public static void createThreadForChat(Socket socket) throws IOException {
@@ -45,17 +44,21 @@ public class ThreadManager {
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
 	            if(ip.equals(entry.getValue())){
+	            	System.out.println("debut end chat");
 	            	Long id_th = entry.getKey();
 	                TableIdThIpDistante.remove(id_th);
 	                Socket sock = NetworkManager.TabIpSock.get(ip);
 	        		NetworkManager.TabIpSock.remove(ip);
 	        		NetworkManager.removeOutFromSock(sock);
-	        		killThread(id_th); 
+	        		try {
+	        			sock.close();
+	        		} catch (IOException e) {
+	        		};
 	            }
 	        }
 		 
 	}
-	/**/
+	/*
 	public static void killThread(Long id_th) {
 		Set<Thread> setOfThread = Thread.getAllStackTraces().keySet();
 		for(Thread thread : setOfThread){
@@ -63,13 +66,12 @@ public class ThreadManager {
 		        thread.interrupt();
 		    }
 		}
-	}
-	public void killAllThreads() {
+	}*/
+	public static void killAllThreads() {
 		Set<Thread> setOfThread = Thread.getAllStackTraces().keySet();
 		for(Thread thread : setOfThread){
 			 if(TableIdThIpDistante.contains(thread.getId())){
 			    	ThreadManager.removeThreadInTab(thread.getId());
-			        thread.interrupt();
 			    }
 		}
 	}
