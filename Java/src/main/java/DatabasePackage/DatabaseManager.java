@@ -248,6 +248,15 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
+	public static void clearPwd(){
+		String sql = "DELETE FROM pwd";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
 	public static String[][] getConnectedUsers() {
 		// First, we need to get the id on the last line
 		int nb_rows = 0;
@@ -342,30 +351,19 @@ public class DatabaseManager {
         }
 	}
 	public static boolean updatePwd(String old_pwd, String new_pwd) {
-		String sql = "SELECT password FROM pwd WHERE id=1";
-		try (Connection conn = connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            try (ResultSet rs = pstmt.executeQuery();){
-        		String existing_pwd;
-        		existing_pwd = rs.getString("password");
-        		if (existing_pwd.equals(old_pwd)) {
-        			sql = "UPDATE pwd SET password = ? WHERE id=1";
-        			try (Connection conn2 = connect();
-        	                PreparedStatement pstmt2 = conn2.prepareStatement(sql)) {
-        	            pstmt2.setString(1, new_pwd);
-        	            pstmt2.executeUpdate();
-        	        } catch (SQLException e) {
-        	            System.out.println(e.getMessage());
-        	        }
-        			return true;
-        		} else {
-        			return false;
-        		}
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-		return false;
+		if (testPwd(old_pwd)) {
+			String sql = "UPDATE pwd SET password = ? WHERE id=1";
+			try (Connection conn = connect();
+	                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	            pstmt.setString(1, new_pwd);
+	            pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+			return true;
+		} else {
+			return false;
+		}
 	}
 	public static boolean testPwd(String pwd) {
 		String sql = "SELECT password FROM pwd WHERE id=1";
