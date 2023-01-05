@@ -4,11 +4,9 @@ import NetworkPackage.NetworkManager;
 import ThreadPackage.ThreadManager;
 import ViewPackage.ViewManager;
 
-public class Ender extends Thread{
+public class Ender{
 	public Ender() {
-		
-	}
-	public void run() {
+	System.out.println("fin du game");
 		ThreadManager.killAllThreads();
 		NetworkManager.notifyDeCo();
 		ViewManager.AccueilThRef.interrupt();

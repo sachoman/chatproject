@@ -87,6 +87,7 @@ public class DatabaseManager {
         }
 	}
 	public static void DecoAllUsers() {
+		System.out.println("all users deco");
 		String sql = "UPDATE users SET connected = ? ";
 		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

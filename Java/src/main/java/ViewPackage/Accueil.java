@@ -93,11 +93,9 @@ public class Accueil extends Thread{
 			TableColumnModel columnModel = tableau.getColumnModel();
 			updateUsersView();
 			 frame.addWindowListener(new WindowAdapter() {
-		            @Override
 		            public void windowClosing(WindowEvent e) {
+		            	new Ender();
 		            	System.out.println("accueil closed");
-		            	Ender end = new Ender();
-		            	end.start();
 		                System.exit(0);
 		            }
 		        });
