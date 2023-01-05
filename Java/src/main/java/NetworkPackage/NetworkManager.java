@@ -108,7 +108,7 @@ public class NetworkManager {
 		th.setOut(TabSockOut.get(TabIpSock.get(ip)));
 		th.start();
 	}
-	
+	/*
     public static void main(String[] args) throws Exception {
         DatabaseManager.initTables();
         NetworkManager.StartNetworkManager();
@@ -133,4 +133,5 @@ public class NetworkManager {
              }
         }
     }
+    */
 }

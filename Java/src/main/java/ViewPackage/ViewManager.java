@@ -1,13 +1,19 @@
 package ViewPackage;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import DatabasePackage.DatabaseManager;
+import NetworkPackage.NetworkManager;
+import ThreadPackage.ThreadManager;
 
 public class ViewManager {
+	public static Accueil AccueilThRef;
 	public static Hashtable<InetAddress, ConversationThreadView> TabIpChatThreadView = new Hashtable<InetAddress, ConversationThreadView>();
 	public static void newChatThreadView(InetAddress ip) {
 		ConversationThreadView cth = new ConversationThreadView(ip.toString());
@@ -26,7 +32,15 @@ public class ViewManager {
 	*/
 	public static void endChat(InetAddress ip) {
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
-		TabIpChatThreadView.remove(ip);
+		cth.frame.dispose();
+		TabIpChatThreadView.remove(ip);;
 		cth.interrupt();
 	}
+	public static void endAllViews() {
+		for(Entry<InetAddress, ConversationThreadView> entry: TabIpChatThreadView.entrySet()){
+            entry.getValue().interrupt();
+            TabIpChatThreadView.remove(entry.getKey());
+        }
+    }
+
 }

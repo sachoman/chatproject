@@ -67,7 +67,7 @@ public class ThreadManager {
 		    }
 		}
 	}*/
-	public void killAllThreads() {
+	public static void killAllThreads() {
 		Set<Thread> setOfThread = Thread.getAllStackTraces().keySet();
 		for(Thread thread : setOfThread){
 			 if(TableIdThIpDistante.contains(thread.getId())){

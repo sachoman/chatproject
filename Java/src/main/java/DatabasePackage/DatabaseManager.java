@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseManager {
 	public static String url = "jdbc:sqlite:chatdb.db";
     private static Connection connect() {
-        Connection conn = null;
+    	Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
@@ -86,6 +86,16 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
+	public static void DecoAllUsers() {
+		String sql = "UPDATE users SET connected = ? ";
+		try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1, false);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
 	public static void updateCoStatus(String ip, boolean connected_status) {
 		String sql = "UPDATE users SET connected = ? WHERE ip= ?";
 		try (Connection conn = connect();
@@ -111,7 +121,7 @@ public class DatabaseManager {
         }
 		return "";
 	}
-	public String getIp(String pseudo) {
+	public static String getIp(String pseudo) {
 		String sql = "SELECT ip FROM users WHERE pseudo=?";
         try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -248,14 +258,15 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
         }
 	}
-	public static String[][] getConnectedUsers() {
+	public static String[][] getConnectedUsers() throws ClassNotFoundException {
 		// First, we need to get the id on the last line
+		initTables();
 		int nb_rows = 0;
 		String sql = "SELECT COUNT(*) FROM users WHERE connected = ?";
-        try (Connection conn = DatabaseManager.connect();
+        try (Connection conn = connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
         	pstmt.setBoolean(1, true);
-        	pstmt.executeUpdate();
+        	/*pstmt.executeUpdate();*/
         	try (ResultSet rs = pstmt.executeQuery()){
         		nb_rows = rs.getInt(1);
             }
@@ -266,7 +277,7 @@ public class DatabaseManager {
             try (Connection conn2 = DatabaseManager.connect();
             		PreparedStatement pstmt2 = conn2.prepareStatement(sql)){
             	pstmt2.setBoolean(1, true);
-            	pstmt2.executeUpdate();
+            	//pstmt2.executeUpdate();
             	try (ResultSet rs = pstmt2.executeQuery()){
             		String[][] tab = new String[nb_rows][2];
             		int i = 0;
