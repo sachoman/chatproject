@@ -89,6 +89,7 @@ public class NetworkManager {
 		}
 	}
 	public static void ChatWithUser(InetAddress ip) {
+		System.out.println("chat avec :  "+ip);
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(ip, socket);
@@ -108,30 +109,4 @@ public class NetworkManager {
 		th.setOut(TabSockOut.get(TabIpSock.get(ip)));
 		th.start();
 	}
-	/*
-    public static void main(String[] args) throws Exception {
-        DatabaseManager.initTables();
-        NetworkManager.StartNetworkManager();
-        NetworkManager.notifyCo();
-        User.setPseudo("sacho");
-        NetworkManager.sendPseudo("sacho");
-        
-        NetworkManager.ChatWithUser(InetAddress.getByName("10.1.1.54"));
-        
-        Thread.sleep(500);
-        NetworkManager.sendMessage("hello mec",InetAddress.getByName("10.1.1.54"));
-        String[][] temp;
-        while (true) {
-        	Thread.sleep(1000);
-            NetworkManager.sendMessage("hello mec while true",InetAddress.getByName("10.1.1.54"));
-            temp = DatabaseManager.getMessages(InetAddress.getByName("10.1.1.54").toString());
-            for (int i = 0; i < temp.length; i++) { //this equals to the row in our matrix.
-                for (int j = 0; j < temp[i].length; j++) { //this equals to the column in each row.
-                   System.out.print(temp[i][j] + " ");
-                }
-                System.out.println(); //change line on console as row comes to end in the matrix.
-             }
-        }
-    }
-    */
 }

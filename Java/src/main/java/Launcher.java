@@ -36,8 +36,6 @@ public class Launcher {
 		NetworkManager.notifyCo();
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");
-        
-        Thread.sleep(1000);
         Accueil thaccueil = new Accueil();
         ViewManager.AccueilThRef = thaccueil;
         thaccueil.start();
