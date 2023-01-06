@@ -33,6 +33,7 @@ public class Launcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DatabaseManager.DecoAllUsers();
 		NetworkManager.notifyCo();
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");

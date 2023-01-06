@@ -21,8 +21,8 @@ import NetworkPackage.*;
 import ThreadPackage.*;
 
 public class ConversationThreadView extends Thread{
-		public static String ipDistante;
-		public static InetAddress inetIp;
+		public String ipDistante;
+		public InetAddress inetIp;
 		public JTable tableau;
 		DefaultTableModel model;
 		JFrame frame;
@@ -52,9 +52,9 @@ public class ConversationThreadView extends Thread{
 		}
 
 		 public ConversationThreadView(String ip) {
-			 ipDistante = ip;
+			 this.ipDistante = ip;
 			 try {
-				inetIp = NetworkManager.stringToInet(ip);
+				this.inetIp = NetworkManager.stringToInet(ip);
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -72,7 +72,6 @@ public class ConversationThreadView extends Thread{
 			}
 			//Creating the Frame
 		        frame = new JFrame("Conversation avec "+ DatabaseManager.getPseudo(ipDistante).toString());
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setSize(1100, 800);
 
 		        //Creating the MenuBar and adding components
@@ -103,6 +102,7 @@ public class ConversationThreadView extends Thread{
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
 		        		  String message = new String(tf.getText());
+		        		  System.out.println(inetIp);
 		        		  NetworkManager.sendMessage(message, inetIp);
 						tf.setText(""); 
 		        	  } 
@@ -164,7 +164,6 @@ public class ConversationThreadView extends Thread{
 			            	System.out.println("window closed");
 			            	ViewManager.TabIpChatThreadView.remove(inetIp);
 			                ThreadManager.endChat(inetIp);
-			                System.exit(0);
 			            }
 			        });
 					frame.getContentPane().add(BorderLayout.SOUTH, panel);
