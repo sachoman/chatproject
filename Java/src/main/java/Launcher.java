@@ -12,7 +12,10 @@ import DatabasePackage.DatabaseManager;
 import UserPackage.User;
 import ViewPackage.Accueil;
 import ViewPackage.ConversationThreadView;
+import ViewPackage.TestJframe;
 import ViewPackage.ViewManager;
+import ViewPackage.identification;
+import ViewPackage.interface_premiere_connexion;
 import NetworkPackage.*;
 import ThreadPackage.*;
 
@@ -33,13 +36,23 @@ public class Launcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DatabaseManager.DecoAllUsers();
+		DatabaseManager.clearDBUsers();
 		NetworkManager.notifyCo();
+		if(DatabaseManager.pwdExists()){
+        	identification C_interface = new identification();
+            C_interface.setVisible(true);
+        }
+        else{
+            interface_premiere_connexion N_interface = new interface_premiere_connexion();
+            N_interface.setVisible(true);
+        }
+		/*
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");
         Accueil thaccueil = new Accueil();
         ViewManager.AccueilThRef = thaccueil;
         thaccueil.start();
+        */
         /*NetworkManager.ChatWithUser(InetAddress.getByName("10.1.5.11"));*/
         
 	}

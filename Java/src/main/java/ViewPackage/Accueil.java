@@ -95,8 +95,6 @@ public class Accueil extends Thread{
 			 frame.addWindowListener(new WindowAdapter() {
 		            public void windowClosing(WindowEvent e) {
 		            	new Ender();
-		            	System.out.println("accueil closed");
-		                System.exit(0);
 		            }
 		        });
 			 /*

@@ -9,18 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import DatabasePackage.DatabaseManager;
+import NetworkPackage.NetworkManager;
 import UserPackage.User;
 /**
  *
  * @author degabria
  */
-public class Définition_Pseudo extends javax.swing.JFrame {
+public class Definition_Pseudo extends javax.swing.JFrame {
     private String entre;
 
     /**
      * Creates new form Set_pseudo
      */
-    public Définition_Pseudo() {
+    public Definition_Pseudo() {
         initComponents();
     }
 
@@ -43,8 +44,7 @@ public class Définition_Pseudo extends javax.swing.JFrame {
 
         jLabel1.setText("Veulliez choisir  votre pseudo ");
 
-        jLabel2.setText("Essayer un autre pse        // TODO add your handling code here:\n"
-        		+ "    }//GEN-LAST:event_jButton1ActionPerformedudo ");
+        jLabel2.setText("Pseudo déjà utilisé");
         jLabel2.setVisible(false);
 
         jButton1.setText("Confimer");
@@ -118,7 +118,12 @@ public class Définition_Pseudo extends javax.swing.JFrame {
                 entre = new String(jTextField1.getText());
                 if(DatabaseManager.checkAvailability(entre)) {
                 	User.setPseudo(entre);
-                	jPanel1.setVisible(false);                	
+                	jPanel1.setVisible(false);  
+                	NetworkManager.sendPseudo(entre);
+                	System.out.println("pseudo envoyé");
+                	Accueil thaccueil = new Accueil();
+                	ViewManager.AccueilThRef = thaccueil;
+                	thaccueil.start();
                 }                else {
 					jLabel2.setVisible(true);
                 }
@@ -160,7 +165,7 @@ public class Définition_Pseudo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Définition_Pseudo().setVisible(true);
+                new Definition_Pseudo().setVisible(true);
             }
         });
 

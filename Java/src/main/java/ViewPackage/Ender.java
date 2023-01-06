@@ -12,5 +12,6 @@ public class Ender{
 		ViewManager.AccueilThRef.interrupt();
 		ViewManager.endAllViews();
 		DatabaseManager.DecoAllUsers();
+		System.exit(0);
 	}
 }

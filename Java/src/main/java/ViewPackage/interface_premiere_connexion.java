@@ -176,6 +176,9 @@ public class interface_premiere_connexion extends javax.swing.JFrame {
                 jLabel4.setText(entre_utilisateur);
                 TestJframe.first = true;
                 DatabaseManager.setPwd(entre_utilisateur);
+                Definition_Pseudo defpseudo = new Definition_Pseudo();
+                defpseudo.setVisible(true);
+                
             }
             
         }); {

@@ -121,6 +121,8 @@ public class identification extends javax.swing.JFrame {
                 
                 if(DatabaseManager.testPwd(entre)) {
                 	jPanel1.setVisible(false);
+                	Definition_Pseudo defpseudo = new Definition_Pseudo();
+                    defpseudo.setVisible(true);
                 }
                 else {
                 	jLabel2.setVisible(true);

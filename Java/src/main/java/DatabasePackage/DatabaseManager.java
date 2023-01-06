@@ -311,13 +311,15 @@ public class DatabaseManager {
 		return null;
 	}
 	public static boolean checkAvailability(String pseudo) {
-		String sql = "SELECT COUNT(*) FROM users WHERE pseudo=? AND connected=true";
+		String sql = "SELECT COUNT(*) FROM users WHERE pseudo=? AND connected=?";
 		int nb;
         try (Connection conn = DatabaseManager.connect();
         		PreparedStatement pstmt = conn.prepareStatement(sql)){
         	pstmt.setString(1, pseudo);
+        	pstmt.setBoolean(2,true);
         	try (ResultSet rs = pstmt.executeQuery()){
         		nb = rs.getInt(1);
+        		System.out.println(nb);
         		if (nb == 0) {
         			return true;
         		} else {

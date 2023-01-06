@@ -23,7 +23,6 @@ public class NetworkTraitementMessage extends Thread{
 				DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
 			}
 			else {
-				DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 			}
 			NetworkManager.sendRepCo();
 			NetworkManager.sendPseudo(User.getPseudo());
