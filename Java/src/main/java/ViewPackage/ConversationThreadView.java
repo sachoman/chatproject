@@ -159,10 +159,7 @@ public class ConversationThreadView extends Thread{
 				columnModel.getColumn(1).setPreferredWidth(200);
 				columnModel.getColumn(2).setPreferredWidth(800);
 				 frame.addWindowListener(new WindowAdapter() {
-			            @Override
 			            public void windowClosing(WindowEvent e) {
-			            	System.out.println("window closed");
-			            	ViewManager.TabIpChatThreadView.remove(inetIp);
 			                ThreadManager.endChat(inetIp);
 			            }
 			        });

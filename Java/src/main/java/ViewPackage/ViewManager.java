@@ -21,6 +21,7 @@ public class ViewManager {
 		cth.start();
 	}
 	public static void addMessageView(InetAddress ip, String date, String pseudo, String mess) {
+		System.out.println(ip);
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
 		cth.addMessage(pseudo, date, mess);
 	}
@@ -31,7 +32,9 @@ public class ViewManager {
 	}
 	*/
 	public static void endChat(InetAddress ip) {
+		System.out.println(ip);
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
+		System.out.println(cth);
 		cth.frame.dispose();
 		TabIpChatThreadView.remove(ip);;
 		cth.interrupt();
