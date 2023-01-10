@@ -107,8 +107,6 @@ public class Definition_Pseudo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
             	try {
 					DatabaseManager.initTables();
 				} catch (ClassNotFoundException e) {
@@ -118,7 +116,7 @@ public class Definition_Pseudo extends javax.swing.JFrame {
                 entre = new String(jTextField1.getText());
                 if(DatabaseManager.checkAvailability(entre)) {
                 	User.setPseudo(entre);
-                	jPanel1.setVisible(false);  
+                	this.dispose(); 
                 	NetworkManager.sendPseudo(entre);
                 	Accueil thaccueil = new Accueil();
                 	ViewManager.AccueilThRef = thaccueil;
@@ -126,10 +124,6 @@ public class Definition_Pseudo extends javax.swing.JFrame {
                 }                else {
 					jLabel2.setVisible(true);
                 }
-
-            }
-            
-        });
     }//GEN-LAST:event_jButton1ActionPerformed
     
     

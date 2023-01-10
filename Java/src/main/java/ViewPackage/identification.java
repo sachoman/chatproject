@@ -38,7 +38,7 @@ public class identification extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Veuillez vous connecter ");
 
@@ -115,25 +115,17 @@ public class identification extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
                 entre = new String(jPasswordField1.getPassword());
                 
                 if(DatabaseManager.testPwd(entre)) {
-                	jPanel1.setVisible(false);
+                	this.dispose();
                 	Definition_Pseudo defpseudo = new Definition_Pseudo();
                     defpseudo.setVisible(true);
                 }
                 else {
                 	jLabel2.setVisible(true);
                 }
-
-            }
-            
-        }); {
-
-        
-    }
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

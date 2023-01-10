@@ -126,22 +126,16 @@ public class Update_Pseudo extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	
+         	
                 String entre = new String(jTextField1.getText());
                 if(DatabaseManager.checkAvailability(entre)) {
                 	User.setPseudo(entre);
                 	NetworkManager.sendPseudo(entre);
-                	jPanel1.setVisible(false);                	
+                	this.dispose();               	
                 }                else {
 					jLabel2.setVisible(true);
 
                 }
-
-            }
-            
-        });
     }
     /**
      * @param args the command line arguments

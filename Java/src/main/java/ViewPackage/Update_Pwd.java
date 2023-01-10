@@ -140,22 +140,15 @@ public class Update_Pwd extends javax.swing.JFrame {
     }//GEN-LAST:event_nouveau_mdpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
             	entre = new String(ancien_mdp.getPassword());
             	new_entre = new String(nouveau_mdp.getPassword());
             	if(DatabaseManager.updatePwd(entre,new_entre)) {
-            		jPanel1.setVisible(false);
+            		this.dispose();
             	}
             	else {
             		jLabel4.setVisible(true);
             	}
-            }
-            
-        }); {
-
-        
-    }
+                 
     }
 
     private void ancien_mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ancien_mdpActionPerformed
