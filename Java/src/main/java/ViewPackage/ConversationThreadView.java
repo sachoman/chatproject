@@ -27,38 +27,25 @@ public class ConversationThreadView extends Thread{
 		public String ipDistante;
 		public InetAddress inetIp;
 		public JTable tableau;
-		DefaultTableModel model = new DefaultTableModel() {
+		DefaultTableModel model = new DefaultTableModel();
+		JFrame frame;
+
+		public class TextAreaRenderer extends JTextArea implements TableCellRenderer {
+		    public TextAreaRenderer() {
+		        setLineWrap(true);
+		        setWrapStyleWord(true);
+		    }
 
 		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		       //all cells false
-		       return false;
+		    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		        setText((value == null) ? "" : value.toString());
+		        setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredSize().height);
+		        if (table.getRowHeight(row) != getPreferredSize().height) {
+		            table.setRowHeight(row, getPreferredSize().height);
+		        }
+		        return this;
 		    }
-		};;
-		JFrame frame;
-		/*
-		public class TextAreaRenderer extends DefaultTableCellRenderer {
-			private static final long serialVersionUID = 1L;
-
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		        // création et configuration d'un JTextArea
-		        JTextArea textArea = new JTextArea();
-		        textArea.setLineWrap(true);
-		        textArea.setWrapStyleWord(true);
-		        textArea.setText(value.toString());
-		        textArea.setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredHeight(textArea));
-		        return textArea;
-		    }
-
-			private int getPreferredHeight(JTextArea textArea) {
-			    FontMetrics metrics = textArea.getFontMetrics(textArea.getFont());
-			    int lineHeight = metrics.getHeight();
-			    String[] lines = textArea.getText().split("\n");
-			    int preferredHeight = lines.length * lineHeight;
-			    return preferredHeight;
-			}
 		}
-*/
 		 public ConversationThreadView(String ip) {
 			 this.ipDistante = ip;
 			 try {
@@ -124,7 +111,7 @@ public class ConversationThreadView extends Thread{
 		        JPanel panel = new JPanel(); // the panel is not visible in output
 		        JLabel label = new JLabel("Entrez du texte");
 		       //champs de message à envoyer 
-		        final JTextArea tf = new JTextArea(3, 50);
+		        final JTextArea tf = new JTextArea(1, 50);
 		        tf.setLineWrap(true);
 		        tf.setWrapStyleWord(true);
 		        JButton send = new JButton("Envoyer");
@@ -173,14 +160,14 @@ public class ConversationThreadView extends Thread{
 				//tableau.setRowHeight(TextAreaRenderer.getPreferredHeight(TextAreaRenderer.getTableCellRendererComponent));
 				TableColumnModel columnModel = tableau.getColumnModel();
 				// Pour avoir texte en plusieurs lignes
-				
-				TableColumn column = tableau.getColumnModel().getColumn(2); // première colonne
-				//column.setCellRenderer(new TextAreaRenderer());
 				tableau.setRowHeight(60);
 				//set les largeur
 				columnModel.getColumn(0).setPreferredWidth(100);
 				columnModel.getColumn(1).setPreferredWidth(200);
 				columnModel.getColumn(2).setPreferredWidth(800);
+				
+				 tableau.setDefaultRenderer(Object.class, new TextAreaRenderer());
+				
 				 frame.addWindowListener(new WindowAdapter() {
 			            public void windowClosing(WindowEvent e) {
 			                ThreadManager.endChat(inetIp);

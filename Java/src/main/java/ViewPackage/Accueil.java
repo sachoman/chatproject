@@ -30,14 +30,7 @@ import UserPackage.User;
 public class Accueil extends Thread{
 	public static InetAddress inetIp;
 	public JTable tableau;
-	DefaultTableModel model = new DefaultTableModel() {
-
-	    @Override
-	    public boolean isCellEditable(int row, int column) {
-	       //all cells false
-	       return false;
-	    }
-	};;
+	DefaultTableModel model = new DefaultTableModel();
 	public Accueil() {
 	}  
 	public void updateUsersView() {

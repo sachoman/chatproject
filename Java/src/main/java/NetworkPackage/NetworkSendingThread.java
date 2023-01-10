@@ -23,6 +23,7 @@ public class NetworkSendingThread extends Thread {
 		}
 		if (protocole == 1 ) {
 			message = "deco";
+			System.out.println("messagede déconnexion envoyé");
 		}
 		if (protocole == 2) {
 			message = "pseudo " + pseudo;
