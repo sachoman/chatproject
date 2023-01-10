@@ -2,6 +2,7 @@ package NetworkPackage;
 
 import DatabasePackage.DatabaseManager;
 import UserPackage.User;
+import ViewPackage.ConversationThreadView;
 import ViewPackage.ViewManager;
 
 import java.net.InetAddress;
@@ -42,7 +43,12 @@ public class NetworkTraitementMessage extends Thread{
 					DatabaseManager.addUser(NetclientAddress.toString(), "inconnu");
 					DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
 				}
-				ViewManager.AccueilThRef.updateUsersView();
+				try {
+					ViewManager.AccueilThRef.updateUsersView();
+				}
+				catch (Exception e) {
+					
+				}
 			}
 			else {
 				if (Netmessage.equals("repco")){
@@ -64,6 +70,13 @@ public class NetworkTraitementMessage extends Thread{
 						}
 						try{
 							ViewManager.AccueilThRef.updateUsersView();
+							try {
+								ConversationThreadView cth = ViewManager.TabIpChatThreadView.get(NetclientAddress);
+								cth.updateConvView();
+							}
+							catch (Exception e) {
+								
+							}
 						}
 						catch(Exception e){
 							

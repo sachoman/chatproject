@@ -37,8 +37,12 @@ public class ListeningChatThread extends Thread{
 			//notify the chat view
 			ViewManager.endChat(th_socket.getInetAddress());
 			//notify thread manager
-			ThreadManager.removeThreadInTab(currentThread().getId());
-			
+			try {
+				ThreadManager.removeThreadInTab(currentThread().getId());
+			}
+			catch (Exception e) {
+				
+			}
 		}
 	}
 }

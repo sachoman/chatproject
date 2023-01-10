@@ -63,6 +63,24 @@ public class ConversationThreadView extends Thread{
 		 public void addMessage(String pseudo, String date, String mess) {
 			 model.addRow(new Object[]{pseudo,date,mess});
 		 }
+		 public void updateConvView() {
+			 String pseudo = DatabaseManager.getPseudo(ipDistante);
+			 Object[][] data = DatabaseManager.getMessages(ipDistante);
+			 int nbrows = model.getRowCount();
+			 for (int i=0; i<nbrows; i++) {
+				 model.removeRow(0);
+			 }
+				for ( int i=0; i<data.length; i++ ) {
+				    if (data[i][0].equals(ipDistante)) {
+				    	data[i][0] = pseudo;
+				    }
+				    else {
+				    	data[i][0] = User.defaultViewPseudo;
+				    }
+					model.addRow(new Object[]{data[i][1], data[i][0], data[i][2]});
+				}
+				frame.setTitle("Conversation avec "+pseudo);
+		 }
 		 public void run(){
 			 try {
 				Class.forName("org.sqlite.JDBC");
@@ -128,13 +146,8 @@ public class ConversationThreadView extends Thread{
 				model.addColumn("Date"); 
 				model.addColumn("De"); 
 				model.addColumn("Message");
-				System.out.println("avant try");
 		        try {
-		        	System.out.println("init try");
-		        	System.out.println(ipDistante);
 					 Object[][] data = DatabaseManager.getMessages(ipDistante);
-					 System.out.println("historique chargé");
-					 System.out.println("longueur" + data.length);
 					for ( int i=0; i<data.length; i++ ) {
 					    if (data[i][0].equals(ipDistante)) {
 					    	data[i][0] = pseudo;
@@ -143,7 +156,6 @@ public class ConversationThreadView extends Thread{
 					    	data[i][0] = User.defaultViewPseudo;
 					    }
 						model.addRow(new Object[]{data[i][1], data[i][0], data[i][2]});
-						System.out.println("addRow : "+i);
 					}
 					
 
