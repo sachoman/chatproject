@@ -62,7 +62,12 @@ public class NetworkTraitementMessage extends Thread{
 						else {
 							DatabaseManager.addUser(NetclientAddress.toString(), message_spli[1]);
 						}
-						ViewManager.AccueilThRef.updateUsersView();
+						try{
+							ViewManager.AccueilThRef.updateUsersView();
+						}
+						catch(Exception e){
+							
+						}
 					}
 					else {
 					}

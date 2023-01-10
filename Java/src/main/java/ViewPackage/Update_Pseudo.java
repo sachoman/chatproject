@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import DatabasePackage.DatabaseManager;
+import NetworkPackage.NetworkManager;
 import UserPackage.User;
 /**
  *
@@ -131,6 +132,7 @@ public class Update_Pseudo extends javax.swing.JFrame {
                 String entre = new String(jTextField1.getText());
                 if(DatabaseManager.checkAvailability(entre)) {
                 	User.setPseudo(entre);
+                	NetworkManager.sendPseudo(entre);
                 	jPanel1.setVisible(false);                	
                 }                else {
 					jLabel2.setVisible(true);
