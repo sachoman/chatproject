@@ -120,7 +120,6 @@ public class Definition_Pseudo extends javax.swing.JFrame {
                 	User.setPseudo(entre);
                 	jPanel1.setVisible(false);  
                 	NetworkManager.sendPseudo(entre);
-                	System.out.println("pseudo envoyé");
                 	Accueil thaccueil = new Accueil();
                 	ViewManager.AccueilThRef = thaccueil;
                 	thaccueil.start();

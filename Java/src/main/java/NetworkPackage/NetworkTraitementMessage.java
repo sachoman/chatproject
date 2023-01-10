@@ -17,7 +17,6 @@ public class NetworkTraitementMessage extends Thread{
 		
 	}
 	public void run() {
-		System.out.println("debut traitement");
 		if (Netmessage.equals("co")) {
 			if (DatabaseManager.existsUser(NetclientAddress.toString())) {
 				DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
@@ -26,7 +25,12 @@ public class NetworkTraitementMessage extends Thread{
 			}
 			NetworkManager.sendRepCo();
 			NetworkManager.sendPseudo(User.getPseudo());
-			ViewManager.AccueilThRef.updateUsersView();
+			try {
+				ViewManager.AccueilThRef.updateUsersView();
+			}
+			catch(Exception e){
+				
+			}
 		}
 		else {
 			
@@ -61,7 +65,6 @@ public class NetworkTraitementMessage extends Thread{
 						ViewManager.AccueilThRef.updateUsersView();
 					}
 					else {
-						System.out.println("pas pour nous");
 					}
 				}
 			}
