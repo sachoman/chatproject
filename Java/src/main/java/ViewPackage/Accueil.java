@@ -99,8 +99,25 @@ public class Accueil extends Thread{
 		        });
 			 /*
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
+				*/
+			 JMenuBar mb = new JMenuBar();
+			 JMenuItem m1 = new JMenuItem("Modifier le mot de passe");
+		        mb.add(m1);
+		        m1.addActionListener(new ActionListener() { 
+		        	  public void actionPerformed(ActionEvent e) { 
+		        		  Update_Pwd uppw = new Update_Pwd();
+		        		  uppw.setVisible(true);
+		        	  } 
+		        	} );
+		        JMenuItem m2 = new JMenuItem("Changer le pseudo");
+		        mb.add(m2);
+		        m2.addActionListener(new ActionListener() { 
+		        	  public void actionPerformed(ActionEvent e) { 
+		        		  Update_Pseudo upps = new Update_Pseudo();
+		        		  upps.setVisible(true);
+		        	  } 
+		        	} );
 		        frame.getContentPane().add(BorderLayout.NORTH, mb);
-		        */
 		        frame.getContentPane().add(BorderLayout.WEST, new JScrollPane(tableau));
 		        frame.setVisible(true);
 		        
