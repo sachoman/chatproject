@@ -7,9 +7,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class DatabaseManager {
 	public static String url = "jdbc:sqlite:chatdb.db";
+
+	public static class PasswordHasher {
+	    public static String hashPassword(String password) {
+	        try {
+	            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+	            StringBuilder hexString = new StringBuilder();
+	            for (byte b : hash) {
+	                String hex = Integer.toHexString(0xff & b);
+	                if (hex.length() == 1) hexString.append('0');
+	                hexString.append(hex);
+	            }
+	            return hexString.toString();
+	        } catch (NoSuchAlgorithmException e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
+	}
     private static Connection connect() {
     	Connection conn = null;
         try {
@@ -358,7 +379,7 @@ public class DatabaseManager {
 		try (Connection conn = connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, 1);
-            pstmt.setString(2, pwd);
+            pstmt.setString(2, PasswordHasher.hashPassword(pwd));
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -369,7 +390,7 @@ public class DatabaseManager {
 			String sql = "UPDATE pwd SET password = ? WHERE id=1";
 			try (Connection conn = connect();
 	                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            pstmt.setString(1, new_pwd);
+	            pstmt.setString(1, PasswordHasher.hashPassword(new_pwd));
 	            pstmt.executeUpdate();
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -386,7 +407,7 @@ public class DatabaseManager {
             try (ResultSet rs = pstmt.executeQuery();){
         		String password;
         		password = rs.getString("password");
-        		if (password.equals(pwd)) {
+        		if (password.equals(PasswordHasher.hashPassword(pwd))) {
         			return true;
         		} else {
         			return false;

@@ -1,2 +1,1 @@
-**/*.db
-/Java/chatdb.db
+*.db
