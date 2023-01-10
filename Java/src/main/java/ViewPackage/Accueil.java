@@ -30,7 +30,14 @@ import UserPackage.User;
 public class Accueil extends Thread{
 	public static InetAddress inetIp;
 	public JTable tableau;
-	DefaultTableModel model;
+	DefaultTableModel model = new DefaultTableModel() {
+
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	       //all cells false
+	       return false;
+	    }
+	};;
 	public Accueil() {
 	}  
 	public void updateUsersView() {
@@ -78,7 +85,14 @@ public class Accueil extends Thread{
 	            	int selectedRow = tableau.getSelectedRow();
 	            	String value = (String) model.getValueAt(selectedRow, 0);
 	            	try {
-						NetworkManager.ChatWithUser(NetworkManager.stringToInet(DatabaseManager.getIp(value)));
+	            		InetAddress adresseDistante = NetworkManager.stringToInet(DatabaseManager.getIp(value));
+	            		if (ViewManager.TabIpChatThreadView.containsKey(adresseDistante)) {
+	            			
+	            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+	            		}
+	            		else {
+	            			NetworkManager.ChatWithUser(adresseDistante);
+	            		}
 					} catch (UnknownHostException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

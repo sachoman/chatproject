@@ -2,16 +2,19 @@ package ViewPackage;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FontMetrics;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -24,12 +27,17 @@ public class ConversationThreadView extends Thread{
 		public String ipDistante;
 		public InetAddress inetIp;
 		public JTable tableau;
-		DefaultTableModel model;
+		DefaultTableModel model = new DefaultTableModel() {
+
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};;
 		JFrame frame;
+		/*
 		public class TextAreaRenderer extends DefaultTableCellRenderer {
-		    /**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -50,7 +58,7 @@ public class ConversationThreadView extends Thread{
 			    return preferredHeight;
 			}
 		}
-
+*/
 		 public ConversationThreadView(String ip) {
 			 this.ipDistante = ip;
 			 try {
@@ -115,7 +123,10 @@ public class ConversationThreadView extends Thread{
 		        //Creating the panel at bottom and adding components
 		        JPanel panel = new JPanel(); // the panel is not visible in output
 		        JLabel label = new JLabel("Entrez du texte");
-		        final JTextArea tf = new JTextArea(3, 50); // accepts upto 10 characters
+		       //champs de message à envoyer 
+		        final JTextArea tf = new JTextArea(3, 50);
+		        tf.setLineWrap(true);
+		        tf.setWrapStyleWord(true);
 		        JButton send = new JButton("Envoyer");
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
@@ -164,7 +175,7 @@ public class ConversationThreadView extends Thread{
 				// Pour avoir texte en plusieurs lignes
 				
 				TableColumn column = tableau.getColumnModel().getColumn(2); // première colonne
-				column.setCellRenderer(new TextAreaRenderer());
+				//column.setCellRenderer(new TextAreaRenderer());
 				tableau.setRowHeight(60);
 				//set les largeur
 				columnModel.getColumn(0).setPreferredWidth(100);
