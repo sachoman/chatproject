@@ -36,17 +36,8 @@ public class Launcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DatabaseManager.clearPwd();
 		DatabaseManager.clearDBUsers();
-		NetworkManager.notifyCo();
-		if(DatabaseManager.pwdExists()){
-        	identification C_interface = new identification();
-            C_interface.setVisible(true);
-        }
-        else{
-            interface_premiere_connexion N_interface = new interface_premiere_connexion();
-            N_interface.setVisible(true);
-        }
+		new Welcome();
 		/*
         User.setPseudo("sacho");
         NetworkManager.sendPseudo("sacho");

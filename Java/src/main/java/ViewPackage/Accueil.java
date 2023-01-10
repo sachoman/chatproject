@@ -57,6 +57,7 @@ public class Accueil extends Thread{
         }
 	}
 	public void run(){
+		NetworkManager.notifyCo();
 		 try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e1) {

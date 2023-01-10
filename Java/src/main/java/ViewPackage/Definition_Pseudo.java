@@ -7,6 +7,8 @@ package ViewPackage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import DatabasePackage.DatabaseManager;
 import NetworkPackage.NetworkManager;
@@ -33,7 +35,11 @@ public class Definition_Pseudo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	 this.addWindowListener(new WindowAdapter() {
+	            public void windowClosing(WindowEvent e) {
+	            	new Ender();
+	            }
+	        });
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();

@@ -137,8 +137,9 @@ public class ConversationThreadView extends Thread{
 		        // Text Area at the Center
 		        //String[][] history = DatabaseManager.getMessages(ipDistante);
 		        String pseudo = DatabaseManager.getPseudo(ipDistante);
-				model = new DefaultTableModel();       	
-				tableau = new JTable(model); 
+				model = new DefaultTableModel();
+				tableau = new JTable(model);
+				tableau.setEnabled(false);
 
 				// Create a couple of columns 
 				model.addColumn("Date"); 

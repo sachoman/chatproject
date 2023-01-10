@@ -1,10 +1,18 @@
 package ViewPackage;
 
 import ThreadPackage.*;
+
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import DatabasePackage.DatabaseManager;
 
@@ -40,7 +48,11 @@ public class interface_premiere_connexion extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+   	 this.addWindowListener(new WindowAdapter() {
+         public void windowClosing(WindowEvent e) {
+         	new Ender();
+         }
+     });
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -168,14 +180,22 @@ public class interface_premiere_connexion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    	
                 entre_utilisateur = new String(jPasswordField1.getPassword());
-                jLabel4.setText(entre_utilisateur);
-                TestJframe.first = true;
-                DatabaseManager.setPwd(entre_utilisateur);
-                Definition_Pseudo defpseudo = new Definition_Pseudo();
-                defpseudo.setVisible(true);
-                this.dispose();
+                if ((entre_utilisateur.equals(""))||(entre_utilisateur == null)) {
+                	JFrame wrong = new JFrame("erreur");
+                	wrong.getContentPane().add(BorderLayout.CENTER, new JLabel("Veuillez entrer un mot de passe svp"));
+                	wrong.setSize(350, 100);
+                	wrong.setVisible(true);
+                }
+                else {
+	                jLabel4.setText(entre_utilisateur);
+	                TestJframe.first = true;
+	                DatabaseManager.setPwd(entre_utilisateur);
+	                Definition_Pseudo defpseudo = new Definition_Pseudo();
+	                defpseudo.setVisible(true);
+	                this.dispose();
+                }
                 
         
             
