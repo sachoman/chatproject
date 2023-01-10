@@ -36,6 +36,7 @@ public class Launcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DatabaseManager.clearPwd();
 		DatabaseManager.clearDBUsers();
 		NetworkManager.notifyCo();
 		if(DatabaseManager.pwdExists()){
