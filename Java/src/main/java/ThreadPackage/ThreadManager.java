@@ -18,8 +18,10 @@ public class ThreadManager {
 		TableIdThIpDistante.put(id_th,ip);
 	}
 	public static void removeThreadInTab(Long id_th) {
+		try {
 		System.out.println("id thread : " + id_th);
 		InetAddress ip = TableIdThIpDistante.get(id_th);
+		ThreadManager.endChat(ip);
 		TableIdThIpDistante.remove(id_th);
 		System.out.println("ip distante : " + ip);
 		Socket sock = NetworkManager.TabIpSock.get(ip);
@@ -29,9 +31,12 @@ public class ThreadManager {
 			sock.close();
 		} catch (IOException e) {
 		};
+		} catch(Exception e) {
+			
+		}
 	}
 	/* crée les threads de réception des messages quand qqn commence une discussion avec nous */
-	public static void createThreadForChat(Socket socket) throws IOException {
+	public static void createThreadForChat(Socket socket, Boolean bool) throws IOException {
         ListeningChatThread lth = new ListeningChatThread(socket);
         lth.start();
         ObjectOutputStream out;
@@ -39,7 +44,7 @@ public class ThreadManager {
 		NetworkManager.TabSockOut.put(socket, out);
         TableIdThIpDistante.put(lth.getId(),socket.getInetAddress());
         //lance interface graphique 
-        ViewManager.newChatThreadView(socket.getInetAddress());
+        ViewManager.newChatThreadView(socket.getInetAddress(), bool);
 	}
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
@@ -71,7 +76,12 @@ public class ThreadManager {
 		Set<Thread> setOfThread = Thread.getAllStackTraces().keySet();
 		for(Thread thread : setOfThread){
 			 if(TableIdThIpDistante.contains(thread.getId())){
-			    	ThreadManager.removeThreadInTab(thread.getId());
+			    	try{
+			    		ThreadManager.removeThreadInTab(thread.getId());
+			    	}
+			    	catch (Exception e) {
+			    		
+			    	}
 			    }
 		}
 	}

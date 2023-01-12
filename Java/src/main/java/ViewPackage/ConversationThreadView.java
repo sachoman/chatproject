@@ -29,7 +29,7 @@ public class ConversationThreadView extends Thread{
 		public JTable tableau;
 		DefaultTableModel model = new DefaultTableModel();
 		JFrame frame;
-
+		Boolean visible;
 		public class TextAreaRenderer extends JTextArea implements TableCellRenderer {
 		    public TextAreaRenderer() {
 		        setLineWrap(true);
@@ -46,8 +46,9 @@ public class ConversationThreadView extends Thread{
 		        return this;
 		    }
 		}
-		 public ConversationThreadView(String ip) {
+		 public ConversationThreadView(String ip, Boolean bool) {
 			 this.ipDistante = ip;
+			 this.visible = bool;
 			 try {
 				this.inetIp = NetworkManager.stringToInet(ip);
 			} catch (UnknownHostException e) {
@@ -171,13 +172,15 @@ public class ConversationThreadView extends Thread{
 				
 				 frame.addWindowListener(new WindowAdapter() {
 			            public void windowClosing(WindowEvent e) {
-			                ThreadManager.endChat(inetIp);
+			                //ThreadManager.endChat(inetIp);
+			            	visible = false;
+			            	frame.setVisible(false);
 			            }
 			        });
 					frame.getContentPane().add(BorderLayout.SOUTH, panel);
 			        frame.getContentPane().add(BorderLayout.NORTH, mb);
 			        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(tableau));
-			        frame.setVisible(true);
+			        frame.setVisible(visible);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

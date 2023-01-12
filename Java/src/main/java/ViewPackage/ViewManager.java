@@ -15,8 +15,8 @@ import ThreadPackage.ThreadManager;
 public class ViewManager {
 	public static Accueil AccueilThRef;
 	public static Hashtable<InetAddress, ConversationThreadView> TabIpChatThreadView = new Hashtable<InetAddress, ConversationThreadView>();
-	public static void newChatThreadView(InetAddress ip) {
-		ConversationThreadView cth = new ConversationThreadView(ip.toString());
+	public static void newChatThreadView(InetAddress ip, Boolean bool) {
+		ConversationThreadView cth = new ConversationThreadView(ip.toString(), bool);
 		TabIpChatThreadView.put(ip,cth);
 		cth.start();
 	}

@@ -93,7 +93,7 @@ public class NetworkManager {
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(ip, socket);
-			ThreadManager.createThreadForChat(socket);
+			ThreadManager.createThreadForChat(socket, true);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

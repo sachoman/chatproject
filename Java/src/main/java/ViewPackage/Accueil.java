@@ -1,8 +1,10 @@
 package ViewPackage;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -83,8 +85,14 @@ public class Accueil extends Thread{
 	            	try {
 	            		InetAddress adresseDistante = NetworkManager.stringToInet(DatabaseManager.getIp(value));
 	            		if (ViewManager.TabIpChatThreadView.containsKey(adresseDistante)) {
-	            			
-	            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+	            			if (ViewManager.TabIpChatThreadView.get(adresseDistante).visible) {
+	            				ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+	            			}
+	            			else {
+		            			ViewManager.TabIpChatThreadView.get(adresseDistante).visible = true;
+		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.setVisible(true);
+		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+	            			}
 	            		}
 	            		else {
 	            			NetworkManager.ChatWithUser(adresseDistante);
@@ -115,33 +123,51 @@ public class Accueil extends Thread{
 			 
 			 GridBagConstraints gbc = new GridBagConstraints();
 			 
+			 JLabel title = new JLabel("Accueil");
+		   	 	gbc.gridx = 1;
+		   	 	gbc.gridy = 1;
+		   	 	gbc.gridwidth = 3;
+		   	 	gbc.gridheight = 1;
+			   	 Font fonttitle = new Font(Font.SANS_SERIF, Font.BOLD, 18);
+			   	 title.setFont(fonttitle);
+			   	 gbc.insets = new Insets(5,5,30,5);
+		 	 pane.add(title,gbc);
+		 	 
+		   	 JTextArea message = new JTextArea("Cliquez sur un utilisateur connecté de la liste à gauche connecté pour commencer ou continuer une discussion avec lui");
+			   	 message.setLineWrap(true);
+			     message.setWrapStyleWord(true);
+			     message.setEditable(false);
+			     message.setBackground(null);
+			     Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
+			     message.setFont(font);
+			   	 gbc.gridx = 1;
+			   	 gbc.gridy = 2;
+			   	 gbc.gridwidth = 3;
+			   	 gbc.gridheight = 1;
+			   	 gbc.insets = new Insets(5,5,30,5);
+			   	 gbc.fill = GridBagConstraints.VERTICAL;
+			   	 gbc.fill = GridBagConstraints.HORIZONTAL;
+		   	 pane.add(message,gbc);
 			 
 			 
-			 JMenuBar mb = new JMenuBar();
-			 JMenuItem m1 = new JMenuItem("Modifier le mot de passe");
-		        mb.add(m1);
-		        m1.addActionListener(new ActionListener() { 
-		        	  public void actionPerformed(ActionEvent e) { 
-		        		  /*
-		        		  Update_Pwd uppw = new Update_Pwd();
-		        		  uppw.setVisible(true);
-		        		  */
-		        		  updatePassword uppwd = new updatePassword();
-		        	  } 
-		        	} );
-		        JMenuItem m2 = new JMenuItem("Changer le pseudo");
-		        mb.add(m2);
-		        m2.addActionListener(new ActionListener() { 
-		        	  public void actionPerformed(ActionEvent e) { 
-		        		  /*
-		        		  Update_Pseudo upps = new Update_Pseudo();
-		        		  upps.setVisible(true);
-		        		  */
-		        		  updatePseudo uppsd = new updatePseudo();
-		        	  } 
-		        	} );
-		        frame.getContentPane().add(BorderLayout.NORTH, mb);
-		        frame.getContentPane().add(BorderLayout.WEST, new JScrollPane(tableau));
+			 JButton updatepwd = new JButton("Modifier le mot de passe");
+		        gbc.gridx = 1;
+		   	 	gbc.gridy = 3;
+		   	 	gbc.gridwidth = 1;
+		   	 	gbc.gridheight = 1;
+		   	 	gbc.insets = new Insets(5,5,5,5);
+		   	 pane.add(updatepwd,gbc);
+		   	 
+		   	JButton updatepseudo = new JButton("Changer son pseudo");
+		        gbc.gridx = 2;
+		   	 	gbc.gridy = 3;
+		   	 	gbc.gridwidth = 1;
+		   	 	gbc.gridheight = 1;
+		   	 	gbc.insets = new Insets(5,5,5,5);
+		   	 pane.add(updatepseudo,gbc);
+			 
+		        frame.add(BorderLayout.CENTER, pane);
+		        frame.add(BorderLayout.WEST, new JScrollPane(tableau));
 		        frame.setVisible(true);
 		        
 
