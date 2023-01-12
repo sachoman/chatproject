@@ -165,6 +165,17 @@ public class Accueil extends Thread{
 		   	 	gbc.gridheight = 1;
 		   	 	gbc.insets = new Insets(5,5,5,5);
 		   	 pane.add(updatepseudo,gbc);
+		   	 
+		   	updatepwd.addActionListener(new ActionListener() { 
+		      	  public void actionPerformed(ActionEvent e) { 
+		      		updatePassword upd = new updatePassword();
+		      	  } 
+		      	} );
+		   	updatepseudo.addActionListener(new ActionListener() { 
+		      	  public void actionPerformed(ActionEvent e) { 
+		      		updatePseudo upsd = new updatePseudo();
+		      	  } 
+		      	} );
 			 
 		        frame.add(BorderLayout.CENTER, pane);
 		        frame.add(BorderLayout.WEST, new JScrollPane(tableau));
