@@ -2,6 +2,7 @@ package ViewPackage;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FontMetrics;
+import java.awt.Insets;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,9 @@ public class ConversationThreadView extends Thread{
 		public JTable tableau;
 		DefaultTableModel model = new DefaultTableModel();
 		JFrame frame;
-		Boolean visible;
+		public Boolean visible;
+		public Boolean newmessage = false;
+		public int cptmessages = 0;
 		public class TextAreaRenderer extends JTextArea implements TableCellRenderer {
 		    public TextAreaRenderer() {
 		        setLineWrap(true);
@@ -113,6 +116,7 @@ public class ConversationThreadView extends Thread{
 		        JLabel label = new JLabel("Entrez du texte");
 		       //champs de message à envoyer 
 		        final JTextArea tf = new JTextArea(1, 50);
+		        tf.setMargin(new Insets(10,10,10,10));
 		        tf.setLineWrap(true);
 		        tf.setWrapStyleWord(true);
 		        JButton send = new JButton("Envoyer");

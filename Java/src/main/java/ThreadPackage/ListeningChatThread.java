@@ -31,6 +31,13 @@ public class ListeningChatThread extends Thread{
 				System.out.println("Message chat reçu : " + msg);
 				String pseudo = DatabaseManager.getPseudo(th_socket.getInetAddress().toString());
 				ViewManager.addMessageView(th_socket.getInetAddress(), pseudo,formatter.format(date), msg.toString());
+				//si la frame n'est pas visible, on met en gras l'utilisateur qui a envoyé un messgae sur la page d'accueil
+				if (!(ViewManager.TabIpChatThreadView.get(th_socket.getInetAddress()).visible)) {
+					ViewManager.TabIpChatThreadView.get(th_socket.getInetAddress()).newmessage = true;
+					ViewManager.TabIpChatThreadView.get(th_socket.getInetAddress()).cptmessages +=1;
+					//update accueil
+					ViewManager.AccueilThRef.updateUsersView();
+				}
 			}
 		} catch (IOException | ClassNotFoundException e1) {
 			System.out.println("Connexion sur socket : "+th_socket+" terminée");

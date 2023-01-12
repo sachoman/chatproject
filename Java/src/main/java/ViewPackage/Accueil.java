@@ -1,6 +1,7 @@
 package ViewPackage;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,6 +14,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.AttributedString;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -37,19 +40,40 @@ public class Accueil extends Thread{
 	DefaultTableModel model = new DefaultTableModel();
 	public Accueil() {
 	}  
+	/*
+	 * InetAddress ip = NetworkManager.stringToInet(DatabaseManager.getIp(value.toString()));
+				 if (ViewManager.TabIpChatThreadView.get(ip).newmessage) { 
+					 System.out.println("ca marche");
+			            c.setFont(c.getFont().deriveFont(Font.BOLD));
+			        }
+	 */
 	public void updateUsersView() {
         try {
 			 String[][] data = DatabaseManager.getConnectedUsers();
-			 System.out.println(data);
 			 int n = model.getRowCount();
 	   		  for (int i=n-1;i>=0; i--) {
 	   			  model.removeRow(i);
 	   		  }
+	   		  JLabel ligne = new JLabel("");
 			 if (data != null) {
 				 System.out.println("data non null");
 				for ( int i=0; i<data.length; i++ ) {
-					model.addRow(new Object[]{data[i][1]});
-					System.out.println("addRow : "+i);
+					InetAddress ip = NetworkManager.stringToInet(data[i][0]);
+					try {
+						ConversationThreadView lth = ViewManager.TabIpChatThreadView.get(ip);
+						 if (lth.newmessage) { 
+							 model.addRow(new Object[]{data[i][1],lth.cptmessages});
+						 }
+						 else {
+							model.addRow(new Object[]{data[i][1],""});
+						 }
+					}
+					catch (Exception e) {
+						model.addRow(new Object[]{data[i][1],""});
+					}
+					 
+					//check si un nouveau message, alors c'est en gras
+					
 				}
 			 }
 			 else {
@@ -77,6 +101,7 @@ public class Accueil extends Thread{
 	        //String[][] history = DatabaseManager.getMessages(ipDistante);
 			model = new DefaultTableModel(); 
 			model.addColumn("utilisateurs");
+			model.addColumn("");
 			tableau = new JTable(model); 
 			tableau.addMouseListener(new MouseAdapter() {
 	            public void mouseClicked(MouseEvent e) {
@@ -87,11 +112,17 @@ public class Accueil extends Thread{
 	            		if (ViewManager.TabIpChatThreadView.containsKey(adresseDistante)) {
 	            			if (ViewManager.TabIpChatThreadView.get(adresseDistante).visible) {
 	            				ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+	            				ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
+	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
+	            				ViewManager.AccueilThRef.updateUsersView();
 	            			}
 	            			else {
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).visible = true;
+		            			ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
+	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.setVisible(true);
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+		            			ViewManager.AccueilThRef.updateUsersView();
 	            			}
 	            		}
 	            		else {
