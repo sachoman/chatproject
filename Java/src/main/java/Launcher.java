@@ -1,23 +1,10 @@
 
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import DatabasePackage.DatabaseManager;
-import UserPackage.User;
-import ViewPackage.Accueil;
-import ViewPackage.ConversationThreadView;
-import ViewPackage.TestJframe;
-import ViewPackage.ViewManager;
-import ViewPackage.identification;
-import ViewPackage.interface_premiere_connexion;
+import ViewPackage.Welcome;
 import NetworkPackage.*;
-import ThreadPackage.*;
 
 public class Launcher {
 	public static void main(String[] args) throws Exception  {

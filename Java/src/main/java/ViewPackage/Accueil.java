@@ -1,6 +1,8 @@
 package ViewPackage;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -108,21 +110,34 @@ public class Accueil extends Thread{
 			 /*
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
 				*/
+			 JPanel pane = new JPanel();
+			 pane.setLayout(new GridBagLayout());
+			 
+			 GridBagConstraints gbc = new GridBagConstraints();
+			 
+			 
+			 
 			 JMenuBar mb = new JMenuBar();
 			 JMenuItem m1 = new JMenuItem("Modifier le mot de passe");
 		        mb.add(m1);
 		        m1.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
+		        		  /*
 		        		  Update_Pwd uppw = new Update_Pwd();
 		        		  uppw.setVisible(true);
+		        		  */
+		        		  updatePassword uppwd = new updatePassword();
 		        	  } 
 		        	} );
 		        JMenuItem m2 = new JMenuItem("Changer le pseudo");
 		        mb.add(m2);
 		        m2.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
+		        		  /*
 		        		  Update_Pseudo upps = new Update_Pseudo();
 		        		  upps.setVisible(true);
+		        		  */
+		        		  updatePseudo uppsd = new updatePseudo();
 		        	  } 
 		        	} );
 		        frame.getContentPane().add(BorderLayout.NORTH, mb);
