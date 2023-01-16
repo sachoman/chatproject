@@ -30,7 +30,7 @@ public class ConversationThreadView extends Thread{
 		public JTable tableau;
 		DefaultTableModel model = new DefaultTableModel();
 		JFrame frame;
-		public Boolean visible;
+		Boolean init;
 		public Boolean newmessage = false;
 		public int cptmessages = 0;
 		public class TextAreaRenderer extends JTextArea implements TableCellRenderer {
@@ -49,9 +49,9 @@ public class ConversationThreadView extends Thread{
 		        return this;
 		    }
 		}
-		 public ConversationThreadView(String ip, Boolean bool) {
+		 public ConversationThreadView(String ip, boolean init) {
 			 this.ipDistante = ip;
-			 this.visible = bool;
+				this.init = init;
 			 try {
 				this.inetIp = NetworkManager.stringToInet(ip);
 			} catch (UnknownHostException e) {
@@ -93,6 +93,13 @@ public class ConversationThreadView extends Thread{
 
 		        //Creating the MenuBar and adding components
 		        JMenuBar mb = new JMenuBar();
+		        JMenuItem m0 = new JMenuItem("Fermer la conversation");
+		        mb.add(m0);
+		        m0.addActionListener(new ActionListener() { 
+		        	  public void actionPerformed(ActionEvent e) { 
+		        		  ViewManager.AccueilThRef.fermeConv();
+		        	  } 
+		        	} );
 		        JMenuItem m1 = new JMenuItem("Effacer l'historique");
 		        mb.add(m1);
 		        m1.addActionListener(new ActionListener() { 
@@ -177,18 +184,23 @@ public class ConversationThreadView extends Thread{
 				 frame.addWindowListener(new WindowAdapter() {
 			            public void windowClosing(WindowEvent e) {
 			                //ThreadManager.endChat(inetIp);
-			            	visible = false;
 			            	frame.setVisible(false);
 			            }
 			        });
-					frame.getContentPane().add(BorderLayout.SOUTH, panel);
-			        frame.getContentPane().add(BorderLayout.NORTH, mb);
-			        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(tableau));
+					frame.add(BorderLayout.SOUTH, panel);
+			        frame.add(BorderLayout.NORTH, mb);
+			        frame.add(BorderLayout.CENTER, new JScrollPane(tableau));
+			       if (this.init) {
         			ViewManager.AccueilThRef.frame.remove(ViewManager.AccueilThRef.pane);
         			ViewManager.AccueilThRef.pane = this.frame.getContentPane();
         			ViewManager.AccueilThRef.frame.add(BorderLayout.CENTER, ViewManager.AccueilThRef.pane);
         			ViewManager.AccueilThRef.updateUsersView();
         			ViewManager.AccueilThRef.frame.setVisible(true);
+        			ViewManager.AccueilThRef.inetIp = inetIp;
+			       }
+			       else {
+			    	   this.init = true;
+			       }
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

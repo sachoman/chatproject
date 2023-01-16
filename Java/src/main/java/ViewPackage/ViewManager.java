@@ -32,11 +32,12 @@ public class ViewManager {
 	}
 	*/
 	public static void endChat(InetAddress ip) {
-		System.out.println(ip);
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
-		System.out.println(cth);
 		cth.frame.dispose();
-		TabIpChatThreadView.remove(ip);;
+		TabIpChatThreadView.remove(ip);
+			if ((ViewManager.AccueilThRef.inetIp != null)&&(ViewManager.AccueilThRef.inetIp == ip)){
+				ViewManager.AccueilThRef.fermeConv();
+			}
 		cth.interrupt();
 	}
 	public static void endAllViews() {

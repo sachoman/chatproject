@@ -36,7 +36,7 @@ import ThreadPackage.ThreadManager;
 import UserPackage.User;
 
 public class Accueil extends Thread{
-	public static InetAddress inetIp;
+	public InetAddress inetIp = null;
 	public JTable tableau;
 	Container pane;
 	DefaultTableModel model = new DefaultTableModel();
@@ -50,8 +50,75 @@ public class Accueil extends Thread{
 			            c.setFont(c.getFont().deriveFont(Font.BOLD));
 			        }
 	 */
+	public Container AccueilPane() {
+		 pane = new JPanel();
+		 pane.setLayout(new GridBagLayout());
+		 
+		 GridBagConstraints gbc = new GridBagConstraints();
+		 
+		 JLabel title = new JLabel("Accueil");
+	   	 	gbc.gridx = 1;
+	   	 	gbc.gridy = 1;
+	   	 	gbc.gridwidth = 3;
+	   	 	gbc.gridheight = 1;
+		   	 Font fonttitle = new Font(Font.SANS_SERIF, Font.BOLD, 18);
+		   	 title.setFont(fonttitle);
+		   	 gbc.insets = new Insets(5,5,30,5);
+	 	 pane.add(title,gbc);
+	 	 
+	   	 JTextArea message = new JTextArea("Cliquez sur un utilisateur connecté de la liste à gauche connecté pour commencer ou continuer une discussion avec lui");
+		   	 message.setLineWrap(true);
+		     message.setWrapStyleWord(true);
+		     message.setEditable(false);
+		     message.setBackground(null);
+		     Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
+		     message.setFont(font);
+		   	 gbc.gridx = 1;
+		   	 gbc.gridy = 2;
+		   	 gbc.gridwidth = 3;
+		   	 gbc.gridheight = 1;
+		   	 gbc.insets = new Insets(5,5,30,5);
+		   	 gbc.fill = GridBagConstraints.VERTICAL;
+		   	 gbc.fill = GridBagConstraints.HORIZONTAL;
+	   	 pane.add(message,gbc);
+		 
+		 
+		 JButton updatepwd = new JButton("Modifier le mot de passe");
+	        gbc.gridx = 1;
+	   	 	gbc.gridy = 3;
+	   	 	gbc.gridwidth = 1;
+	   	 	gbc.gridheight = 1;
+	   	 	gbc.insets = new Insets(5,5,5,5);
+	   	 pane.add(updatepwd,gbc);
+	   	 
+	   	JButton updatepseudo = new JButton("Changer son pseudo");
+	        gbc.gridx = 2;
+	   	 	gbc.gridy = 3;
+	   	 	gbc.gridwidth = 1;
+	   	 	gbc.gridheight = 1;
+	   	 	gbc.insets = new Insets(5,5,5,5);
+	   	 pane.add(updatepseudo,gbc);
+	   	updatepwd.addActionListener(new ActionListener() { 
+	      	  public void actionPerformed(ActionEvent e) { 
+	      		updatePassword upd = new updatePassword();
+	      	  } 
+	      	} );
+	   	updatepseudo.addActionListener(new ActionListener() { 
+	      	  public void actionPerformed(ActionEvent e) { 
+	      		updatePseudo upsd = new updatePseudo();
+	      	  } 
+	      	} );
+	   	 return pane;
+	}
+	public void fermeConv() {
+		System.out.println("on ferme la conv \n");
+		  frame.remove(pane);
+		  pane = AccueilPane();
+		  frame.add(BorderLayout.CENTER, pane);
+		updateUsersView();
+		frame.setVisible(true);
+	}
 	public void updateUsersView() {
-		System.out.println("AVANT UPDTAE USER IEW \n");
         try {
 			 String[][] data = DatabaseManager.getConnectedUsers();
 			 int n = model.getRowCount();
@@ -81,7 +148,7 @@ public class Accueil extends Thread{
 			 else {
 				 model.addRow(new Object[]{"Aucun utilisateur connecté"});
 			 }
-			 System.out.println("Apres UPDTAE USER IEW \n");
+
         }
         catch (Exception e) {
         	
@@ -113,29 +180,15 @@ public class Accueil extends Thread{
 	            	try {
 	            		InetAddress adresseDistante = NetworkManager.stringToInet(DatabaseManager.getIp(value));
 	            		if (ViewManager.TabIpChatThreadView.containsKey(adresseDistante)) {
-	            			if (ViewManager.TabIpChatThreadView.get(adresseDistante).visible) {
-	            				ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
-	            				ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
-	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
-	            				ViewManager.AccueilThRef.updateUsersView();
-	            				System.out.println("on change laaaccueil pane \n");
-		            			frame.remove(pane);
-		            			pane = ViewManager.TabIpChatThreadView.get(adresseDistante).frame.getContentPane();
-		            			frame.add(BorderLayout.CENTER, pane);
-		            			ViewManager.AccueilThRef.updateUsersView();
-		            			frame.setVisible(true);
-	            			}
-	            			else {
-		            			ViewManager.TabIpChatThreadView.get(adresseDistante).visible = true;
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
 	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
-		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
 		            			frame.remove(pane);
 		            			pane = ViewManager.TabIpChatThreadView.get(adresseDistante).frame.getContentPane();
 		            			frame.add(BorderLayout.CENTER, pane);
 		            			ViewManager.AccueilThRef.updateUsersView();
 		            			frame.setVisible(true);
-	            			}
+		            			frame.repaint();
+		            			ViewManager.AccueilThRef.inetIp = adresseDistante;
 	            		}
 	            		else {
 	            			NetworkManager.ChatWithUser(adresseDistante);
@@ -161,65 +214,8 @@ public class Accueil extends Thread{
 			 /*
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
 				*/
-			 pane = new JPanel();
-			 pane.setLayout(new GridBagLayout());
-			 
-			 GridBagConstraints gbc = new GridBagConstraints();
-			 
-			 JLabel title = new JLabel("Accueil");
-		   	 	gbc.gridx = 1;
-		   	 	gbc.gridy = 1;
-		   	 	gbc.gridwidth = 3;
-		   	 	gbc.gridheight = 1;
-			   	 Font fonttitle = new Font(Font.SANS_SERIF, Font.BOLD, 18);
-			   	 title.setFont(fonttitle);
-			   	 gbc.insets = new Insets(5,5,30,5);
-		 	 pane.add(title,gbc);
-		 	 
-		   	 JTextArea message = new JTextArea("Cliquez sur un utilisateur connecté de la liste à gauche connecté pour commencer ou continuer une discussion avec lui");
-			   	 message.setLineWrap(true);
-			     message.setWrapStyleWord(true);
-			     message.setEditable(false);
-			     message.setBackground(null);
-			     Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
-			     message.setFont(font);
-			   	 gbc.gridx = 1;
-			   	 gbc.gridy = 2;
-			   	 gbc.gridwidth = 3;
-			   	 gbc.gridheight = 1;
-			   	 gbc.insets = new Insets(5,5,30,5);
-			   	 gbc.fill = GridBagConstraints.VERTICAL;
-			   	 gbc.fill = GridBagConstraints.HORIZONTAL;
-		   	 pane.add(message,gbc);
-			 
-			 
-			 JButton updatepwd = new JButton("Modifier le mot de passe");
-		        gbc.gridx = 1;
-		   	 	gbc.gridy = 3;
-		   	 	gbc.gridwidth = 1;
-		   	 	gbc.gridheight = 1;
-		   	 	gbc.insets = new Insets(5,5,5,5);
-		   	 pane.add(updatepwd,gbc);
-		   	 
-		   	JButton updatepseudo = new JButton("Changer son pseudo");
-		        gbc.gridx = 2;
-		   	 	gbc.gridy = 3;
-		   	 	gbc.gridwidth = 1;
-		   	 	gbc.gridheight = 1;
-		   	 	gbc.insets = new Insets(5,5,5,5);
-		   	 pane.add(updatepseudo,gbc);
-		   	 
-		   	updatepwd.addActionListener(new ActionListener() { 
-		      	  public void actionPerformed(ActionEvent e) { 
-		      		updatePassword upd = new updatePassword();
-		      	  } 
-		      	} );
-		   	updatepseudo.addActionListener(new ActionListener() { 
-		      	  public void actionPerformed(ActionEvent e) { 
-		      		updatePseudo upsd = new updatePseudo();
-		      	  } 
-		      	} );
-			 
+			pane = AccueilPane();
+		 
 		        frame.add(BorderLayout.CENTER, pane);
 		        frame.add(BorderLayout.WEST, new JScrollPane(tableau));
 		        frame.setVisible(true);
