@@ -2,6 +2,8 @@ package ViewPackage;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FontMetrics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -141,10 +143,37 @@ public class ConversationThreadView extends Thread{
 		        		  tf.setText("");
 		        	  } 
 		        	} );
-		        panel.add(label); // Components Added using Flow Layout
-		        panel.add(tf);
-		        panel.add(send);
-		        panel.add(reset);
+		        panel.setLayout(new GridBagLayout());
+		        GridBagConstraints gbc = new GridBagConstraints();
+		        
+		        gbc.gridx = 0;
+		   	 	gbc.gridy = 0;
+		   	 	gbc.gridwidth = 1;
+		   	 	gbc.gridheight = 1;
+		  	 	gbc.weightx = 0;
+		   	 	gbc.insets = new Insets(5,5,5,5);
+		   	 panel.add(label,gbc);
+			   	gbc.gridx = 1;
+		   	 	gbc.gridy = 0;
+		   	 	gbc.gridwidth = 1;
+		   	 	gbc.gridheight = 1;
+		  	 	gbc.weightx = 1;
+		   	 	gbc.insets = new Insets(5,5,5,5);
+		   	 panel.add(tf,gbc);
+			   	gbc.gridx = 2;
+		   	 	gbc.gridy = 0;
+		   	 	gbc.gridwidth = 1;
+		   	 	gbc.gridheight = 1;
+		   	 	gbc.weightx = 0;
+		   	 	gbc.insets = new Insets(5,5,5,5);		 
+		   	 panel.add(send,gbc);
+		   	 	gbc.gridx = 3;
+			 	gbc.gridy = 0;
+			 	gbc.gridwidth = 1;
+			 	gbc.gridheight = 1;
+			 	gbc.insets = new Insets(5,5,5,5);
+			 panel.add(reset,gbc);
+		       
 
 		        // Text Area at the Center
 		        //String[][] history = DatabaseManager.getMessages(ipDistante);

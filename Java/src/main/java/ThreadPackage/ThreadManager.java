@@ -49,7 +49,8 @@ public class ThreadManager {
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
 	            if(ip.equals(entry.getValue())){
-	            	System.out.println("debut end chat");
+	            	System.out.println("debut end chat  2");
+	            	ViewManager.endChat(ip);
 	            	Long id_th = entry.getKey();
 	                TableIdThIpDistante.remove(id_th);
 	                Socket sock = NetworkManager.TabIpSock.get(ip);

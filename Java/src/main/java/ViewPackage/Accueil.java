@@ -215,7 +215,8 @@ public class Accueil extends Thread{
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
 				*/
 			pane = AccueilPane();
-		 
+		 frame.setLayout(new GridBagLayout());
+		 GridBagConstraints gbc = new GridBagConstraints();
 		        frame.add(BorderLayout.CENTER, pane);
 		        frame.add(BorderLayout.WEST, new JScrollPane(tableau));
 		        frame.setVisible(true);

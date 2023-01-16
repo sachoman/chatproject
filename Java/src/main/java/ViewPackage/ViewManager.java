@@ -21,7 +21,6 @@ public class ViewManager {
 		cth.start();
 	}
 	public static void addMessageView(InetAddress ip, String date, String pseudo, String mess) {
-		System.out.println(ip);
 		ConversationThreadView cth = TabIpChatThreadView.get(ip);
 		cth.addMessage(pseudo, date, mess);
 	}
@@ -32,13 +31,18 @@ public class ViewManager {
 	}
 	*/
 	public static void endChat(InetAddress ip) {
-		ConversationThreadView cth = TabIpChatThreadView.get(ip);
-		cth.frame.dispose();
-		TabIpChatThreadView.remove(ip);
-			if ((ViewManager.AccueilThRef.inetIp != null)&&(ViewManager.AccueilThRef.inetIp == ip)){
+		try {
+			ConversationThreadView cth = TabIpChatThreadView.get(ip);
+			cth.frame.dispose();
+			TabIpChatThreadView.remove(ip);
+			cth.interrupt();
+		}
+		catch (Exception e) {
+			
+		}
+			if ((ViewManager.AccueilThRef.inetIp != null)&&(ViewManager.AccueilThRef.inetIp.equals(ip))){
 				ViewManager.AccueilThRef.fermeConv();
 			}
-		cth.interrupt();
 	}
 	public static void endAllViews() {
 		for(Entry<InetAddress, ConversationThreadView> entry: TabIpChatThreadView.entrySet()){
