@@ -16,7 +16,6 @@ public class NetworkSendingThread extends Thread {
 		this.pseudo = pseudo;
 	}
 	public void run() {
-		System.out.println("debut traitement");
 		String message ="";
 		if (protocole ==0) {
 			message = "co";

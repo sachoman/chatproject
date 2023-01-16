@@ -54,9 +54,7 @@ public class Accueil extends Thread{
 	   		  for (int i=n-1;i>=0; i--) {
 	   			  model.removeRow(i);
 	   		  }
-	   		  JLabel ligne = new JLabel("");
 			 if (data != null) {
-				 System.out.println("data non null");
 				for ( int i=0; i<data.length; i++ ) {
 					InetAddress ip = NetworkManager.stringToInet(data[i][0]);
 					try {

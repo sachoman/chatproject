@@ -36,12 +36,10 @@ public class NetworkTraitementMessage extends Thread{
 		else {
 			
 			if (Netmessage.equals("deco")) {
-				System.out.println("deconexion recue");
 				if (DatabaseManager.existsUser(NetclientAddress.toString())) {
 					DatabaseManager.updateCoStatus(NetclientAddress.toString(), false);
 				}
 				try {
-					System.out.println("update suite a la deco");
 					ViewManager.AccueilThRef.updateUsersView();
 				}
 				catch (Exception e) {
