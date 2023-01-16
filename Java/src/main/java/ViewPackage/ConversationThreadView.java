@@ -184,7 +184,11 @@ public class ConversationThreadView extends Thread{
 					frame.getContentPane().add(BorderLayout.SOUTH, panel);
 			        frame.getContentPane().add(BorderLayout.NORTH, mb);
 			        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(tableau));
-			        frame.setVisible(visible);
+        			ViewManager.AccueilThRef.frame.remove(ViewManager.AccueilThRef.pane);
+        			ViewManager.AccueilThRef.pane = this.frame.getContentPane();
+        			ViewManager.AccueilThRef.frame.add(BorderLayout.CENTER, ViewManager.AccueilThRef.pane);
+        			ViewManager.AccueilThRef.updateUsersView();
+        			ViewManager.AccueilThRef.frame.setVisible(true);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

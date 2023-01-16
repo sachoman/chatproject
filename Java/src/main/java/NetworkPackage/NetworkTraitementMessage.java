@@ -48,7 +48,7 @@ public class NetworkTraitementMessage extends Thread{
 			}
 			else {
 				if (Netmessage.equals("repco")){
-					if (DatabaseManager.existsUser(NetclientAddress.toString())) {
+					if (DatabaseManager.existsUser(NetclientAddress.toString())&&(User.pseudo!=null)) {
 						DatabaseManager.updateCoStatus(NetclientAddress.toString(), true);
 					}
 				}

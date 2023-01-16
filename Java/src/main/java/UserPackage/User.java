@@ -1,7 +1,7 @@
 package UserPackage;
 
 public class User {
-	private static String pseudo;
+	public static String pseudo = null;
 	public static String defaultViewPseudo = "moi";
 	public static String getPseudo() {
 		return pseudo;

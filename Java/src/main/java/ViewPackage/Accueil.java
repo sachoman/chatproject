@@ -2,6 +2,7 @@ package ViewPackage;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -37,7 +38,9 @@ import UserPackage.User;
 public class Accueil extends Thread{
 	public static InetAddress inetIp;
 	public JTable tableau;
+	Container pane;
 	DefaultTableModel model = new DefaultTableModel();
+	JFrame frame;
 	public Accueil() {
 	}  
 	/*
@@ -48,6 +51,7 @@ public class Accueil extends Thread{
 			        }
 	 */
 	public void updateUsersView() {
+		System.out.println("AVANT UPDTAE USER IEW \n");
         try {
 			 String[][] data = DatabaseManager.getConnectedUsers();
 			 int n = model.getRowCount();
@@ -68,7 +72,7 @@ public class Accueil extends Thread{
 					}
 					catch (Exception e) {
 						model.addRow(new Object[]{data[i][1],""});
-					}
+						}
 					 
 					//check si un nouveau message, alors c'est en gras
 					
@@ -77,6 +81,7 @@ public class Accueil extends Thread{
 			 else {
 				 model.addRow(new Object[]{"Aucun utilisateur connecté"});
 			 }
+			 System.out.println("Apres UPDTAE USER IEW \n");
         }
         catch (Exception e) {
         	
@@ -91,7 +96,7 @@ public class Accueil extends Thread{
 			e1.printStackTrace();
 		}
 		//Creating the Frame
-	        JFrame frame = new JFrame("Accueil");
+	        frame = new JFrame("Accueil");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setSize(1100, 800);
 	        
@@ -113,14 +118,23 @@ public class Accueil extends Thread{
 	            				ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
 	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
 	            				ViewManager.AccueilThRef.updateUsersView();
+	            				System.out.println("on change laaaccueil pane \n");
+		            			frame.remove(pane);
+		            			pane = ViewManager.TabIpChatThreadView.get(adresseDistante).frame.getContentPane();
+		            			frame.add(BorderLayout.CENTER, pane);
+		            			ViewManager.AccueilThRef.updateUsersView();
+		            			frame.setVisible(true);
 	            			}
 	            			else {
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).visible = true;
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).newmessage = false;
 	            				ViewManager.TabIpChatThreadView.get(adresseDistante).cptmessages = 0;
-		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.setVisible(true);
 		            			ViewManager.TabIpChatThreadView.get(adresseDistante).frame.toFront();
+		            			frame.remove(pane);
+		            			pane = ViewManager.TabIpChatThreadView.get(adresseDistante).frame.getContentPane();
+		            			frame.add(BorderLayout.CENTER, pane);
 		            			ViewManager.AccueilThRef.updateUsersView();
+		            			frame.setVisible(true);
 	            			}
 	            		}
 	            		else {
@@ -147,7 +161,7 @@ public class Accueil extends Thread{
 			 /*
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
 				*/
-			 JPanel pane = new JPanel();
+			 pane = new JPanel();
 			 pane.setLayout(new GridBagLayout());
 			 
 			 GridBagConstraints gbc = new GridBagConstraints();
