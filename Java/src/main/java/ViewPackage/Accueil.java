@@ -3,6 +3,7 @@ package ViewPackage;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -66,7 +67,7 @@ public class Accueil extends Thread{
 		   	 gbc.insets = new Insets(5,5,30,5);
 	 	 pane.add(title,gbc);
 	 	 
-	   	 JTextArea message = new JTextArea("Cliquez sur un utilisateur connecté de la liste à gauche connecté pour commencer ou continuer une discussion avec lui");
+	   	 JTextArea message = new JTextArea("Cliquez sur un utilisateur connecté de la liste à gauche pour commencer ou continuer une discussion avec lui");
 		   	 message.setLineWrap(true);
 		     message.setWrapStyleWord(true);
 		     message.setEditable(false);
@@ -172,7 +173,8 @@ public class Accueil extends Thread{
 			model = new DefaultTableModel(); 
 			model.addColumn("utilisateurs");
 			model.addColumn("");
-			tableau = new JTable(model); 
+			tableau = new JTable(model);
+			tableau.getColumnModel().getColumn(1).setMaxWidth(50);
 			tableau.addMouseListener(new MouseAdapter() {
 	            public void mouseClicked(MouseEvent e) {
 	            	int selectedRow = tableau.getSelectedRow();
@@ -202,9 +204,8 @@ public class Accueil extends Thread{
 			// Create a couple of columns 
 
 			// Append a row 
-
+			tableau.setDefaultEditor(Object.class, null);
 			tableau.setRowHeight(30);
-			TableColumnModel columnModel = tableau.getColumnModel();
 			updateUsersView();
 			 frame.addWindowListener(new WindowAdapter() {
 		            public void windowClosing(WindowEvent e) {
@@ -215,8 +216,10 @@ public class Accueil extends Thread{
 				frame.getContentPane().add(BorderLayout.SOUTH, panel);
 				*/
 			pane = AccueilPane();
+			JScrollPane scrollpane = new JScrollPane(tableau);
+			scrollpane.setPreferredSize(new Dimension(250,500));
 		        frame.add(BorderLayout.CENTER, pane);
-		        frame.add(BorderLayout.WEST, new JScrollPane(tableau));
+		        frame.add(BorderLayout.WEST, scrollpane);
 		        frame.setVisible(true);
 		        
 

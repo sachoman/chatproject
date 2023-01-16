@@ -1,6 +1,7 @@
 package ViewPackage;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -128,6 +129,8 @@ public class ConversationThreadView extends Thread{
 		        tf.setMargin(new Insets(10,10,10,10));
 		        tf.setLineWrap(true);
 		        tf.setWrapStyleWord(true);
+		        
+		        
 		        JButton send = new JButton("Envoyer");
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
@@ -158,6 +161,7 @@ public class ConversationThreadView extends Thread{
 		   	 	gbc.gridwidth = 1;
 		   	 	gbc.gridheight = 1;
 		  	 	gbc.weightx = 1;
+		  	 	gbc.ipadx = 200;
 		   	 	gbc.insets = new Insets(5,5,5,5);
 		   	 panel.add(tf,gbc);
 			   	gbc.gridx = 2;
@@ -165,6 +169,7 @@ public class ConversationThreadView extends Thread{
 		   	 	gbc.gridwidth = 1;
 		   	 	gbc.gridheight = 1;
 		   	 	gbc.weightx = 0;
+		   	 	gbc.ipadx = 0;
 		   	 	gbc.insets = new Insets(5,5,5,5);		 
 		   	 panel.add(send,gbc);
 		   	 	gbc.gridx = 3;
@@ -180,8 +185,8 @@ public class ConversationThreadView extends Thread{
 		        String pseudo = DatabaseManager.getPseudo(ipDistante);
 				model = new DefaultTableModel();
 				tableau = new JTable(model);
-				tableau.setEnabled(false);
-
+				//tableau.setEnabled(false);
+				tableau.setDefaultEditor(Object.class, null);
 				// Create a couple of columns 
 				model.addColumn("Date"); 
 				model.addColumn("De"); 
