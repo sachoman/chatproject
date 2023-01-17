@@ -28,13 +28,11 @@ public class SendingChatThread extends Thread{
 		out = outstream;
 	}
 	public void run() {
-		System.out.println("Sending message thread launch");
 		try {
 			out.writeObject(message);
 			SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		    Date date = new Date(System.currentTimeMillis());
 			DatabaseManager.storeMessage("/"+InetAddress.getLocalHost().getHostAddress().toString(),th_sock.getInetAddress().toString(), formatter.format(date), message);
-			System.out.println("Message envoyé");
 			ViewManager.addMessageView(th_sock.getInetAddress(), User.defaultViewPseudo, formatter.format(date), message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

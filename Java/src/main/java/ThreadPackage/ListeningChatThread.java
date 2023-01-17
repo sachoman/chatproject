@@ -28,7 +28,6 @@ public class ListeningChatThread extends Thread{
 				SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 	    		Date date = new Date(System.currentTimeMillis());
 				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),"/"+InetAddress.getLocalHost().getHostAddress().toString(),  formatter.format(date), msg.toString());
-				System.out.println("Message chat reçu : " + msg);
 				String pseudo = DatabaseManager.getPseudo(th_socket.getInetAddress().toString());
 				ViewManager.addMessageView(th_socket.getInetAddress(), pseudo,formatter.format(date), msg.toString());
 				//si la frame n'est pas visible, on met en gras l'utilisateur qui a envoyé un messgae sur la page d'accueil
@@ -40,7 +39,6 @@ public class ListeningChatThread extends Thread{
 				}
 			}
 		} catch (IOException | ClassNotFoundException e1) {
-			System.out.println("Connexion sur socket : "+th_socket+" terminée");
 			//notify the chat view
 			ViewManager.endChat(th_socket.getInetAddress());
 			//notify thread manager

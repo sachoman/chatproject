@@ -112,7 +112,6 @@ public class Accueil extends Thread{
 	   	 return pane;
 	}
 	public void fermeConv() {
-		System.out.println("on ferme la conv \n");
 		  frame.remove(pane);
 		  pane = AccueilPane();
 		  frame.add(BorderLayout.CENTER, pane);

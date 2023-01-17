@@ -19,11 +19,9 @@ public class ThreadManager {
 	}
 	public static void removeThreadInTab(Long id_th) {
 		try {
-		System.out.println("id thread : " + id_th);
 		InetAddress ip = TableIdThIpDistante.get(id_th);
 		ThreadManager.endChat(ip);
 		TableIdThIpDistante.remove(id_th);
-		System.out.println("ip distante : " + ip);
 		Socket sock = NetworkManager.TabIpSock.get(ip);
 		NetworkManager.TabIpSock.remove(ip);
 		NetworkManager.removeOutFromSock(sock);
@@ -49,7 +47,6 @@ public class ThreadManager {
 	public static void endChat(InetAddress ip) {
 		 for(Entry<Long, InetAddress> entry: TableIdThIpDistante.entrySet()){
 	            if(ip.equals(entry.getValue())){
-	            	System.out.println("debut end chat  2");
 	            	ViewManager.endChat(ip);
 	            	Long id_th = entry.getKey();
 	                TableIdThIpDistante.remove(id_th);

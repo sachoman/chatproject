@@ -22,7 +22,6 @@ public class WaitingChatServer extends Thread{
 	                 Socket socket = serverSocket.accept();
 	                 InetAddress ip = socket.getInetAddress();
 	                 NetworkManager.TabIpSock.put(ip, socket);
-	                 System.out.println("New client connected");
 	                 ThreadManager.createThreadForChat(socket, false);
 	            }
 	  

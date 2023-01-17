@@ -6,7 +6,6 @@ import ViewPackage.ViewManager;
 
 public class Ender{
 	public Ender() {
-	System.out.println("fin du game");
 	try {
 		ThreadManager.killAllThreads();
 	}

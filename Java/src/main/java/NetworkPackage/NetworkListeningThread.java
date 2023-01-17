@@ -42,7 +42,7 @@ public class NetworkListeningThread extends Thread {
 					    }
 					}
 					if (booladresse) {
-						System.out.println("UDP message from : " + clientAddress.toString());
+						//System.out.println("UDP message from : " + clientAddress.toString());
 						int clientPort = inPacket.getPort();
 						String message = new String(inPacket.getData(), 0, inPacket.getLength());
 						NetworkTraitementMessage th = new NetworkTraitementMessage(clientAddress, clientPort, message);
