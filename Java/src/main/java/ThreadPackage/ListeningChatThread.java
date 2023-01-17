@@ -20,7 +20,6 @@ public class ListeningChatThread extends Thread{
 	}
 	public void run() {
 		ObjectInputStream in;
-		System.out.println("Accept chat thread launched");
 		try {
 			in = new ObjectInputStream(th_socket.getInputStream());
 			while(true) {

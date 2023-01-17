@@ -43,7 +43,6 @@ public class NetworkManager {
 		    while (ee.hasMoreElements())
 		    {
 		        InetAddress i = (InetAddress) ee.nextElement();
-		        System.out.println(i.getHostAddress());
 		    }
 		}
 	}

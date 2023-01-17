@@ -135,7 +135,6 @@ public class ConversationThreadView extends Thread{
 		        send.addActionListener(new ActionListener() { 
 		        	  public void actionPerformed(ActionEvent e) { 
 		        		  String message = new String(tf.getText());
-		        		  System.out.println(inetIp);
 		        		  NetworkManager.sendMessage(message, inetIp);
 						tf.setText(""); 
 		        	  } 

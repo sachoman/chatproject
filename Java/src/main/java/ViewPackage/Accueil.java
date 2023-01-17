@@ -44,13 +44,6 @@ public class Accueil extends Thread{
 	JFrame frame;
 	public Accueil() {
 	}  
-	/*
-	 * InetAddress ip = NetworkManager.stringToInet(DatabaseManager.getIp(value.toString()));
-				 if (ViewManager.TabIpChatThreadView.get(ip).newmessage) { 
-					 System.out.println("ca marche");
-			            c.setFont(c.getFont().deriveFont(Font.BOLD));
-			        }
-	 */
 	public Container AccueilPane() {
 		 pane = new JPanel();
 		 pane.setLayout(new GridBagLayout());
