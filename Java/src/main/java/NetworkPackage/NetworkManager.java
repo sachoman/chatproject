@@ -88,7 +88,6 @@ public class NetworkManager {
 		}
 	}
 	public static void ChatWithUser(InetAddress ip) {
-		System.out.println("chat avec :  "+ip);
 		try {
 			Socket socket = new Socket(ip,9632);
 			NetworkManager.TabIpSock.put(ip, socket);

@@ -46,7 +46,7 @@ public class ConversationThreadView extends Thread{
 		    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		        setText((value == null) ? "" : value.toString());
 		        setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredSize().height);
-		        if (table.getRowHeight(row) != getPreferredSize().height) {
+		        if ((table.getRowHeight(row) != getPreferredSize().height)&&( getPreferredSize().height>60)) {
 		            table.setRowHeight(row, getPreferredSize().height);
 		        }
 		        return this;
