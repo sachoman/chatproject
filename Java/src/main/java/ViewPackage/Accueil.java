@@ -132,10 +132,7 @@ public class Accueil extends Thread{
 					}
 					catch (Exception e) {
 						model.addRow(new Object[]{data[i][1],""});
-						}
-					 
-					//check si un nouveau message, alors c'est en gras
-					
+						}				
 				}
 			 }
 			 else {
@@ -152,16 +149,12 @@ public class Accueil extends Thread{
 		 try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		//Creating the Frame
 	        frame = new JFrame("Accueil");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setSize(1100, 800);
-	        
-	        // Text Area at the Center
-	        //String[][] history = DatabaseManager.getMessages(ipDistante);
 			model = new DefaultTableModel(); 
 			model.addColumn("utilisateurs");
 			model.addColumn("");
@@ -188,7 +181,6 @@ public class Accueil extends Thread{
 	            			NetworkManager.ChatWithUser(adresseDistante);
 	            		}
 					} catch (UnknownHostException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -204,9 +196,6 @@ public class Accueil extends Thread{
 		            	new Ender();
 		            }
 		        });
-			 /*
-				frame.getContentPane().add(BorderLayout.SOUTH, panel);
-				*/
 			pane = AccueilPane();
 			JScrollPane scrollpane = new JScrollPane(tableau);
 			scrollpane.setPreferredSize(new Dimension(250,500));

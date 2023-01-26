@@ -29,7 +29,6 @@ public class ListeningChatThread extends Thread{
 				DatabaseManager.storeMessage(th_socket.getInetAddress().toString(),"/"+InetAddress.getLocalHost().getHostAddress().toString(),  formatter.format(date), msg.toString());
 				String pseudo = DatabaseManager.getPseudo(th_socket.getInetAddress().toString());
 				ViewManager.addMessageView(th_socket.getInetAddress(), pseudo,formatter.format(date), msg.toString());
-				//si la frame n'est pas visible, on met en gras l'utilisateur qui a envoyé un messgae sur la page d'accueil
 				if (!(th_socket.getInetAddress().equals(ViewManager.AccueilThRef.inetIp))) {
 					ViewManager.TabIpChatThreadView.get(th_socket.getInetAddress()).newmessage = true;
 					ViewManager.TabIpChatThreadView.get(th_socket.getInetAddress()).cptmessages +=1;

@@ -418,22 +418,4 @@ public class DatabaseManager {
         }
 		return false;
 	}
-	/**
-     * @param args the command line arguments
-	 * @return 
-     * @throws ClassNotFoundException 
-     */
-	/*
-    public static void main(String[] args) throws ClassNotFoundException {
-    	DatabaseManager dbmanager = new DatabaseManager();
-        dbmanager.initTables();
-        //dbmanager.addUser("192.168.65.21","Paulo l'artichaut");
-        System.out.println(dbmanager.getPseudo("192.168.65.21"));
-        System.out.println(dbmanager.getIp("Paulo l'artichaut"));
-        System.out.println(dbmanager.isConnected("192.168.65.21"));
-        DatabaseManager.updateUser("192.168.65.21","Paulo l'artichaut", false);
-        System.out.println(dbmanager.existsUser("192.168.65.21"));
-        System.out.println(dbmanager.existsUser("193.168.65.21"));
-    }
-    */
 }

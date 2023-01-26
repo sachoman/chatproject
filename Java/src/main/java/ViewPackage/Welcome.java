@@ -140,7 +140,7 @@ public class Welcome {
         			  Login login = new Login();
         	        }
         	        else{
-        	        	new firstConnexion();
+        	        	new firstLogin();
         	        }
         		  frame.dispose();
         	  } 

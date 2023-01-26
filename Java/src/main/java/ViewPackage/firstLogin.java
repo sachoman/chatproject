@@ -21,8 +21,8 @@ import javax.swing.SwingUtilities;
 
 import DatabasePackage.DatabaseManager;
 
-public class firstConnexion {
-	public firstConnexion() {
+public class firstLogin {
+	public firstLogin() {
 		JFrame frame = new JFrame("Définissez votre mot de passe");
 	   	 frame.addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent e) {

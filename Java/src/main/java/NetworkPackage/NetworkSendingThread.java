@@ -36,7 +36,6 @@ public class NetworkSendingThread extends Thread {
 			DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),InetAddress.getByName(NetworkManager.getBroadcast()), NetworkManager.getUdpAppPort());
 			dgramSocket.send(outPacket);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

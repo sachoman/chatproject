@@ -1,4 +1,4 @@
-package ThreadPackage;
+package NetworkPackage;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -35,7 +35,6 @@ public class SendingChatThread extends Thread{
 			DatabaseManager.storeMessage("/"+InetAddress.getLocalHost().getHostAddress().toString(),th_sock.getInetAddress().toString(), formatter.format(date), message);
 			ViewManager.addMessageView(th_sock.getInetAddress(), User.defaultViewPseudo, formatter.format(date), message);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
