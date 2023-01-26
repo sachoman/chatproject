@@ -3,23 +3,26 @@ package NetworkPackage;
 import ThreadPackage.*;
 import UserPackage.User;
 
+import java.util.List;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
+import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 import DatabasePackage.DatabaseManager;
 
 public class NetworkManager {
 	public static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
 	public static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
-	private static String broadcast="10.1.255.255";
-	private static int TCP_app_port = 9400;
+	private static String broadcast="255.255.255.255";
+	private static int TCP_app_port = 9632;
 	private static int UDP_app_port = 9500;
 	public char buffer;
 	public static int getUdpAppPort() {
@@ -55,6 +58,22 @@ public class NetworkManager {
 		TabSockOut.remove(sock);
 	}
 	public static void StartNetworkManager() throws ClassNotFoundException, IOException {
+		Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
+	    while (en.hasMoreElements()) {
+	      NetworkInterface ni = en.nextElement();
+	      //System.out.println(" Display Name = " + ni.getDisplayName());
+
+	      List<InterfaceAddress> list = ni.getInterfaceAddresses();
+	      Iterator<InterfaceAddress> it = list.iterator();
+
+	      while (it.hasNext()) {
+	        InterfaceAddress ia = it.next();
+	        //System.out.println(" Broadcast = " + ia.getBroadcast());
+	        if (ia.getBroadcast() != null) {
+	        	broadcast = ia.getBroadcast().toString();
+	        }
+	      }
+	    }
 		NetworkListeningThread th = new NetworkListeningThread(UDP_app_port);
 		th.start();
         WaitingChatServer waitserv = new WaitingChatServer();
@@ -89,7 +108,7 @@ public class NetworkManager {
 	}
 	public static void ChatWithUser(InetAddress ip) {
 		try {
-			Socket socket = new Socket(ip,9632);
+			Socket socket = new Socket(ip,NetworkManager.getTcpAppPort());
 			NetworkManager.TabIpSock.put(ip, socket);
 			ThreadManager.createThreadForChat(socket, true);
 		} catch (UnknownHostException e) {

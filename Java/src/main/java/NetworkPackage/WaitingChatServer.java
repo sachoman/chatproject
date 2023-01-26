@@ -11,12 +11,11 @@ import java.net.Socket;
 import ThreadPackage.ListeningChatThread;
 
 public class WaitingChatServer extends Thread{
-	  final static int port = 9632;
 
 	  public void run() {
-	      try (ServerSocket serverSocket = new ServerSocket(port)) {
+	      try (ServerSocket serverSocket = new ServerSocket(NetworkManager.getTcpAppPort())) {
 	    		 
-	             System.out.println("Wait Server Launched, listening on port " + port);
+	             System.out.println("Wait Server Launched, listening on port " + NetworkManager.getTcpAppPort());
 	  
 	             while (true) {
 	                 Socket socket = serverSocket.accept();
