@@ -340,7 +340,6 @@ public class DatabaseManager {
         	pstmt.setBoolean(2,true);
         	try (ResultSet rs = pstmt.executeQuery()){
         		nb = rs.getInt(1);
-        		System.out.println(nb);
         		if (nb == 0) {
         			return true;
         		} else {

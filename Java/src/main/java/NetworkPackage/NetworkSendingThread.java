@@ -33,7 +33,7 @@ public class NetworkSendingThread extends Thread {
 		DatagramSocket dgramSocket;
 		try {
 			dgramSocket = new DatagramSocket();
-			DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),InetAddress.getByName(NetworkManager.getBroadcast()), NetworkManager.getUdpAppPort());
+			DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),NetworkManager.getBroadcast(), NetworkManager.getUdpAppPort());
 			dgramSocket.send(outPacket);
 		} catch (Exception e) {
 			e.printStackTrace();

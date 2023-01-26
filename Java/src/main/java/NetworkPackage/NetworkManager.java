@@ -21,7 +21,7 @@ import DatabasePackage.DatabaseManager;
 public class NetworkManager {
 	public static Hashtable<InetAddress, Socket> TabIpSock = new Hashtable<InetAddress, Socket>();
 	public static Hashtable<Socket, ObjectOutputStream> TabSockOut = new Hashtable<Socket, ObjectOutputStream>();
-	private static String broadcast="255.255.255.255";
+	private static InetAddress broadcast;
 	private static int TCP_app_port = 9632;
 	private static int UDP_app_port = 9500;
 	public char buffer;
@@ -31,7 +31,7 @@ public class NetworkManager {
 	public static int getTcpAppPort() {
 		return TCP_app_port;
 	}
-	public static String getBroadcast() {
+	public static InetAddress getBroadcast() {
 		return broadcast;
 	}
 	public static InetAddress stringToInet(String ip) throws UnknownHostException {
@@ -70,7 +70,7 @@ public class NetworkManager {
 	        InterfaceAddress ia = it.next();
 	        //System.out.println(" Broadcast = " + ia.getBroadcast());
 	        if (ia.getBroadcast() != null) {
-	        	broadcast = ia.getBroadcast().toString();
+	        	broadcast = ia.getBroadcast();
 	        }
 	      }
 	    }
