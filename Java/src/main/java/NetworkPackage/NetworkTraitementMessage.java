@@ -24,8 +24,10 @@ public class NetworkTraitementMessage extends Thread{
 			}
 			else {
 			}
-			NetworkManager.sendRepCo();
-			NetworkManager.sendPseudo(User.getPseudo());
+			if (User.pseudo != null){
+				NetworkManager.sendRepCo();
+				NetworkManager.sendPseudo(User.getPseudo());
+			}
 			try {
 				ViewManager.AccueilThRef.updateUsersView();
 			}
