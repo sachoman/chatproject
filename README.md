@@ -1,3 +1,9 @@
+### STRUCTURE DU GIT
+
+Le dossier java contient les fichiers du projet java.
+Le fichier Rapport projet clavardage.pdf correspond à notre rapport.
+Sont aussi présents notre archive .jar et un script pour installer l'application.
+
 ### INSTALLATION DE L'APPLICATION
 
 Placez l'archive ’ChatProject.jar’ dans le dossier de votre choix. Veuillez noter qu'un fichier ’chatdb.db’ (base de données SQL)
